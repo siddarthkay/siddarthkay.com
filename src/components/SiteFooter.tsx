@@ -1,4 +1,15 @@
 export default function SiteFooter() {
+  const buildAge = (() => {
+    const diff = Date.now() - new Date(__BUILD_TIME__).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return "just now";
+    if (mins < 60) return mins + "m ago";
+    const hours = Math.floor(mins / 60);
+    if (hours < 24) return hours + "h ago";
+    const days = Math.floor(hours / 24);
+    return days + "d ago";
+  })();
+
   return (
     <footer className="bg-navy border-t border-parchment/[0.06] py-8 px-6 md:px-8">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -12,14 +23,24 @@ export default function SiteFooter() {
           </span>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-1.5">
           <p className="font-sans text-parchment/30 text-sm">
             © {new Date().getFullYear()} Siddarth Kumar
           </p>
+          <span className="hidden sm:inline text-parchment/15 text-sm">·</span>
           <p className="font-serif italic text-parchment/20 text-sm">
             Mindset is everything.
           </p>
         </div>
+
+        <a
+          href={__BUILD_URL__ || "https://github.com/siddarthkay/siddarthkay.com/commit/" + __BUILD_SHA__}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-[0.6rem] text-parchment/20 hover:text-burnt transition-colors duration-200 tracking-wider"
+        >
+          {__BUILD_SHA__} · deployed {buildAge}
+        </a>
       </div>
     </footer>
   );
