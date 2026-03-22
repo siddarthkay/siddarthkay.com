@@ -1,3 +1,4 @@
+import iosBuildXcodebuild from "./posts/ios-build-fails-xcodebuild-not-xcode.md?raw";
 import reactNativeNim from "./posts/react-native-nim.md?raw";
 import buildingMobileCicd from "./posts/building-mobile-cicd-status-app.md?raw";
 import ogImageMemoryLeak from "./posts/og-image-memory-leak-nextjs.md?raw";
@@ -18,6 +19,16 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "ios-build-fails-xcodebuild-not-xcode",
+    date: "June 2026",
+    title: "Six Months of Broken iOS Builds, Fixed by One Environment Variable",
+    excerpt:
+      "Our app compiled in Xcode but failed via xcodebuild. For half a year nobody could figure out why. The fix was a single line in the Podfile.",
+    readTime: "7 min read",
+    tags: ["iOS", "React Native", "Debugging", "Xcode", "CI/CD"],
+    content: iosBuildXcodebuild,
+  },
   {
     slug: "react-native-nim",
     date: "March 2026",
