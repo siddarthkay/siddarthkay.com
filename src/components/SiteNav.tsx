@@ -73,8 +73,15 @@ export default function SiteNav() {
         <div className="max-w-5xl mx-auto px-6 md:px-8 flex items-center justify-between h-12">
           {/* Name only — minimal, no logo */}
           <a
-            href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              if (location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              } else {
+                navigate("/");
+              }
+            }}
             className="font-serif text-navy text-[0.9375rem] font-medium tracking-tight hover:text-burnt transition-colors duration-200"
           >
             Siddarth Kumar
