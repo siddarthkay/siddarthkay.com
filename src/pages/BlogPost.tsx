@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { getPost, blogPosts } from "@/data/blog-posts";
@@ -19,6 +20,15 @@ export default function BlogPost() {
 
   return (
     <>
+      <Helmet>
+        <title>{post.title} | Siddarth Kumar</title>
+        <meta name="description" content={post.excerpt} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:url" content={`https://siddarthkay.com/blog/${post.slug}`} />
+        <meta property="og:type" content="article" />
+      </Helmet>
+
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
       <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">
@@ -88,7 +98,7 @@ export default function BlogPost() {
           {/* Prev / Next */}
           <div className="rule-fade mt-16 mb-12" />
           <div className="flex flex-col sm:flex-row justify-between gap-6">
-            {prevPost ? (
+            {prevPost && (
               <Link
                 to={`/blog/${prevPost.slug}`}
                 className="group flex flex-col gap-1 max-w-xs"
@@ -100,8 +110,8 @@ export default function BlogPost() {
                   {prevPost.title}
                 </span>
               </Link>
-            ) : <div />}
-            {nextPost ? (
+            )}
+            {nextPost && (
               <Link
                 to={`/blog/${nextPost.slug}`}
                 className="group flex flex-col gap-1 max-w-xs text-right sm:items-end"
@@ -113,7 +123,7 @@ export default function BlogPost() {
                   {nextPost.title}
                 </span>
               </Link>
-            ) : <div />}
+            )}
           </div>
         </div>
       </main>
