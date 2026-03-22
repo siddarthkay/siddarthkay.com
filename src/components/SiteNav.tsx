@@ -103,7 +103,7 @@ export default function SiteNav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18, ease: [0.2, 0, 0, 1] }}
-              className="md:hidden bg-parchment/98 border-t border-navy/[0.08] px-6 py-6 flex flex-col gap-5"
+              className="md:hidden bg-parchment border-t border-navy/[0.08] px-6 py-6 flex flex-col gap-5 shadow-lg"
             >
               {navItems.map((item) => (
                 <a
