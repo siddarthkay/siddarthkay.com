@@ -1,3 +1,4 @@
+import ogImageMemoryLeak from "./posts/og-image-memory-leak-nextjs.md?raw";
 import rnUpgradeStatusMobile from "./posts/react-native-upgrade-status-mobile.md?raw";
 import migratingAndroidCi from "./posts/migrating-android-ci-qt-69.md?raw";
 import ethereumValidators from "./posts/ethereum-validators-year-in-review.md?raw";
@@ -15,6 +16,16 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "og-image-memory-leak-nextjs",
+    date: "March 2026",
+    title: "A Single Config Line Was Leaking 1.8GB in Our Next.js App",
+    excerpt:
+      "How a copy-pasted Edge runtime directive caused OG image generation to eat 4.4GB of memory in three minutes.",
+    readTime: "8 min read",
+    tags: ["Next.js", "Debugging", "Memory Leak", "WASM", "Node.js"],
+    content: ogImageMemoryLeak,
+  },
   {
     slug: "react-native-upgrade-status-mobile",
     date: "May 2026",
