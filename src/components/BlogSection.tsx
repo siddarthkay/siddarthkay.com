@@ -13,27 +13,27 @@ interface Post {
 const posts: Post[] = [
   {
     date: "Mar 2026",
+    slug: "og-image-memory-leak-nextjs",
+    title: "A Single Config Line Was Leaking 1.8GB in Our Next.js App",
+    excerpt: "How a copy-pasted Edge runtime directive caused OG image generation to eat 4.4GB of memory in three minutes.",
+  },
+  {
+    date: "May 2026",
+    slug: "react-native-upgrade-status-mobile",
+    title: "Upgrading React Native from 0.63 to 0.73 in a Production App",
+    excerpt: "A year-long incremental upgrade across five major versions in Status, a ClojureScript app with Go bridges, nix builds, and a full Java-to-Kotlin migration along the way.",
+  },
+  {
+    date: "Mar 2026",
     slug: "migrating-android-ci-qt-69",
     title: "Migrating Android CI to Qt 6.9 with Self-Controlled Docker Images",
     excerpt: "Why we stopped trusting upstream images and what it took to own the build environment entirely.",
-  },
-  {
-    date: "Jan 2026",
-    slug: "ethereum-validators-year-in-review",
-    title: "Running Ethereum Validators: A Year in Review",
-    excerpt: "Uptime, incidents, governance participation, and what I'd do differently with Nimbus and Nethermind.",
   },
   {
     date: "Nov 2025",
     slug: "left-third-party-docker-behind",
     title: "Why I Left Third-Party Docker Images Behind",
     excerpt: "The hidden cost of convenience: build drift, supply chain risk, and the case for self-built base images.",
-  },
-  {
-    date: "Sep 2025",
-    slug: "debugging-nim-utf8-race-conditions",
-    title: "Debugging Nim UTF-8 Race Conditions on macOS ARM64",
-    excerpt: "A weekend deep-dive into a non-deterministic crash that only appeared on Apple Silicon.",
   },
 ];
 
