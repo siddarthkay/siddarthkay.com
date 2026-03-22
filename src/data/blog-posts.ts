@@ -1,3 +1,4 @@
+import buildingMobileCicd from "./posts/building-mobile-cicd-status-app.md?raw";
 import ogImageMemoryLeak from "./posts/og-image-memory-leak-nextjs.md?raw";
 import rnUpgradeStatusMobile from "./posts/react-native-upgrade-status-mobile.md?raw";
 import migratingAndroidCi from "./posts/migrating-android-ci-qt-69.md?raw";
@@ -16,6 +17,16 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "building-mobile-cicd-status-app",
+    date: "March 2026",
+    title: "Building Mobile CI/CD for a Crypto App from Scratch",
+    excerpt:
+      "85 PRs, 7 months, and a pipeline that ships to Google Play, TestFlight, and F-Droid. With a Qt/QML app compiled through Nim, Go, and C.",
+    readTime: "16 min read",
+    tags: ["CI/CD", "Jenkins", "Docker", "iOS", "Android", "F-Droid"],
+    content: buildingMobileCicd,
+  },
   {
     slug: "og-image-memory-leak-nextjs",
     date: "March 2026",
