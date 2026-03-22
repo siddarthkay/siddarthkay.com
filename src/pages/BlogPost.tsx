@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import Markdown from "react-markdown";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { getPost, blogPosts } from "@/data/blog-posts";
@@ -92,8 +93,9 @@ export default function BlogPost() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease }}
             className="prose-blog"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          >
+            <Markdown>{post.content}</Markdown>
+          </motion.div>
 
           {/* Prev / Next */}
           <div className="rule-fade mt-16 mb-12" />
