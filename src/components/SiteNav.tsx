@@ -31,6 +31,10 @@ export default function SiteNav() {
   }, []);
 
   useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
     return () => { clearTimeout(scrollTimerRef.current); };
   }, []);
 

@@ -13,7 +13,7 @@ export default function PageViews() {
     fetch(`${GC_HOST}/counter/${path}.json`, { signal: controller.signal })
       .then((r) => r.ok ? r.json() : null)
       .then((data) => { if (data?.count) setCount(data.count); })
-      .catch(() => {});
+      .catch((e) => { if (e.name !== "AbortError") console.warn("PageViews fetch failed:", e); });
     return () => controller.abort();
   }, [location.pathname]);
 

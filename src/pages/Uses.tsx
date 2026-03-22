@@ -176,6 +176,7 @@ function CategoryBlock({ cat, i }: { cat: ToolCategory; i: number }) {
             src={cat.sketch}
             alt=""
             aria-hidden="true"
+            loading="lazy"
             className="w-full h-full object-contain"
             style={{ filter: "contrast(1.2)" }}
           />
@@ -295,6 +296,7 @@ function GamesSection() {
               src={sketchGames}
               alt=""
               aria-hidden="true"
+              loading="lazy"
               className="w-full h-full object-contain"
               style={{ filter: "contrast(1.2)" }}
             />

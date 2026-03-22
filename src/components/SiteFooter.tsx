@@ -9,7 +9,7 @@ export default function SiteFooter() {
     fetch(`${GC_HOST}/counter/TOTAL.json`, { signal: controller.signal })
       .then((r) => r.ok ? r.json() : null)
       .then((data) => { if (data?.count) setTotalViews(data.count); })
-      .catch(() => {});
+      .catch((e) => { if (e.name !== "AbortError") console.warn("SiteFooter fetch failed:", e); });
     return () => controller.abort();
   }, []);
 
