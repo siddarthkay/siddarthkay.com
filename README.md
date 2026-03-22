@@ -2,6 +2,8 @@
 
 Personal site. Built with Vite, React, TypeScript, and Tailwind. Deployed on GitHub Pages.
 
+![Lighthouse scores](public/lighthouse.png)
+
 ## Live data
 
 Health vitals (Whoop) and gaming activity (Steam) update automatically every 6 hours via GitHub Actions.
