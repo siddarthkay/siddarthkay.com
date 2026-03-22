@@ -1,3 +1,4 @@
+import androidSeccompCrash from "./posts/android-seccomp-epoll-crash.md?raw";
 import iosBuildXcodebuild from "./posts/ios-build-fails-xcodebuild-not-xcode.md?raw";
 import reactNativeNim from "./posts/react-native-nim.md?raw";
 import buildingMobileCicd from "./posts/building-mobile-cicd-status-app.md?raw";
@@ -19,6 +20,16 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "android-seccomp-epoll-crash",
+    date: "June 2026",
+    title: "A Kernel Syscall Was Killing Our Android App on x86_64",
+    excerpt:
+      "The app worked on ARM, worked on x86, and crashed instantly on x86_64 emulators. Three months to find two Go libraries making raw epoll_wait calls that Android's seccomp filter blocked.",
+    readTime: "11 min read",
+    tags: ["Android", "Go", "Debugging", "Seccomp", "React Native"],
+    content: androidSeccompCrash,
+  },
   {
     slug: "ios-build-fails-xcodebuild-not-xcode",
     date: "June 2026",
