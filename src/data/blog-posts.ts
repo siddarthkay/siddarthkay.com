@@ -1,3 +1,4 @@
+import reactNativeNim from "./posts/react-native-nim.md?raw";
 import buildingMobileCicd from "./posts/building-mobile-cicd-status-app.md?raw";
 import ogImageMemoryLeak from "./posts/og-image-memory-leak-nextjs.md?raw";
 import rnUpgradeStatusMobile from "./posts/react-native-upgrade-status-mobile.md?raw";
@@ -17,6 +18,16 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "react-native-nim",
+    date: "March 2026",
+    title: "Bridging Nim and React Native via JSI",
+    excerpt:
+      "Building an auto-generated FFI layer that lets you write Nim functions and call them from React Native with no bridge overhead.",
+    readTime: "12 min read",
+    tags: ["Nim", "React Native", "JSI", "Mobile", "Open Source"],
+    content: reactNativeNim,
+  },
   {
     slug: "building-mobile-cicd-status-app",
     date: "March 2026",
