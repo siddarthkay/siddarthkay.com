@@ -12,7 +12,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: "About", href: "#about", type: "scroll" },
   { label: "Work", href: "#work", type: "scroll" },
-  { label: "Writing", href: "#writing", type: "scroll" },
+  { label: "Writing", href: "/blog", type: "route" },
   { label: "Uses", href: "/uses", type: "route" },
   { label: "Contact", href: "#contact", type: "scroll" },
 ];

@@ -12,6 +12,18 @@ interface Post {
 
 const posts: Post[] = [
   {
+    date: "Jun 2026",
+    slug: "android-seccomp-epoll-crash",
+    title: "A Kernel Syscall Was Killing Our Android App on x86_64",
+    excerpt: "The app worked on ARM, worked on x86, and crashed instantly on x86_64 emulators. Three months to find two Go libraries making raw epoll_wait calls that Android's seccomp filter blocked.",
+  },
+  {
+    date: "Jun 2026",
+    slug: "ios-build-fails-xcodebuild-not-xcode",
+    title: "Six Months of Broken iOS Builds, Fixed by One Environment Variable",
+    excerpt: "Our app compiled in Xcode but failed via xcodebuild. For half a year nobody could figure out why. The fix was a single line in the Podfile.",
+  },
+  {
     date: "Mar 2026",
     slug: "og-image-memory-leak-nextjs",
     title: "A Single Config Line Was Leaking 1.8GB in Our Next.js App",
@@ -22,18 +34,6 @@ const posts: Post[] = [
     slug: "react-native-upgrade-status-mobile",
     title: "Upgrading React Native from 0.63 to 0.73 in a Production App",
     excerpt: "A year-long incremental upgrade across five major versions in Status, a ClojureScript app with Go bridges, nix builds, and a full Java-to-Kotlin migration along the way.",
-  },
-  {
-    date: "Mar 2026",
-    slug: "migrating-android-ci-qt-69",
-    title: "Migrating Android CI to Qt 6.9 with Self-Controlled Docker Images",
-    excerpt: "Why we stopped trusting upstream images and what it took to own the build environment entirely.",
-  },
-  {
-    date: "Nov 2025",
-    slug: "left-third-party-docker-behind",
-    title: "Why I Left Third-Party Docker Images Behind",
-    excerpt: "The hidden cost of convenience: build drift, supply chain risk, and the case for self-built base images.",
   },
 ];
 
