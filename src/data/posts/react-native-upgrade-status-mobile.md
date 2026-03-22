@@ -2,6 +2,8 @@ When I joined the React Native upgrade effort at Status, the app was pinned to R
 
 This is not a guide. It's a war story.
 
+![React Native upgrade experience](/blog/rn-upgrade-cliff.jpeg)
+
 ## Why incremental
 
 The conventional wisdom is to upgrade React Native in one shot: run the upgrade helper, fix what breaks, merge. That works when your app is a standard RN project with a handful of native modules. Status is not that. It's a ClojureScript app compiled to React Native, with a Go backend bridged through native modules, custom C libraries, a nix-based build system, and CI pipelines that build for Android and iOS on every commit.
@@ -30,6 +32,8 @@ This was the most complex upgrade ([#17241](https://github.com/status-im/status-
 
 I made a deliberate choice here: stay on JavaScriptCore for iOS and Hermes for Android. Enabling the new architecture would come later. Trying to do everything at once is how upgrade efforts die.
 
+![Had a couple quick nits](/blog/couple-quick-nits.jpeg)
+
 The PR collected 132 review comments over three months. Some of those comments were about the upgrade itself. Many were about the side effects: the metro bundler start time regressed because the `make run-metro` target had to change from `clojure` to `android`, and several team members reported slower iteration cycles.
 
 We also used this upgrade as an opportunity to remove `@walletconnect/client` entirely. It was deprecated and we had a replacement ready. Removing dead dependencies during an upgrade is one of the few times you can do it without anyone objecting.
@@ -37,6 +41,8 @@ We also used this upgrade as an opportunity to remove `@walletconnect/client` en
 I also had to [add Xcode 15 support](https://github.com/status-im/status-mobile/pull/17343) separately, fixing a `std::unary_function` error in boost headers caused by Clang changes in the new Xcode.
 
 ## The Kotlin migration
+
+![How Kotlin developers see Java developers](/blog/kotlin-sees-java.jpeg)
 
 React Native 0.73 required Kotlin for `MainActivity` and `MainApplication`. But our codebase had dozens of Java files in the native layer, and converting just the entry points would have left us in an awkward half-Java, half-Kotlin state.
 
@@ -77,3 +83,5 @@ Open platform-specific sub-PRs for CI testing before combining into a single mer
 Use the upgrade as an opportunity to delete things. Every dependency you remove is one fewer thing that can break on the next upgrade.
 
 And most importantly: merge to develop early and often. A long-lived upgrade branch is a branch that never ships.
+
+![The only green flag developers need](/blog/green-flag-merge.png)
