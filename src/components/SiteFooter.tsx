@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-
-const GC_HOST = "https://siddarthkay.goatcounter.com";
+import { GC_HOST } from "@/lib/constants";
 
 export default function SiteFooter() {
   const [totalViews, setTotalViews] = useState<string | null>(null);

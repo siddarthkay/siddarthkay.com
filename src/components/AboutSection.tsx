@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { ease } from "@/lib/motion";
 
 export default function AboutSection() {
   const ref = useRef<HTMLElement>(null);

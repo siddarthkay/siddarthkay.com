@@ -4,8 +4,7 @@ import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { blogPosts } from "@/data/blog-posts";
 import PageViews from "@/components/PageViews";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { ease } from "@/lib/motion";
 
 export default function BlogIndex() {
   return (

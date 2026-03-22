@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { ease } from "@/lib/motion";
 
 const GCAL_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2HZIJ1T32Obs4qxIV0_o0oVGxt2Jh_yVJm66Hcj88b0v4VKqx4mdco_iqDJRfPhYGDZXhu1zrG?gv=true";
 

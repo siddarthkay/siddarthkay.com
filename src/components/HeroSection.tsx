@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import sidkayLogo from "@/assets/sidkay-logo.png";
 import PageViews from "@/components/PageViews";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { ease } from "@/lib/motion";
 
 export default function HeroSection() {
   const handleScroll = (href: string) => {

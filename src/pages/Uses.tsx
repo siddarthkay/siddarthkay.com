@@ -12,8 +12,7 @@ import sketchServices from "@/assets/sketch-services.png";
 import sketchGames from "@/assets/sketch-games.png";
 import steamData from "@/data/steam-data.json";
 import PageViews from "@/components/PageViews";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { ease } from "@/lib/motion";
 
 interface ToolItem {
   name: string;

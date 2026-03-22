@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { ease } from "@/lib/motion";
 
 interface Project {
   index: string;

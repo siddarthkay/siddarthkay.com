@@ -5,8 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import { getPost, blogPosts } from "@/data/blog-posts";
 import PageViews from "@/components/PageViews";
 import NotFound from "./NotFound";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { ease } from "@/lib/motion";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();

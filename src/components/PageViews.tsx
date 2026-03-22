@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
-const GC_HOST = "https://siddarthkay.goatcounter.com";
+import { GC_HOST } from "@/lib/constants";
 
 export default function PageViews() {
   const [count, setCount] = useState<string | null>(null);

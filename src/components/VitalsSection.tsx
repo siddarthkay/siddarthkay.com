@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import whoopData from "@/data/whoop-data.json";
-
-const ease = [0.2, 0, 0, 1] as const;
+import { ease } from "@/lib/motion";
 
 function getRecoveryColor(score: number): string {
   if (score >= 67) return "#44aa99";
