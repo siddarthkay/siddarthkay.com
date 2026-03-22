@@ -5,10 +5,12 @@ export default function SiteFooter() {
   const [totalViews, setTotalViews] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${GC_HOST}/counter/TOTAL.json`)
+    const controller = new AbortController();
+    fetch(`${GC_HOST}/counter/TOTAL.json`, { signal: controller.signal })
       .then((r) => r.ok ? r.json() : null)
       .then((data) => { if (data?.count) setTotalViews(data.count); })
       .catch(() => {});
+    return () => controller.abort();
   }, []);
 
   const buildAge = (() => {

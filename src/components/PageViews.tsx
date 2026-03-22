@@ -8,11 +8,13 @@ export default function PageViews() {
 
   useEffect(() => {
     setCount(null);
+    const controller = new AbortController();
     const path = encodeURIComponent(location.pathname.replace(/\/$/, "") || "/");
-    fetch(`${GC_HOST}/counter/${path}.json`)
+    fetch(`${GC_HOST}/counter/${path}.json`, { signal: controller.signal })
       .then((r) => r.ok ? r.json() : null)
       .then((data) => { if (data?.count) setCount(data.count); })
       .catch(() => {});
+    return () => controller.abort();
   }, [location.pathname]);
 
   if (!count) return null;

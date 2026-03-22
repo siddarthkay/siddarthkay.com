@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ease } from "@/lib/motion";
@@ -22,11 +22,16 @@ export default function SiteNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const scrollTimerRef = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    return () => { clearTimeout(scrollTimerRef.current); };
   }, []);
 
   const handleNavClick = (item: NavItem) => {
@@ -38,7 +43,8 @@ export default function SiteNav() {
     // If not on home page, navigate home first then scroll
     if (location.pathname !== "/") {
       navigate("/");
-      setTimeout(() => {
+      clearTimeout(scrollTimerRef.current);
+      scrollTimerRef.current = setTimeout(() => {
         const el = document.querySelector(item.href);
         if (el) el.scrollIntoView({ behavior: "smooth" });
       }, 100);
