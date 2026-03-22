@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { getPost, blogPosts } from "@/data/blog-posts";
+import PageViews from "@/components/PageViews";
 import NotFound from "./NotFound";
 
 const ease = [0.2, 0, 0, 1] as const;
@@ -49,6 +50,8 @@ export default function BlogPost() {
               <span className="label-mono text-burnt">{post.date}</span>
               <span className="label-mono text-slate/40">·</span>
               <span className="label-mono text-slate">{post.readTime}</span>
+              <span className="label-mono text-slate/40">·</span>
+              <PageViews />
             </div>
 
             <h1 className="font-serif text-navy text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-6">

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { blogPosts } from "@/data/blog-posts";
+import PageViews from "@/components/PageViews";
 
 const ease = [0.2, 0, 0, 1] as const;
 
@@ -35,7 +36,10 @@ export default function BlogIndex() {
             transition={{ duration: 0.5, ease }}
             className="mb-2"
           >
-            <p className="label-mono text-burnt mb-3">Writing</p>
+            <div className="flex items-center gap-4 mb-3">
+              <p className="label-mono text-burnt">Writing</p>
+              <PageViews />
+            </div>
             <h1 className="font-serif text-navy text-4xl md:text-5xl font-medium">
               All posts.
             </h1>

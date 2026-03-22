@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import sidkayLogo from "@/assets/sidkay-logo.png";
+import PageViews from "@/components/PageViews";
 
 const ease = [0.2, 0, 0, 1] as const;
 
@@ -24,7 +25,10 @@ export default function HeroSection() {
         >
           <span className="label-mono text-slate">Vol. XII · Est. 2014</span>
           <span className="label-mono text-slate hidden sm:block">Infrastructure Engineering</span>
-          <span className="label-mono text-burnt">Currently heads-down · Requests considered</span>
+          <span className="flex items-center gap-4">
+            <PageViews />
+            <span className="label-mono text-burnt">Currently heads-down · Requests considered</span>
+          </span>
         </motion.div>
 
         {/* ── Main hero grid ── */}

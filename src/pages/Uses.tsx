@@ -11,6 +11,7 @@ import sketchHardware from "@/assets/sketch-hardware.png";
 import sketchServices from "@/assets/sketch-services.png";
 import sketchGames from "@/assets/sketch-games.png";
 import steamData from "@/data/steam-data.json";
+import PageViews from "@/components/PageViews";
 
 const ease = [0.2, 0, 0, 1] as const;
 
@@ -328,7 +329,10 @@ export default function Uses() {
             >
               <span className="label-mono text-slate">Field Notes</span>
               <span className="label-mono text-slate hidden sm:block">Tools and Workflow</span>
-              <span className="label-mono text-burnt">Mar 2026</span>
+              <span className="flex items-center gap-4">
+                <PageViews />
+                <span className="label-mono text-burnt">Mar 2026</span>
+              </span>
             </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 items-start">

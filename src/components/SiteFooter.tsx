@@ -1,4 +1,17 @@
+import { useEffect, useState } from "react";
+
+const GC_HOST = "https://siddarthkay.goatcounter.com";
+
 export default function SiteFooter() {
+  const [totalViews, setTotalViews] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`${GC_HOST}/counter/TOTAL.json`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => { if (data?.count) setTotalViews(data.count); })
+      .catch(() => {});
+  }, []);
+
   const buildAge = (() => {
     const diff = Date.now() - new Date(__BUILD_TIME__).getTime();
     const mins = Math.floor(diff / 60000);
@@ -33,14 +46,21 @@ export default function SiteFooter() {
           </p>
         </div>
 
-        <a
-          href={__BUILD_URL__ || "https://github.com/siddarthkay/siddarthkay.com/commit/" + __BUILD_SHA__}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-mono text-[0.6rem] text-parchment/20 hover:text-burnt transition-colors duration-200 tracking-wider"
-        >
-          {__BUILD_SHA__} · deployed {buildAge}
-        </a>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          {totalViews != null && (
+            <span className="font-mono text-[0.6rem] text-parchment/20 tracking-wider">
+              {totalViews} total views
+            </span>
+          )}
+          <a
+            href={__BUILD_URL__ || "https://github.com/siddarthkay/siddarthkay.com/commit/" + __BUILD_SHA__}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-[0.6rem] text-parchment/20 hover:text-burnt transition-colors duration-200 tracking-wider"
+          >
+            {__BUILD_SHA__} · deployed {buildAge}
+          </a>
+        </div>
       </div>
     </footer>
   );
