@@ -1,3 +1,4 @@
+import missingSymbolMacosGo from "./posts/missing-symbol-called-macos-go.md?raw";
 import androidSeccompCrash from "./posts/android-seccomp-epoll-crash.md?raw";
 import iosBuildXcodebuild from "./posts/ios-build-fails-xcodebuild-not-xcode.md?raw";
 import reactNativeNim from "./posts/react-native-nim.md?raw";
@@ -20,6 +21,16 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "missing-symbol-called-macos-go",
+    date: "June 2026",
+    title: "\"missing symbol called\" and Nothing Else",
+    excerpt:
+      "Five words, no stack trace. A Go 1.20 regression left DNS symbols unresolved in our C-archive on macOS. Finding the symbol meant diffing the binaries.",
+    readTime: "8 min read",
+    tags: ["Go", "macOS", "Debugging", "Nix", "CI/CD"],
+    content: missingSymbolMacosGo,
+  },
   {
     slug: "android-seccomp-epoll-crash",
     date: "June 2026",
