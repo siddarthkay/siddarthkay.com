@@ -22,36 +22,6 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "missing-symbol-called-macos-go",
-    date: "June 2026",
-    title: "\"missing symbol called\" and Nothing Else",
-    excerpt:
-      "Five words, no stack trace. A Go 1.20 regression left DNS symbols unresolved in our C-archive on macOS. Finding the symbol meant diffing the binaries.",
-    readTime: "8 min read",
-    tags: ["Go", "macOS", "Debugging", "Nix", "CI/CD"],
-    content: missingSymbolMacosGo,
-  },
-  {
-    slug: "android-seccomp-epoll-crash",
-    date: "June 2026",
-    title: "A Kernel Syscall Was Killing Our Android App on x86_64",
-    excerpt:
-      "The app worked on ARM, worked on x86, and crashed instantly on x86_64 emulators. Three months to find two Go libraries making raw epoll_wait calls that Android's seccomp filter blocked.",
-    readTime: "11 min read",
-    tags: ["Android", "Go", "Debugging", "Seccomp", "React Native"],
-    content: androidSeccompCrash,
-  },
-  {
-    slug: "ios-build-fails-xcodebuild-not-xcode",
-    date: "June 2026",
-    title: "Six Months of Broken iOS Builds, Fixed by One Environment Variable",
-    excerpt:
-      "Our app compiled in Xcode but failed via xcodebuild. For half a year nobody could figure out why. The fix was a single line in the Podfile.",
-    readTime: "7 min read",
-    tags: ["iOS", "React Native", "Debugging", "Xcode", "CI/CD"],
-    content: iosBuildXcodebuild,
-  },
-  {
     slug: "react-native-nim",
     date: "March 2026",
     title: "Bridging Nim and React Native via JSI",
@@ -80,16 +50,6 @@ export const blogPosts: BlogPost[] = [
     readTime: "8 min read",
     tags: ["Next.js", "Debugging", "Memory Leak", "WASM", "Node.js"],
     content: ogImageMemoryLeak,
-  },
-  {
-    slug: "react-native-upgrade-status-mobile",
-    date: "May 2026",
-    title: "Upgrading React Native from 0.63 to 0.73 in a Production App",
-    excerpt:
-      "A year-long incremental upgrade across five major versions in Status, a ClojureScript app with Go bridges, nix builds, and a full Java-to-Kotlin migration along the way.",
-    readTime: "14 min read",
-    tags: ["React Native", "Mobile", "Status", "Kotlin", "CI/CD"],
-    content: rnUpgradeStatusMobile,
   },
   {
     slug: "migrating-android-ci-qt-69",
@@ -130,6 +90,46 @@ export const blogPosts: BlogPost[] = [
     readTime: "13 min read",
     tags: ["Nim", "Debugging", "macOS", "ARM64", "Concurrency"],
     content: debuggingNimUtf8,
+  },
+  {
+    slug: "missing-symbol-called-macos-go",
+    date: "May 2024",
+    title: "\"missing symbol called\" and Nothing Else",
+    excerpt:
+      "Five words, no stack trace. A Go 1.20 regression left DNS symbols unresolved in our C-archive on macOS. Finding the symbol meant diffing the binaries.",
+    readTime: "8 min read",
+    tags: ["Go", "macOS", "Debugging", "Nix", "CI/CD"],
+    content: missingSymbolMacosGo,
+  },
+  {
+    slug: "react-native-upgrade-status-mobile",
+    date: "March 2024",
+    title: "Upgrading React Native from 0.63 to 0.73 in a Production App",
+    excerpt:
+      "A year-long incremental upgrade across five major versions in Status, a ClojureScript app with Go bridges, nix builds, and a full Java-to-Kotlin migration along the way.",
+    readTime: "14 min read",
+    tags: ["React Native", "Mobile", "Status", "Kotlin", "CI/CD"],
+    content: rnUpgradeStatusMobile,
+  },
+  {
+    slug: "android-seccomp-epoll-crash",
+    date: "December 2023",
+    title: "A Kernel Syscall Was Killing Our Android App on x86_64",
+    excerpt:
+      "The app worked on ARM, worked on x86, and crashed instantly on x86_64 emulators. Three months to find two Go libraries making raw epoll_wait calls that Android's seccomp filter blocked.",
+    readTime: "11 min read",
+    tags: ["Android", "Go", "Debugging", "Seccomp", "React Native"],
+    content: androidSeccompCrash,
+  },
+  {
+    slug: "ios-build-fails-xcodebuild-not-xcode",
+    date: "May 2023",
+    title: "Six Months of Broken iOS Builds, Fixed by One Environment Variable",
+    excerpt:
+      "Our app compiled in Xcode but failed via xcodebuild. For half a year nobody could figure out why. The fix was a single line in the Podfile.",
+    readTime: "7 min read",
+    tags: ["iOS", "React Native", "Debugging", "Xcode", "CI/CD"],
+    content: iosBuildXcodebuild,
   },
 ];
 

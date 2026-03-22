@@ -12,13 +12,13 @@ interface Post {
 
 const posts: Post[] = [
   {
-    date: "Jun 2026",
+    date: "Dec 2023",
     slug: "android-seccomp-epoll-crash",
     title: "A Kernel Syscall Was Killing Our Android App on x86_64",
     excerpt: "The app worked on ARM, worked on x86, and crashed instantly on x86_64 emulators. Three months to find two Go libraries making raw epoll_wait calls that Android's seccomp filter blocked.",
   },
   {
-    date: "Jun 2026",
+    date: "May 2023",
     slug: "ios-build-fails-xcodebuild-not-xcode",
     title: "Six Months of Broken iOS Builds, Fixed by One Environment Variable",
     excerpt: "Our app compiled in Xcode but failed via xcodebuild. For half a year nobody could figure out why. The fix was a single line in the Podfile.",
@@ -30,7 +30,7 @@ const posts: Post[] = [
     excerpt: "How a copy-pasted Edge runtime directive caused OG image generation to eat 4.4GB of memory in three minutes.",
   },
   {
-    date: "May 2026",
+    date: "Mar 2024",
     slug: "react-native-upgrade-status-mobile",
     title: "Upgrading React Native from 0.63 to 0.73 in a Production App",
     excerpt: "A year-long incremental upgrade across five major versions in Status, a ClojureScript app with Go bridges, nix builds, and a full Java-to-Kotlin migration along the way.",
