@@ -1,0 +1,132 @@
+{
+  "updated_at": "2026-03-22T02:46:54.086Z",
+  "latest": {
+    "recovery_score": 44,
+    "hrv_rmssd_milli": 25.606049,
+    "resting_heart_rate": 77,
+    "spo2_percentage": 96,
+    "skin_temp_celsius": 34.33533,
+    "sleep_performance_percentage": 77,
+    "sleep_efficiency_percentage": 94.33565,
+    "total_sleep_hours": 6.2,
+    "respiratory_rate": 15.6,
+    "day_strain": 2.2,
+    "day_avg_hr": 76,
+    "day_max_hr": 119,
+    "day_kilojoules": 2474
+  },
+  "trends": {
+    "recovery": [
+      {
+        "date": "2026-03-16",
+        "score": 56,
+        "hrv": 32.6,
+        "rhr": 72
+      },
+      {
+        "date": "2026-03-17",
+        "score": 56,
+        "hrv": 32.8,
+        "rhr": 72
+      },
+      {
+        "date": "2026-03-18",
+        "score": 50,
+        "hrv": 30.6,
+        "rhr": 73
+      },
+      {
+        "date": "2026-03-19",
+        "score": 35,
+        "hrv": 24,
+        "rhr": 76
+      },
+      {
+        "date": "2026-03-20",
+        "score": 32,
+        "hrv": 23.7,
+        "rhr": 80
+      },
+      {
+        "date": "2026-03-21",
+        "score": 34,
+        "hrv": 21.9,
+        "rhr": 81
+      },
+      {
+        "date": "2026-03-22",
+        "score": 44,
+        "hrv": 25.6,
+        "rhr": 77
+      }
+    ],
+    "strain": [
+      {
+        "date": "2026-03-15",
+        "strain": 5.1
+      },
+      {
+        "date": "2026-03-16",
+        "strain": 4.1
+      },
+      {
+        "date": "2026-03-17",
+        "strain": 4.5
+      },
+      {
+        "date": "2026-03-18",
+        "strain": 7.6
+      },
+      {
+        "date": "2026-03-19",
+        "strain": 12.8
+      },
+      {
+        "date": "2026-03-20",
+        "strain": 4.6
+      },
+      {
+        "date": "2026-03-21",
+        "strain": 2.2
+      }
+    ],
+    "sleep": [
+      {
+        "date": "2026-03-17",
+        "performance": 83,
+        "hours": 8.3
+      },
+      {
+        "date": "2026-03-18",
+        "performance": 79,
+        "hours": 8.8
+      },
+      {
+        "date": "2026-03-19",
+        "performance": 66,
+        "hours": 4.5
+      },
+      {
+        "date": "2026-03-20",
+        "performance": 73,
+        "hours": 9.2
+      },
+      {
+        "date": "2026-03-21",
+        "performance": 77,
+        "hours": 6.2
+      }
+    ]
+  },
+  "recent_workouts": [
+    {
+      "date": "2026-03-20",
+      "sport": "walking",
+      "strain": 12,
+      "calories_kcal": 464,
+      "avg_hr": 135,
+      "max_hr": 192,
+      "duration_min": 57
+    }
+  ]
+}

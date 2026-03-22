@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   THE ENGINEER'S MONOGRAPH — Design System
+   All colors MUST be HSL.
+   ============================================ */
+
+@layer base {
+  :root {
+    /* Core Palette */
+    --background: 38 25% 94%;        /* #f5f2ed — Parchment */
+    --foreground: 0 0% 11%;          /* #1c1c1c — Ink */
+
+    --primary: 222 45% 19%;          /* #1a2744 — Deep Navy */
+    --primary-foreground: 38 25% 94%;
+
+    --accent: 25 67% 50%;            /* #d4702a — Burnt Orange */
+    --accent-foreground: 38 25% 94%;
+
+    --muted: 222 10% 45%;            /* Slate Grey */
+    --muted-foreground: 222 10% 45%;
+
+    --secondary: 38 20% 88%;
+    --secondary-foreground: 222 45% 19%;
+
+    --card: 38 25% 94%;
+    --card-foreground: 0 0% 11%;
+
+    --popover: 38 25% 94%;
+    --popover-foreground: 0 0% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 15% 82%;
+    --input: 222 15% 82%;
+    --ring: 222 45% 19%;
+
+    --radius: 0.125rem;  /* editorial: near-square corners */
+
+    --sidebar-background: 222 45% 19%;
+    --sidebar-foreground: 38 25% 94%;
+    --sidebar-primary: 25 67% 50%;
+    --sidebar-primary-foreground: 38 25% 94%;
+    --sidebar-accent: 222 35% 25%;
+    --sidebar-accent-foreground: 38 25% 94%;
+    --sidebar-border: 222 35% 25%;
+    --sidebar-ring: 25 67% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Monospace labels */
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Serif utility */
+  .font-serif {
+    font-family: 'Newsreader', serif;
+  }
+
+  /* Sans utility */
+  .font-sans {
+    font-family: 'Source Sans 3', sans-serif;
+  }
+}
+
+/* ============================================
+   Paper Grain Texture Overlay
+   ============================================ */
+.paper-grain {
+  position: fixed;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   Section Divider — "Printed Ink" fade rule
+   ============================================ */
+.rule-fade {
+  height: 1px;
+  background: hsl(222 45% 19% / 0.15);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+  border: none;
+}
+
+/* ============================================
+   Link Underline — expands from center
+   ============================================ */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 200ms cubic-bezier(0.2, 0, 0, 1), left 200ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ============================================
+   Shadows — "Printed Ink" stack
+   ============================================ */
+.shadow-printed {
+  box-shadow: 0 1px 2px rgba(26, 39, 68, 0.06), 0 0 0 1px rgba(26, 39, 68, 0.03);
+}
+
+/* ============================================
+   Dark (Navy) Section
+   ============================================ */
+.section-navy {
+  background: hsl(222 45% 19%);
+  color: hsl(38 25% 94%);
+}
+
+/* On dark backgrounds, link-underline uses burnt orange */
+.bg-navy .link-underline::after {
+  background: hsl(25 67% 50%);
+}
+
+/* Vertical text utility */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Nav link styles */
+.nav-link {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  color: hsl(222 45% 19%);
+  transition: color 200ms;
+}
+
+.nav-link:hover {
+  color: hsl(25 67% 50%);
+}
+
+/* Label mono style */
+.label-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+/* ============================================
+   Blog prose styles
+   ============================================ */
+.prose-blog p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: hsl(0 0% 11%);
+  margin-bottom: 1.5rem;
+  max-width: 65ch;
+}
+
+.prose-blog h2 {
+  font-family: 'Newsreader', serif;
+  font-size: 1.625rem;
+  font-weight: 500;
+  color: hsl(222 45% 19%);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.prose-blog h3 {
+  font-family: 'Newsreader', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: hsl(222 45% 19%);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-blog ul, .prose-blog ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose-blog li {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: hsl(0 0% 11%);
+  margin-bottom: 0.4rem;
+}
+
+.prose-blog strong {
+  font-weight: 600;
+  color: hsl(222 45% 19%);
+}
+
+.prose-blog code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  color: hsl(25 67% 50%);
+  background: hsl(222 45% 19% / 0.05);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+
+.prose-blog a {
+  color: hsl(25 67% 50%);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-blog a:hover {
+  color: hsl(25 67% 40%);
+}
+
+/* Animate pulsing dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.5); }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}

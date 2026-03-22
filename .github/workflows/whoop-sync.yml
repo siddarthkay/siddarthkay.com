@@ -1,0 +1,49 @@
+name: Sync Live Data
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Whoop data
+        env:
+          WHOOP_CLIENT_ID: ${{ secrets.WHOOP_CLIENT_ID }}
+          WHOOP_CLIENT_SECRET: ${{ secrets.WHOOP_CLIENT_SECRET }}
+          WHOOP_REFRESH_TOKEN: ${{ secrets.WHOOP_REFRESH_TOKEN }}
+        run: node scripts/fetch-whoop.mjs
+
+      - name: Update refresh token secret if rotated
+        if: hashFiles('.whoop-refresh-token') != ''
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          gh secret set WHOOP_REFRESH_TOKEN < .whoop-refresh-token
+          rm .whoop-refresh-token
+
+      - name: Fetch Steam data
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+        run: node scripts/fetch-steam.mjs
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/whoop-data.json src/data/steam-data.json
+          git diff --cached --quiet || git commit -m "chore: update live data [skip ci]"
+          git push

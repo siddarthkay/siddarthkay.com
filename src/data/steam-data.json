@@ -1,0 +1,11 @@
+{
+  "updated_at": "2026-03-22T00:00:00.000Z",
+  "games": [
+    { "appid": 2322010, "name": "God of War Ragnarok", "hours": "325h total", "playtime_2weeks_hours": 12 },
+    { "appid": 1790600, "name": "DB Sparking Zero", "hours": "11h total", "playtime_2weeks_hours": 3 },
+    { "appid": 2358720, "name": "Black Myth: Wukong", "hours": "12h total", "playtime_2weeks_hours": 0 },
+    { "appid": 1985810, "name": "CoD: BO Cold War", "hours": "21h total", "playtime_2weeks_hours": 0 },
+    { "appid": 730, "name": "Counter-Strike 2", "hours": "3h total", "playtime_2weeks_hours": 0 },
+    { "appid": 307690, "name": "Sleeping Dogs: DE", "hours": "1h total", "playtime_2weeks_hours": 0 }
+  ]
+}
