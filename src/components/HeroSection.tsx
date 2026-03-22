@@ -43,23 +43,23 @@ export default function HeroSection() {
             </motion.p>
 
             {/* Name — oversized, editorial weight */}
-            <div className="overflow-hidden mb-6">
+            <div className="overflow-hidden pt-3 mb-6">
               <motion.h1
                 initial={{ y: "105%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.7, delay: 0.15, ease }}
-                className="font-serif text-navy font-medium leading-[0.88] tracking-[-0.03em]"
+                className="font-serif text-navy font-medium leading-[0.95] tracking-[-0.03em]"
                 style={{ fontSize: "clamp(4rem, 10vw, 8.5rem)" }}
               >
                 Siddarth
               </motion.h1>
             </div>
-            <div className="overflow-hidden mb-10">
+            <div className="overflow-hidden pt-3 mb-10">
               <motion.h1
                 initial={{ y: "105%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.7, delay: 0.22, ease }}
-                className="font-serif text-navy font-medium leading-[0.88] tracking-[-0.03em]"
+                className="font-serif text-navy font-medium leading-[0.95] tracking-[-0.03em]"
                 style={{ fontSize: "clamp(4rem, 10vw, 8.5rem)" }}
               >
                 Kumar<span className="text-burnt">.</span>

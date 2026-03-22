@@ -53,7 +53,7 @@ function Sparkline({ data, color, label }: { data: (number | null)[]; color: str
   const valStr = Number.isInteger(lastVal) ? String(lastVal) : lastVal.toFixed(1);
 
   return (
-    <svg width={W} height={H} viewBox={"0 0 " + W + " " + H} className="block overflow-visible">
+    <svg viewBox={"0 0 " + W + " " + H} className="block overflow-visible w-full" style={{ height: H }}>
       <defs>
         <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={color} stopOpacity={0.12} />
@@ -203,23 +203,23 @@ export default function VitalsSection() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.25, ease }}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 mt-6"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-6"
           >
             {trends.recovery && trends.recovery.length > 1 && (
-              <div className="flex items-center gap-2">
-                <span className="label-mono text-slate/40 text-[0.6rem]">Recovery</span>
+              <div>
+                <span className="label-mono text-slate/40 text-[0.6rem] mb-1 block">Recovery</span>
                 <Sparkline data={trends.recovery.map((r) => r.score)} color="#44aa99" label="recovery" />
               </div>
             )}
             {trends.strain && trends.strain.length > 1 && (
-              <div className="flex items-center gap-2">
-                <span className="label-mono text-slate/40 text-[0.6rem]">Strain</span>
+              <div>
+                <span className="label-mono text-slate/40 text-[0.6rem] mb-1 block">Strain</span>
                 <Sparkline data={trends.strain.map((s) => s.strain)} color="#1a2744" label="strain" />
               </div>
             )}
             {trends.sleep && trends.sleep.length > 1 && (
-              <div className="flex items-center gap-2">
-                <span className="label-mono text-slate/40 text-[0.6rem]">Sleep</span>
+              <div>
+                <span className="label-mono text-slate/40 text-[0.6rem] mb-1 block">Sleep</span>
                 <Sparkline data={trends.sleep.map((s) => s.hours)} color="#d4702a" label="sleep" />
               </div>
             )}
