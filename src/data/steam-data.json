@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-23T07:28:48.989Z",
+  "updated_at": "2026-03-23T08:17:58.021Z",
   "games": [
     {
       "appid": 2322010,
@@ -22,8 +22,8 @@
     {
       "appid": 2651280,
       "name": "Marvel's Spider-Man 2",
-      "hours": "2h total",
-      "playtime_2weeks_hours": 2
+      "hours": "3h total",
+      "playtime_2weeks_hours": 3
     },
     {
       "appid": 307690,
