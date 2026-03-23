@@ -85,7 +85,8 @@ async function main() {
   // Build the output — only include what the frontend needs
   // No PII, no user IDs, just the scores
   const latestRecovery = recovery.records?.[0];
-  const latestSleep = sleep.records?.[0];
+  // Filter out naps — only use main sleep for the latest snapshot
+  const latestSleep = sleep.records?.find((s) => !s.nap && s.score_state === 'SCORED');
   const latestCycle = cycles.records?.[0];
 
   const output = {

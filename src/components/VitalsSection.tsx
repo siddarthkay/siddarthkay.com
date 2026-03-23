@@ -9,6 +9,13 @@ function getRecoveryColor(score: number): string {
   return "#c0392b";
 }
 
+function daysAgo(dateStr: string): string {
+  const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 86400000);
+  if (diff === 0) return "today";
+  if (diff === 1) return "yesterday";
+  return diff + " days ago";
+}
+
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();
   const hours = Math.floor(diff / 3600000);
@@ -122,11 +129,16 @@ export default function VitalsSection() {
                   {latest.hrv_rmssd_milli !== null && (
                     <>HRV: {Math.round(latest.hrv_rmssd_milli)}ms</>
                   )}
-                  {latest.hrv_rmssd_milli !== null && latest.resting_heart_rate !== null && (
-                    <span className="mx-1.5">&middot;</span>
-                  )}
                   {latest.resting_heart_rate !== null && (
-                    <>RHR: {latest.resting_heart_rate}bpm</>
+                    <><span className="mx-1.5">&middot;</span>RHR: {latest.resting_heart_rate}bpm</>
+                  )}
+                </p>
+                <p className="font-mono text-xs text-slate/50 mt-1 leading-relaxed">
+                  {latest.spo2_percentage !== null && (
+                    <>SpO2: {latest.spo2_percentage}%</>
+                  )}
+                  {latest.skin_temp_celsius !== null && (
+                    <><span className="mx-1.5">&middot;</span>{latest.skin_temp_celsius.toFixed(1)}&#176;C</>
                   )}
                 </p>
               </>
@@ -145,7 +157,10 @@ export default function VitalsSection() {
                 </p>
                 <p className="font-mono text-xs text-slate/50 mt-2.5">
                   {latest.sleep_performance_percentage !== null && (
-                    <>Performance: {latest.sleep_performance_percentage}%</>
+                    <>Perf: {latest.sleep_performance_percentage}%</>
+                  )}
+                  {latest.respiratory_rate !== null && (
+                    <><span className="mx-1.5">&middot;</span>{latest.respiratory_rate} br/min</>
                   )}
                 </p>
               </>
@@ -184,11 +199,13 @@ export default function VitalsSection() {
                 </p>
                 <p className="font-mono text-xs text-slate/50 mt-1.5">
                   {lastWorkout.duration_min !== null && <>{lastWorkout.duration_min}min</>}
-                  {lastWorkout.duration_min !== null && lastWorkout.calories_kcal !== null && (
-                    <span className="mx-1.5">&middot;</span>
+                  {lastWorkout.calories_kcal !== null && (
+                    <><span className="mx-1.5">&middot;</span>{lastWorkout.calories_kcal} kcal</>
                   )}
-                  {lastWorkout.calories_kcal !== null && <>{lastWorkout.calories_kcal} kcal</>}
                 </p>
+                {lastWorkout.date && (
+                  <p className="font-mono text-[0.6rem] text-slate/35 mt-1.5">{daysAgo(lastWorkout.date)}</p>
+                )}
               </>
             ) : (
               <p className="font-mono text-sm text-slate/40">&mdash;</p>
