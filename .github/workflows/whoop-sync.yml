@@ -45,5 +45,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/data/whoop-data.json src/data/steam-data.json
-          git diff --cached --quiet || git commit -m "chore: update live data [skip ci]"
+          git diff --cached --quiet || git commit -m "chore: update live data"
           git push

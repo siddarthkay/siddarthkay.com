@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 
 const CLIENT_ID = process.env.WHOOP_CLIENT_ID;
 const CLIENT_SECRET = process.env.WHOOP_CLIENT_SECRET;
@@ -173,8 +173,36 @@ async function main() {
       })),
   };
 
-  writeFileSync('src/data/whoop-data.json', JSON.stringify(output, null, 2));
-  console.log('Wrote public/whoop-data.json');
+  // Validate before overwriting — don't corrupt existing data with empty responses
+  const hasRecovery = output.trends.recovery?.length > 0;
+  const hasSleep = output.trends.sleep?.length > 0;
+  const hasStrain = output.trends.strain?.length > 0;
+
+  if (!hasRecovery && !hasSleep && !hasStrain) {
+    console.warn('Whoop API returned no scored data across all categories. Keeping existing data.');
+    process.exit(0);
+  }
+
+  const dataPath = 'src/data/whoop-data.json';
+  try {
+    const existing = JSON.parse(readFileSync(dataPath, 'utf-8'));
+    const existingTrendCount = (existing.trends?.recovery?.length ?? 0)
+      + (existing.trends?.sleep?.length ?? 0)
+      + (existing.trends?.strain?.length ?? 0);
+    const newTrendCount = (output.trends.recovery?.length ?? 0)
+      + (output.trends.sleep?.length ?? 0)
+      + (output.trends.strain?.length ?? 0);
+
+    if (existingTrendCount > 0 && newTrendCount === 0) {
+      console.warn('New data has zero trends but existing data has some. Keeping existing data.');
+      process.exit(0);
+    }
+  } catch {
+    // No existing file — safe to write
+  }
+
+  writeFileSync(dataPath, JSON.stringify(output, null, 2));
+  console.log('Wrote src/data/whoop-data.json');
   console.log(`Recovery: ${output.latest.recovery_score}% | HRV: ${output.latest.hrv_rmssd_milli}ms | Sleep: ${output.latest.total_sleep_hours}h`);
 }
 

@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 
 const API_KEY = process.env.STEAM_API_KEY;
 const STEAM_ID = '76561199089424506';
@@ -54,7 +54,25 @@ async function main() {
     }),
   };
 
-  writeFileSync('src/data/steam-data.json', JSON.stringify(output, null, 2));
+  // Validate before overwriting — don't corrupt existing data with empty responses
+  const dataPath = 'src/data/steam-data.json';
+
+  if (output.games.length === 0) {
+    console.warn('Steam API returned no games. Keeping existing data.');
+    process.exit(0);
+  }
+
+  try {
+    const existing = JSON.parse(readFileSync(dataPath, 'utf-8'));
+    if (existing.games?.length > 0 && output.games.length === 0) {
+      console.warn('New data has zero games but existing data has some. Keeping existing data.');
+      process.exit(0);
+    }
+  } catch {
+    // No existing file — safe to write
+  }
+
+  writeFileSync(dataPath, JSON.stringify(output, null, 2));
   console.log('Wrote src/data/steam-data.json');
   for (const g of output.games) {
     console.log(`  ${g.name}: ${g.hours}`);
