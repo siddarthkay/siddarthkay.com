@@ -27,6 +27,16 @@ jobs:
 
       - run: npm ci
 
+      - name: Fetch latest live data
+        env:
+          WHOOP_CLIENT_ID: ${{ secrets.WHOOP_CLIENT_ID }}
+          WHOOP_CLIENT_SECRET: ${{ secrets.WHOOP_CLIENT_SECRET }}
+          WHOOP_REFRESH_TOKEN: ${{ secrets.WHOOP_REFRESH_TOKEN }}
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+        run: |
+          node scripts/fetch-whoop.mjs || echo "Whoop fetch failed, using committed data"
+          node scripts/fetch-steam.mjs || echo "Steam fetch failed, using committed data"
+
       - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
