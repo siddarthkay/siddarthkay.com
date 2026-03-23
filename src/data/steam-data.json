@@ -1,11 +1,65 @@
 {
-  "updated_at": "2026-03-22T00:00:00.000Z",
+  "updated_at": "2026-03-23T06:26:16.686Z",
   "games": [
-    { "appid": 2322010, "name": "God of War Ragnarok", "hours": "325h total", "playtime_2weeks_hours": 12 },
-    { "appid": 1790600, "name": "DB Sparking Zero", "hours": "11h total", "playtime_2weeks_hours": 3 },
-    { "appid": 2358720, "name": "Black Myth: Wukong", "hours": "12h total", "playtime_2weeks_hours": 0 },
-    { "appid": 1985810, "name": "CoD: BO Cold War", "hours": "21h total", "playtime_2weeks_hours": 0 },
-    { "appid": 730, "name": "Counter-Strike 2", "hours": "3h total", "playtime_2weeks_hours": 0 },
-    { "appid": 307690, "name": "Sleeping Dogs: DE", "hours": "1h total", "playtime_2weeks_hours": 0 }
+    {
+      "appid": 2322010,
+      "name": "God of War Ragnarök",
+      "hours": "325h total",
+      "playtime_2weeks_hours": 13
+    },
+    {
+      "appid": 1790600,
+      "name": "DRAGON BALL: Sparking! ZERO",
+      "hours": "12h total",
+      "playtime_2weeks_hours": 11
+    },
+    {
+      "appid": 2358720,
+      "name": "Black Myth: Wukong",
+      "hours": "13h total",
+      "playtime_2weeks_hours": 7
+    },
+    {
+      "appid": 2651280,
+      "name": "Marvel's Spider-Man 2",
+      "hours": "2h total",
+      "playtime_2weeks_hours": 2
+    },
+    {
+      "appid": 307690,
+      "name": "Sleeping Dogs: Definitive Edition",
+      "hours": "2h total",
+      "playtime_2weeks_hours": 2
+    },
+    {
+      "appid": 730,
+      "name": "Counter-Strike 2",
+      "hours": "3h total",
+      "playtime_2weeks_hours": 2
+    },
+    {
+      "appid": 2221490,
+      "name": "Tom Clancy's The Division 2",
+      "hours": "4h total",
+      "playtime_2weeks_hours": 2
+    },
+    {
+      "appid": 1985810,
+      "name": "Call of Duty®: Black Ops Cold War",
+      "hours": "22h total",
+      "playtime_2weeks_hours": 1
+    },
+    {
+      "appid": 1238080,
+      "name": "Burnout™ Paradise Remastered",
+      "hours": "1h total",
+      "playtime_2weeks_hours": 1
+    },
+    {
+      "appid": 2000950,
+      "name": "Call of Duty®: Modern Warfare®",
+      "hours": "0h total",
+      "playtime_2weeks_hours": 0
+    }
   ]
 }

@@ -1,28 +1,22 @@
 {
-  "updated_at": "2026-03-22T02:46:54.086Z",
+  "updated_at": "2026-03-23T06:26:15.787Z",
   "latest": {
-    "recovery_score": 44,
-    "hrv_rmssd_milli": 25.606049,
-    "resting_heart_rate": 77,
-    "spo2_percentage": 96,
-    "skin_temp_celsius": 34.33533,
-    "sleep_performance_percentage": 77,
-    "sleep_efficiency_percentage": 94.33565,
-    "total_sleep_hours": 6.2,
-    "respiratory_rate": 15.6,
-    "day_strain": 2.2,
-    "day_avg_hr": 76,
-    "day_max_hr": 119,
-    "day_kilojoules": 2474
+    "recovery_score": 31,
+    "hrv_rmssd_milli": 19.383453,
+    "resting_heart_rate": 82,
+    "spo2_percentage": 96.933334,
+    "skin_temp_celsius": 34.612003,
+    "sleep_performance_percentage": 71,
+    "sleep_efficiency_percentage": 92.763374,
+    "total_sleep_hours": 7.7,
+    "respiratory_rate": 15.8,
+    "day_strain": 4.1,
+    "day_avg_hr": 83,
+    "day_max_hr": 125,
+    "day_kilojoules": 3745
   },
   "trends": {
     "recovery": [
-      {
-        "date": "2026-03-16",
-        "score": 56,
-        "hrv": 32.6,
-        "rhr": 72
-      },
       {
         "date": "2026-03-17",
         "score": 56,
@@ -58,13 +52,15 @@
         "score": 44,
         "hrv": 25.6,
         "rhr": 77
+      },
+      {
+        "date": "2026-03-23",
+        "score": 31,
+        "hrv": 19.4,
+        "rhr": 82
       }
     ],
     "strain": [
-      {
-        "date": "2026-03-15",
-        "strain": 5.1
-      },
       {
         "date": "2026-03-16",
         "strain": 4.1
@@ -87,7 +83,11 @@
       },
       {
         "date": "2026-03-21",
-        "strain": 2.2
+        "strain": 4.2
+      },
+      {
+        "date": "2026-03-22",
+        "strain": 4.1
       }
     ],
     "sleep": [
@@ -115,6 +115,11 @@
         "date": "2026-03-21",
         "performance": 77,
         "hours": 6.2
+      },
+      {
+        "date": "2026-03-22",
+        "performance": 71,
+        "hours": 7.7
       }
     ]
   },
