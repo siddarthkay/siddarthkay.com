@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import SiteNav from "@/components/SiteNav";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -10,16 +10,10 @@ import ContactSection from "@/components/ContactSection";
 import SiteFooter from "@/components/SiteFooter";
 
 export default function Index() {
+  useDocumentTitle("Siddarth Kumar | Infrastructure Engineer & DevOps");
+
   return (
     <>
-      <Helmet>
-        <title>Siddarth Kumar | Infrastructure Engineer &amp; DevOps</title>
-        <meta name="description" content="Siddarth Kumar builds and maintains the infrastructure behind decentralized software. CI/CD pipelines, multi-platform build systems, and Ethereum validator nodes." />
-        <meta property="og:title" content="Siddarth Kumar | Infrastructure Engineer & DevOps" />
-        <meta property="og:description" content="CI/CD pipelines, multi-platform build systems, and Ethereum validator infrastructure." />
-        <meta property="og:url" content="https://siddarthkay.com/" />
-      </Helmet>
-
       {/* Paper grain texture overlay */}
       <div className="paper-grain" aria-hidden="true" />
 

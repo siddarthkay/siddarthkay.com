@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import sidkayLogo from "@/assets/sidkay-logo.png";
@@ -309,19 +309,12 @@ function GamesSection() {
 }
 
 export default function Uses() {
+  useDocumentTitle("Uses | Siddarth Kumar");
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true });
 
   return (
     <>
-      <Helmet>
-        <title>Uses | Siddarth Kumar</title>
-        <meta name="description" content="Tools, hardware, and software Siddarth Kumar uses for infrastructure engineering and daily work." />
-        <meta property="og:title" content="Uses | Siddarth Kumar" />
-        <meta property="og:description" content="Tools, hardware, and software Siddarth Kumar uses for infrastructure engineering and daily work." />
-        <meta property="og:url" content="https://siddarthkay.com/uses" />
-      </Helmet>
-
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
 

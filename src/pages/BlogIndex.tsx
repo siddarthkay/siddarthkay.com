@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
+import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { blogPosts } from "@/data/blog-posts";
@@ -8,16 +8,10 @@ import PageViews from "@/components/PageViews";
 import { ease } from "@/lib/motion";
 
 export default function BlogIndex() {
+  useDocumentTitle("Blog | Siddarth Kumar");
+
   return (
     <>
-      <Helmet>
-        <title>Blog | Siddarth Kumar</title>
-        <meta name="description" content="Writing on CI/CD pipelines, infrastructure engineering, Ethereum nodes, and DevOps." />
-        <meta property="og:title" content="Blog | Siddarth Kumar" />
-        <meta property="og:description" content="Writing on CI/CD pipelines, infrastructure engineering, Ethereum nodes, and DevOps." />
-        <meta property="og:url" content="https://siddarthkay.com/blog" />
-      </Helmet>
-
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
       <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">

@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import Markdown from "react-markdown";
+import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { getPost, blogPosts } from "@/data/blog-posts";
@@ -13,6 +13,8 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const post = getPost(slug ?? "");
 
+  useDocumentTitle(post ? `${post.title} | Siddarth Kumar` : "Siddarth Kumar");
+
   if (!post) return <NotFound />;
 
   const currentIndex = blogPosts.findIndex((p) => p.slug === slug);
@@ -21,15 +23,6 @@ export default function BlogPost() {
 
   return (
     <>
-      <Helmet>
-        <title>{post.title} | Siddarth Kumar</title>
-        <meta name="description" content={post.excerpt} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:url" content={`https://siddarthkay.com/blog/${post.slug}`} />
-        <meta property="og:type" content="article" />
-      </Helmet>
-
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
       <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">
