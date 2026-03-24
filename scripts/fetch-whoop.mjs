@@ -16,6 +16,7 @@ async function refreshAccessToken() {
       refresh_token: REFRESH_TOKEN,
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
+      scope: 'offline',
     }),
   });
 
@@ -26,10 +27,12 @@ async function refreshAccessToken() {
 
   const data = await res.json();
 
-  // Whoop may rotate the refresh token — persist the new one
+  // CRITICAL: persist the new refresh token IMMEDIATELY before doing anything else.
+  // Whoop invalidates the old token the moment it issues a new one.
+  // If we crash after this point but before saving, the token is lost forever.
   if (data.refresh_token && data.refresh_token !== REFRESH_TOKEN) {
     writeFileSync('.whoop-refresh-token', data.refresh_token);
-    console.log('Refresh token rotated — will update secret.');
+    console.log('Refresh token rotated — saved to .whoop-refresh-token');
   }
 
   return data.access_token;

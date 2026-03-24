@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: sync-live-data
+  cancel-in-progress: false
+
 jobs:
   sync-data:
     runs-on: ubuntu-latest
@@ -21,19 +25,23 @@ jobs:
           node-version: '20'
 
       - name: Fetch Whoop data
+        id: whoop
         env:
           WHOOP_CLIENT_ID: ${{ secrets.WHOOP_CLIENT_ID }}
           WHOOP_CLIENT_SECRET: ${{ secrets.WHOOP_CLIENT_SECRET }}
           WHOOP_REFRESH_TOKEN: ${{ secrets.WHOOP_REFRESH_TOKEN }}
         run: node scripts/fetch-whoop.mjs
 
+      # CRITICAL: save the rotated refresh token BEFORE anything else.
+      # If this doesn't run, the old token is dead and manual re-auth is needed.
       - name: Update refresh token secret if rotated
-        if: hashFiles('.whoop-refresh-token') != ''
+        if: always() && hashFiles('.whoop-refresh-token') != ''
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           gh secret set WHOOP_REFRESH_TOKEN < .whoop-refresh-token
           rm .whoop-refresh-token
+          echo "Refresh token secret updated."
 
       - name: Fetch Steam data
         env:
