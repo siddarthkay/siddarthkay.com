@@ -34,14 +34,20 @@ jobs:
 
       # CRITICAL: save the rotated refresh token BEFORE anything else.
       # If this doesn't run, the old token is dead and manual re-auth is needed.
+      # NOTE: hashFiles() is evaluated at job start when the file doesn't exist yet,
+      # so we use a runtime file check instead.
       - name: Update refresh token secret if rotated
-        if: always() && hashFiles('.whoop-refresh-token') != ''
+        if: always()
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          gh secret set WHOOP_REFRESH_TOKEN < .whoop-refresh-token
-          rm .whoop-refresh-token
-          echo "Refresh token secret updated."
+          if [ -f .whoop-refresh-token ]; then
+            gh secret set WHOOP_REFRESH_TOKEN < .whoop-refresh-token
+            rm .whoop-refresh-token
+            echo "Refresh token secret updated."
+          else
+            echo "No token rotation needed."
+          fi
 
       - name: Fetch Steam data
         env:
