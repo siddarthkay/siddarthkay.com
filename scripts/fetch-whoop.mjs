@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'fs';
 
 const CLIENT_ID = process.env.WHOOP_CLIENT_ID;
 const CLIENT_SECRET = process.env.WHOOP_CLIENT_SECRET;
-const REFRESH_TOKEN = process.env.WHOOP_REFRESH_TOKEN;
+let currentRefreshToken = process.env.WHOOP_REFRESH_TOKEN;
 
 const TOKEN_URL = 'https://api.prod.whoop.com/oauth/oauth2/token';
 const API_BASE = 'https://api.prod.whoop.com/developer';
@@ -13,7 +13,7 @@ async function refreshAccessToken() {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
       grant_type: 'refresh_token',
-      refresh_token: REFRESH_TOKEN,
+      refresh_token: currentRefreshToken,
       client_id: CLIENT_ID,
       client_secret: CLIENT_SECRET,
       scope: 'offline',
@@ -30,59 +30,105 @@ async function refreshAccessToken() {
   // CRITICAL: persist the new refresh token IMMEDIATELY before doing anything else.
   // Whoop invalidates the old token the moment it issues a new one.
   // If we crash after this point but before saving, the token is lost forever.
-  if (data.refresh_token && data.refresh_token !== REFRESH_TOKEN) {
+  if (data.refresh_token && data.refresh_token !== currentRefreshToken) {
+    currentRefreshToken = data.refresh_token;
     writeFileSync('.whoop-refresh-token', data.refresh_token);
-    console.log('Refresh token rotated — saved to .whoop-refresh-token');
+    console.log('Refresh token rotated - saved to .whoop-refresh-token');
   }
 
   return data.access_token;
 }
 
-async function whoopGet(token, path, params = {}) {
+async function respectRateLimit(res) {
+  const remaining = res.headers.get('X-RateLimit-Remaining');
+  const reset = res.headers.get('X-RateLimit-Reset');
+
+  if (remaining !== null) {
+    const remainingNum = parseInt(remaining, 10);
+    if (remainingNum <= 5 && reset) {
+      const waitSeconds = parseInt(reset, 10);
+      if (waitSeconds > 0 && waitSeconds <= 120) {
+        console.log(`Rate limit nearly exhausted (${remainingNum} remaining). Waiting ${waitSeconds}s...`);
+        await new Promise((resolve) => setTimeout(resolve, waitSeconds * 1000));
+      }
+    }
+  }
+}
+
+let accessToken = null;
+
+async function whoopGet(path, params = {}) {
   const url = new URL(`${API_BASE}${path}`);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
 
-  const res = await fetch(url.toString(), {
-    headers: { Authorization: `Bearer ${token}` },
+  let res = await fetch(url.toString(), {
+    headers: { Authorization: `Bearer ${accessToken}` },
   });
+
+  // If we get a 401, try refreshing the token once and retry
+  if (res.status === 401) {
+    console.log(`Got 401 on ${path}, refreshing token and retrying...`);
+    accessToken = await refreshAccessToken();
+    res = await fetch(url.toString(), {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+  }
 
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`API call ${path} failed (${res.status}): ${text}`);
   }
 
+  await respectRateLimit(res);
+
   return res.json();
+}
+
+async function whoopGetAll(path, params = {}) {
+  let allRecords = [];
+  let nextToken = null;
+
+  do {
+    const queryParams = { ...params };
+    if (nextToken) {
+      queryParams.nextToken = nextToken;
+    }
+
+    const data = await whoopGet(path, queryParams);
+    if (data.records) {
+      allRecords = allRecords.concat(data.records);
+    }
+    nextToken = data.next_token || null;
+  } while (nextToken);
+
+  return { records: allRecords };
 }
 
 async function main() {
   console.log('Refreshing access token...');
-  const token = await refreshAccessToken();
+  accessToken = await refreshAccessToken();
 
   // Fetch recent cycles (last 7 days for trend data)
   const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
 
   console.log('Fetching cycles...');
-  const cycles = await whoopGet(token, '/v2/cycle', {
+  const cycles = await whoopGetAll('/v2/cycle', {
     start: sevenDaysAgo,
-    limit: '7',
   });
 
   console.log('Fetching recovery...');
-  const recovery = await whoopGet(token, '/v2/recovery', {
+  const recovery = await whoopGetAll('/v2/recovery', {
     start: sevenDaysAgo,
-    limit: '7',
   });
 
   console.log('Fetching sleep...');
-  const sleep = await whoopGet(token, '/v2/activity/sleep', {
+  const sleep = await whoopGetAll('/v2/activity/sleep', {
     start: sevenDaysAgo,
-    limit: '7',
   });
 
   console.log('Fetching workouts...');
-  const workouts = await whoopGet(token, '/v2/activity/workout', {
+  const workouts = await whoopGetAll('/v2/activity/workout', {
     start: sevenDaysAgo,
-    limit: '10',
   });
 
   // Build the output — only include what the frontend needs

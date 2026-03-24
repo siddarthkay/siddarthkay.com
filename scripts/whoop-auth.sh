@@ -24,7 +24,10 @@ fi
 REDIRECT_URI="http://localhost:3000/callback"
 SCOPES="read:recovery%20read:cycles%20read:sleep%20read:workout%20read:profile%20offline"
 
-AUTH_URL="https://api.prod.whoop.com/oauth/oauth2/auth?client_id=${WHOOP_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPES}&state=localauth"
+# Generate a cryptographically random state parameter (min 8 chars required by Whoop)
+STATE=$(openssl rand -base64 32 | tr -d '/+=' | head -c 43)
+
+AUTH_URL="https://api.prod.whoop.com/oauth/oauth2/auth?client_id=${WHOOP_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPES}&state=${STATE}"
 
 echo "Opening browser for Whoop authorization..."
 open "$AUTH_URL" 2>/dev/null || echo "Open this URL manually: $AUTH_URL"
@@ -32,14 +35,27 @@ open "$AUTH_URL" 2>/dev/null || echo "Open this URL manually: $AUTH_URL"
 echo "Waiting for callback on http://localhost:3000 ..."
 
 # Start a one-shot HTTP server to capture the OAuth callback
+# Validates the state parameter to prevent CSRF attacks
 RESPONSE=$(python3 -c "
-import http.server, urllib.parse
+import http.server, urllib.parse, sys
+
+expected_state = '${STATE}'
 
 class Handler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         query = urllib.parse.urlparse(self.path).query
         params = urllib.parse.parse_qs(query)
         code = params.get('code', [None])[0]
+        state = params.get('state', [None])[0]
+
+        if state != expected_state:
+            self.send_response(403)
+            self.send_header('Content-Type', 'text/html')
+            self.end_headers()
+            self.wfile.write(b'<h2>State mismatch - possible CSRF attack. Please try again.</h2>')
+            print('STATE_MISMATCH', flush=True)
+            raise KeyboardInterrupt
+
         self.send_response(200)
         self.send_header('Content-Type', 'text/html')
         self.end_headers()
@@ -58,6 +74,12 @@ CODE="$RESPONSE"
 
 if [ -z "$CODE" ]; then
   echo "ERROR: No authorization code received."
+  exit 1
+fi
+
+if [ "$CODE" = "STATE_MISMATCH" ]; then
+  echo "ERROR: OAuth state parameter mismatch. This could indicate a CSRF attack."
+  echo "Please try again."
   exit 1
 fi
 
