@@ -1,28 +1,22 @@
 {
-  "updated_at": "2026-03-23T15:21:49.279Z",
+  "updated_at": "2026-03-24T02:07:20.310Z",
   "latest": {
-    "recovery_score": 31,
-    "hrv_rmssd_milli": 19.383453,
-    "resting_heart_rate": 82,
-    "spo2_percentage": 96.933334,
-    "skin_temp_celsius": 34.612003,
-    "sleep_performance_percentage": 12,
-    "sleep_efficiency_percentage": 92.49388,
-    "total_sleep_hours": 1,
-    "respiratory_rate": 16.9,
-    "day_strain": 5.4,
-    "day_avg_hr": 88,
-    "day_max_hr": 132,
-    "day_kilojoules": 6747
+    "recovery_score": 38,
+    "hrv_rmssd_milli": 21.042042,
+    "resting_heart_rate": 83,
+    "spo2_percentage": 94.69231,
+    "skin_temp_celsius": 34.5685,
+    "sleep_performance_percentage": 74,
+    "sleep_efficiency_percentage": 97.875244,
+    "total_sleep_hours": 6.2,
+    "respiratory_rate": 17.4,
+    "day_strain": 0.5,
+    "day_avg_hr": 82,
+    "day_max_hr": 109,
+    "day_kilojoules": 2420
   },
   "trends": {
     "recovery": [
-      {
-        "date": "2026-03-17",
-        "score": 56,
-        "hrv": 32.8,
-        "rhr": 72
-      },
       {
         "date": "2026-03-18",
         "score": 50,
@@ -58,13 +52,15 @@
         "score": 31,
         "hrv": 19.4,
         "rhr": 82
+      },
+      {
+        "date": "2026-03-24",
+        "score": 38,
+        "hrv": 21,
+        "rhr": 83
       }
     ],
     "strain": [
-      {
-        "date": "2026-03-16",
-        "strain": 4.1
-      },
       {
         "date": "2026-03-17",
         "strain": 4.5
@@ -88,14 +84,13 @@
       {
         "date": "2026-03-22",
         "strain": 5.4
+      },
+      {
+        "date": "2026-03-23",
+        "strain": 0.5
       }
     ],
     "sleep": [
-      {
-        "date": "2026-03-18",
-        "performance": 79,
-        "hours": 8.8
-      },
       {
         "date": "2026-03-19",
         "performance": 66,
@@ -115,6 +110,11 @@
         "date": "2026-03-22",
         "performance": 71,
         "hours": 7.7
+      },
+      {
+        "date": "2026-03-23",
+        "performance": 74,
+        "hours": 6.2
       }
     ]
   },
