@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import whoopData from "@/data/whoop-data.json";
 import { ease } from "@/lib/motion";
@@ -44,22 +44,46 @@ function buildSparklinePath(values: number[], w: number, h: number, pad: number)
   return { line, area, pts };
 }
 
-function Sparkline({ data, color, label }: { data: (number | null)[]; color: string; label: string }) {
-  const values = data.filter((d): d is number => d !== null);
+interface SparklinePoint {
+  value: number;
+  date?: string;
+}
+
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr + "T00:00:00");
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+function formatVal(v: number): string {
+  return Number.isInteger(v) ? String(v) : v.toFixed(1);
+}
+
+function Sparkline({ data, color, label, unit }: { data: SparklinePoint[]; color: string; label: string; unit?: string }) {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const values = data.map((d) => d.value);
   if (values.length < 2) return null;
 
   const W = 160;
-  const H = 44;
+  const GRAPH_H = 36;
+  const LABEL_H = 20;
+  const H = GRAPH_H + LABEL_H;
   const PAD = 4;
   const gid = "g-" + label;
 
-  const { line, area, pts } = buildSparklinePath(values, W, H, PAD);
-  const last = pts[pts.length - 1];
-  const lastVal = values[values.length - 1];
-  const valStr = Number.isInteger(lastVal) ? String(lastVal) : lastVal.toFixed(1);
+  const { line, area, pts } = buildSparklinePath(values, W, GRAPH_H, PAD);
+
+  const activeIdx = hovered ?? values.length - 1;
+  const activePoint = pts[activeIdx];
+  const activeVal = values[activeIdx];
+  const activeDate = data[activeIdx]?.date;
 
   return (
-    <svg viewBox={"0 0 " + W + " " + H} className="block overflow-visible w-full" style={{ height: H }}>
+    <svg
+      viewBox={"0 0 " + W + " " + H}
+      className="block overflow-visible w-full cursor-crosshair"
+      style={{ height: H }}
+      onMouseLeave={() => setHovered(null)}
+    >
       <defs>
         <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={color} stopOpacity={0.12} />
@@ -68,17 +92,60 @@ function Sparkline({ data, color, label }: { data: (number | null)[]; color: str
       </defs>
       <path d={area} fill={"url(#" + gid + ")"} />
       <path d={line} fill="none" stroke={color} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx={last.x} cy={last.y} r={2.5} fill={color} />
+
+      {/* Invisible hit areas for each point */}
+      {pts.map((p, i) => {
+        const hitW = W / (pts.length - 1);
+        return (
+          <rect
+            key={i}
+            x={p.x - hitW / 2}
+            y={0}
+            width={hitW}
+            height={H}
+            fill="transparent"
+            onMouseEnter={() => setHovered(i)}
+          />
+        );
+      })}
+
+      {/* Vertical indicator line on hover */}
+      {hovered !== null && (
+        <line
+          x1={activePoint.x} y1={activePoint.y}
+          x2={activePoint.x} y2={GRAPH_H + 2}
+          stroke={color} strokeWidth={1} strokeDasharray="2 2" opacity={0.3}
+        />
+      )}
+
+      {/* Active point indicator */}
+      <circle cx={activePoint.x} cy={activePoint.y} r={hovered !== null ? 3.5 : 2.5} fill={color} />
+
+      {/* Value + date below the graph */}
       <text
-        x={last.x + 8}
-        y={last.y + 3}
+        x={activePoint.x}
+        y={GRAPH_H + 11}
         fill={color}
         fontSize={9}
         fontFamily="'JetBrains Mono', monospace"
         fontWeight={500}
+        textAnchor="middle"
       >
-        {valStr}
+        {formatVal(activeVal)}{unit ?? ""}
       </text>
+      {activeDate && (
+        <text
+          x={activePoint.x}
+          y={GRAPH_H + 19}
+          fill={color}
+          fontSize={7}
+          fontFamily="'JetBrains Mono', monospace"
+          opacity={hovered !== null ? 0.6 : 0.4}
+          textAnchor="middle"
+        >
+          {formatDate(activeDate)}
+        </text>
+      )}
     </svg>
   );
 }
@@ -135,7 +202,7 @@ export default function VitalsSection() {
                 </p>
                 <p className="font-mono text-xs text-slate/50 mt-1 leading-relaxed">
                   {latest.spo2_percentage !== null && (
-                    <>SpO2: {latest.spo2_percentage}%</>
+                    <>SpO2: {Math.round(latest.spo2_percentage)}%</>
                   )}
                   {latest.skin_temp_celsius !== null && (
                     <><span className="mx-1.5">&middot;</span>{latest.skin_temp_celsius.toFixed(1)}&#176;C</>
@@ -224,19 +291,28 @@ export default function VitalsSection() {
             {trends.recovery && trends.recovery.length > 1 && (
               <div>
                 <span className="label-mono text-slate/40 text-[0.6rem] mb-1 block">Recovery</span>
-                <Sparkline data={trends.recovery.map((r) => r.score)} color="#44aa99" label="recovery" />
+                <Sparkline
+                  data={trends.recovery.filter((r) => r.score !== null).map((r) => ({ value: r.score!, date: r.date }))}
+                  color="#44aa99" label="recovery" unit="%"
+                />
               </div>
             )}
             {trends.strain && trends.strain.length > 1 && (
               <div>
                 <span className="label-mono text-slate/40 text-[0.6rem] mb-1 block">Strain</span>
-                <Sparkline data={trends.strain.map((s) => s.strain)} color="#1a2744" label="strain" />
+                <Sparkline
+                  data={trends.strain.filter((s) => s.strain !== null).map((s) => ({ value: s.strain!, date: s.date }))}
+                  color="#1a2744" label="strain"
+                />
               </div>
             )}
             {trends.sleep && trends.sleep.length > 1 && (
               <div>
                 <span className="label-mono text-slate/40 text-[0.6rem] mb-1 block">Sleep</span>
-                <Sparkline data={trends.sleep.map((s) => s.hours)} color="#d4702a" label="sleep" />
+                <Sparkline
+                  data={trends.sleep.filter((s) => s.hours !== null).map((s) => ({ value: s.hours!, date: s.date }))}
+                  color="#d4702a" label="sleep" unit="h"
+                />
               </div>
             )}
           </motion.div>
