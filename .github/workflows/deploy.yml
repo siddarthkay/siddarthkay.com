@@ -1,22 +1,27 @@
-name: Deploy to GitHub Pages
+name: Build & Deploy
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: build-deploy
+  cancel-in-progress: false
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
 
@@ -27,15 +32,37 @@ jobs:
 
       - run: npm ci
 
-      - name: Fetch latest live data
+      - name: Fetch Whoop data
         env:
           WHOOP_CLIENT_ID: ${{ secrets.WHOOP_CLIENT_ID }}
           WHOOP_CLIENT_SECRET: ${{ secrets.WHOOP_CLIENT_SECRET }}
           WHOOP_REFRESH_TOKEN: ${{ secrets.WHOOP_REFRESH_TOKEN }}
-          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+        run: node scripts/fetch-whoop.mjs || echo "Whoop fetch failed, using committed data"
+
+      - name: Update refresh token secret if rotated
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          node scripts/fetch-whoop.mjs || echo "Whoop fetch failed, using committed data"
-          node scripts/fetch-steam.mjs || echo "Steam fetch failed, using committed data"
+          if [ -f .whoop-refresh-token ]; then
+            gh secret set WHOOP_REFRESH_TOKEN < .whoop-refresh-token
+            rm .whoop-refresh-token
+            echo "Refresh token secret updated."
+          else
+            echo "No token rotation needed."
+          fi
+
+      - name: Fetch Steam data
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+        run: node scripts/fetch-steam.mjs || echo "Steam fetch failed, using committed data"
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/whoop-data.json src/data/steam-data.json
+          git diff --cached --quiet || git commit -m "chore: update live data" && git push
 
       - run: npm run build
 
@@ -43,12 +70,5 @@ jobs:
         with:
           path: dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
