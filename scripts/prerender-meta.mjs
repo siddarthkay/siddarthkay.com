@@ -15,6 +15,21 @@ const DIST = path.resolve("dist");
 const BASE_URL = "https://siddarthkay.com";
 const template = readFileSync(path.join(DIST, "index.html"), "utf-8");
 
+// Parse a human date like "March 2026" into "2026-03-01"
+function parseDate(dateStr) {
+  const months = {
+    january: "01", february: "02", march: "03", april: "04",
+    may: "05", june: "06", july: "07", august: "08",
+    september: "09", october: "10", november: "11", december: "12",
+  };
+  const parts = dateStr.toLowerCase().split(/\s+/);
+  if (parts.length !== 2) return null;
+  const month = months[parts[0]];
+  const year = parts[1];
+  if (!month || !year) return null;
+  return `${year}-${month}-01`;
+}
+
 // Page metadata — static pages + blog posts
 const pages = [
   {
@@ -37,24 +52,24 @@ const pages = [
   },
 ];
 
-// Parse blog post metadata from the built JS bundle is fragile.
-// Instead, read the source TS file and extract slugs/titles/excerpts with regex.
+// Parse blog post metadata from the source TS file.
 const blogSource = readFileSync("src/data/blog-posts.ts", "utf-8");
 const postRegex =
-  /slug:\s*"([^"]+)"[\s\S]*?title:\s*(?:"((?:[^"\\]|\\.)*)"|`([^`]+)`)[\s\S]*?excerpt:\s*\n?\s*(?:"((?:[^"\\]|\\.)*)"|`([^`]+)`)/g;
+  /slug:\s*"([^"]+)"[\s\S]*?date:\s*"([^"]+)"[\s\S]*?title:\s*(?:"((?:[^"\\]|\\.)*)"|`([^`]+)`)[\s\S]*?excerpt:\s*\n?\s*(?:"((?:[^"\\]|\\.)*)"|`([^`]+)`)/g;
 
 let match;
 while ((match = postRegex.exec(blogSource)) !== null) {
   const slug = match[1];
-  // Title might have escaped quotes
-  const title = (match[2] || match[3] || "").replace(/\\"/g, '"');
-  const excerpt = (match[4] || match[5] || "").replace(/\\"/g, '"');
+  const date = match[2];
+  const title = (match[3] || match[4] || "").replace(/\\"/g, '"');
+  const excerpt = (match[5] || match[6] || "").replace(/\\"/g, '"');
 
   pages.push({
     route: `/blog/${slug}`,
     title: `${title} | Siddarth Kumar`,
     description: excerpt,
     ogType: "article",
+    date,
   });
 }
 
@@ -64,6 +79,10 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
+}
+
+function escapeJsonLd(str) {
+  return str.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 }
 
 function generateHtml(page) {
@@ -84,6 +103,12 @@ function generateHtml(page) {
   html = html.replace(
     /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/,
     `<meta name="description" content="${description}" />`
+  );
+
+  // Replace canonical URL
+  html = html.replace(
+    /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/,
+    `<link rel="canonical" href="${url}" />`
   );
 
   // Replace OG tags
@@ -114,6 +139,64 @@ function generateHtml(page) {
     `<meta name="twitter:description" content="${description}" />`
   );
 
+  // Static pages with custom OG images
+  const staticOgMap = { "/blog": "blog", "/uses": "uses" };
+  if (staticOgMap[page.route]) {
+    const ogImage = `${BASE_URL}/og/${staticOgMap[page.route]}.png`;
+    html = html.replace(
+      /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:image" content="${ogImage}" />`
+    );
+    html = html.replace(
+      /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:image" content="${ogImage}" />`
+    );
+  }
+
+  // For blog posts, use per-post OG image
+  if (page.ogType === "article") {
+    const slug = page.route.replace("/blog/", "");
+    const ogImage = `${BASE_URL}/og/${slug}.png`;
+    html = html.replace(
+      /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:image" content="${ogImage}" />`
+    );
+    html = html.replace(
+      /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:image" content="${ogImage}" />`
+    );
+    // Blog posts have proper 1200x630 images, use summary_large_image
+    html = html.replace(
+      /<meta\s+name="twitter:card"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:card" content="summary_large_image" />`
+    );
+  }
+
+  // For blog posts, replace the Person JSON-LD with Article JSON-LD
+  if (page.ogType === "article") {
+    const isoDate = parseDate(page.date) || new Date().toISOString().split("T")[0];
+    const articleJsonLd = `<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "${escapeJsonLd(page.title.replace(" | Siddarth Kumar", ""))}",
+      "description": "${escapeJsonLd(page.description)}",
+      "datePublished": "${isoDate}",
+      "url": "${url}",
+      "author": {
+        "@type": "Person",
+        "name": "Siddarth Kumar",
+        "url": "https://siddarthkay.com"
+      }
+    }
+    </script>`;
+
+    html = html.replace(
+      /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+      articleJsonLd
+    );
+  }
+
   return html;
 }
 
@@ -135,14 +218,15 @@ writeFileSync(path.join(DIST, "404.html"), generateHtml(pages[0]));
 
 console.log(`Pre-rendered meta tags for ${count + 2} pages (${count} routes + index.html + 404.html)`);
 
-// Generate sitemap.xml from the same pages list
+// Generate sitemap.xml with accurate lastmod dates
 const today = new Date().toISOString().split("T")[0];
 const sitemapEntries = pages.map((page) => {
   const freq = page.route === "/" ? "daily" : page.ogType === "article" ? "monthly" : "weekly";
   const priority = page.route === "/" ? "1.0" : page.ogType === "article" ? "0.7" : "0.8";
+  const lastmod = page.date ? (parseDate(page.date) || today) : today;
   return `  <url>
     <loc>${BASE_URL}${page.route}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${freq}</changefreq>
     <priority>${priority}</priority>
   </url>`;
