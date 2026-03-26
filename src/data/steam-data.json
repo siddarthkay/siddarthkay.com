@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-26T16:27:34.832Z",
+  "updated_at": "2026-03-26T17:24:58.610Z",
   "games": [
     {
       "appid": 1790600,
@@ -41,12 +41,6 @@
       "appid": 1985810,
       "name": "Call of Duty®: Black Ops Cold War",
       "hours": "22h total",
-      "playtime_2weeks_hours": 1
-    },
-    {
-      "appid": 2221490,
-      "name": "Tom Clancy's The Division 2",
-      "hours": "4h total",
       "playtime_2weeks_hours": 1
     },
     {
