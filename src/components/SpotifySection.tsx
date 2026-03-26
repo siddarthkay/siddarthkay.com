@@ -7,7 +7,7 @@ export default function SpotifySection() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section className="py-20 md:py-24 px-6 md:px-8 bg-navy/[0.025]">
+    <section id="music" className="py-20 md:py-24 px-6 md:px-8 bg-navy/[0.025]">
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
           <motion.div
@@ -24,10 +24,13 @@ export default function SpotifySection() {
             </div>
 
             <h2
-              className="font-serif text-navy font-medium leading-tight"
+              className="font-serif text-navy font-medium leading-tight group"
               style={{ fontSize: "clamp(1.6rem, 3vw, 2.4rem)" }}
             >
-              What's in<br />the headphones.
+              <a href="#music" className="no-underline hover:no-underline">
+                What's in<br />the headphones.
+                <span className="ml-2 opacity-0 group-hover:opacity-40 transition-opacity text-slate select-none">#</span>
+              </a>
             </h2>
 
             <p className="font-sans text-slate text-base leading-relaxed max-w-[38ch]">

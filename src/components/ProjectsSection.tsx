@@ -120,8 +120,8 @@ export default function ProjectsSection() {
           transition={{ duration: 0.45, ease }}
           className="flex items-baseline gap-4 mb-14"
         >
-          <span className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums">03</span>
-          <span className="label-mono text-slate">Selected Work</span>
+          <a href="#work" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">03</a>
+          <a href="#work" className="label-mono text-slate no-underline hover:no-underline hover:text-burnt transition-colors">Selected Work</a>
         </motion.div>
 
         {/* Column labels */}

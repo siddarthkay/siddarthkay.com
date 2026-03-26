@@ -21,8 +21,8 @@ export default function ContactSection() {
             transition={{ duration: 0.45, ease }}
             className="flex items-baseline gap-4 mb-14"
           >
-            <span className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums">05</span>
-            <span className="label-mono text-parchment/40">Contact</span>
+            <a href="#contact" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">05</a>
+            <a href="#contact" className="label-mono text-parchment/40 no-underline hover:no-underline hover:text-burnt transition-colors">Contact</a>
           </motion.div>
 
           <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 items-start">

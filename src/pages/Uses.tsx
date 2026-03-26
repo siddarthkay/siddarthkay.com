@@ -100,13 +100,22 @@ const toolCategories: ToolCategory[] = [
 
 const games = steamData.games;
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 function CategoryBlock({ cat, i }: { cat: ToolCategory; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  const id = slugify(cat.category);
 
   return (
     <motion.div
       ref={ref}
+      id={id}
       initial={{ opacity: 0, y: 12 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: i * 0.06, ease }}
@@ -114,8 +123,8 @@ function CategoryBlock({ cat, i }: { cat: ToolCategory; i: number }) {
     >
       {/* Index + category */}
       <div className="flex items-baseline gap-4 mb-8">
-        <span className="font-mono text-burnt text-sm font-medium tabular-nums">{cat.index}</span>
-        <span className="label-mono text-slate/60">{cat.category}</span>
+        <a href={`#${id}`} className="font-mono text-burnt text-sm font-medium tabular-nums no-underline hover:no-underline">{cat.index}</a>
+        <a href={`#${id}`} className="label-mono text-slate/60 no-underline hover:no-underline hover:text-burnt transition-colors">{cat.category}</a>
       </div>
 
       {/* Content row: list on left, sketch watermark on right (lg only) */}
@@ -191,7 +200,7 @@ function GamesSection() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section className="py-8 md:py-12 px-6 md:px-8 bg-navy/[0.025]">
+    <section id="currently-playing" className="py-8 md:py-12 px-6 md:px-8 bg-navy/[0.025]">
       <div className="max-w-5xl mx-auto">
 
         <motion.div
@@ -201,8 +210,8 @@ function GamesSection() {
           transition={{ duration: 0.45, ease }}
           className="flex items-baseline gap-4 mb-10"
         >
-          <span className="font-mono text-burnt text-sm font-medium tabular-nums">06</span>
-          <span className="label-mono text-slate">Currently Playing</span>
+          <a href="#currently-playing" className="font-mono text-burnt text-sm font-medium tabular-nums no-underline hover:no-underline">06</a>
+          <a href="#currently-playing" className="label-mono text-slate no-underline hover:no-underline hover:text-burnt transition-colors">Currently Playing</a>
         </motion.div>
 
         {/* Content row: text + table on left, sketch on right (lg only) */}

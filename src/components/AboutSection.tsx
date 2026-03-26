@@ -18,8 +18,8 @@ export default function AboutSection() {
           transition={{ duration: 0.45, ease }}
           className="flex items-baseline gap-4 mb-14"
         >
-          <span className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums">01</span>
-          <span className="label-mono text-slate">About</span>
+          <a href="#about" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">01</a>
+          <a href="#about" className="label-mono text-slate no-underline hover:no-underline hover:text-burnt transition-colors">About</a>
         </motion.div>
 
         {/* Two-column: heading left, prose right — breaks at md */}

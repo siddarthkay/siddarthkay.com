@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Markdown from "react-markdown";
+import Markdown, { type Components } from "react-markdown";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -8,6 +8,40 @@ import { getPost, blogPosts } from "@/data/blog-posts";
 import PageViews from "@/components/PageViews";
 import NotFound from "./NotFound";
 import { ease } from "@/lib/motion";
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function HeadingWithAnchor({
+  level,
+  children,
+}: {
+  level: 2 | 3;
+  children: React.ReactNode;
+}) {
+  const text = typeof children === "string"
+    ? children
+    : String(children);
+  const id = slugify(text);
+  const Tag = `h${level}` as const;
+  return (
+    <Tag id={id} className="group">
+      <a href={`#${id}`} className="no-underline hover:no-underline">
+        {children}
+        <span className="ml-2 opacity-0 group-hover:opacity-40 transition-opacity text-slate select-none">#</span>
+      </a>
+    </Tag>
+  );
+}
+
+const markdownComponents: Components = {
+  h2: ({ children }) => <HeadingWithAnchor level={2}>{children}</HeadingWithAnchor>,
+  h3: ({ children }) => <HeadingWithAnchor level={3}>{children}</HeadingWithAnchor>,
+};
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -87,7 +121,7 @@ export default function BlogPost() {
             transition={{ duration: 0.6, delay: 0.2, ease }}
             className="prose-blog"
           >
-            <Markdown>{post.content}</Markdown>
+            <Markdown components={markdownComponents}>{post.content}</Markdown>
           </motion.div>
 
           {/* Prev / Next */}
