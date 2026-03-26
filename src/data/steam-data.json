@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026-03-25T07:22:37.379Z",
+  "updated_at": "2026-03-26T04:58:49.455Z",
   "games": [
-    {
-      "appid": 2322010,
-      "name": "God of War Ragnarök",
-      "hours": "325h total",
-      "playtime_2weeks_hours": 11
-    },
     {
       "appid": 1790600,
       "name": "DRAGON BALL: Sparking! ZERO",
       "hours": "12h total",
       "playtime_2weeks_hours": 11
+    },
+    {
+      "appid": 2322010,
+      "name": "God of War Ragnarök",
+      "hours": "325h total",
+      "playtime_2weeks_hours": 9
     },
     {
       "appid": 2358720,

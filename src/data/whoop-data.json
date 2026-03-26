@@ -1,28 +1,22 @@
 {
-  "updated_at": "2026-03-25T07:22:36.515Z",
+  "updated_at": "2026-03-26T04:58:48.470Z",
   "latest": {
-    "recovery_score": 46,
-    "hrv_rmssd_milli": 22.274529,
-    "resting_heart_rate": 79,
-    "spo2_percentage": 94.72727,
-    "skin_temp_celsius": 33.787167,
-    "sleep_performance_percentage": 78,
-    "sleep_efficiency_percentage": 93.46798,
-    "total_sleep_hours": 8.2,
-    "respiratory_rate": 16.6,
-    "day_strain": 1,
-    "day_avg_hr": 81,
-    "day_max_hr": 114,
-    "day_kilojoules": 3862
+    "recovery_score": 35,
+    "hrv_rmssd_milli": 19.993458,
+    "resting_heart_rate": 82,
+    "spo2_percentage": 95.03333,
+    "skin_temp_celsius": 34.744167,
+    "sleep_performance_percentage": 74,
+    "sleep_efficiency_percentage": 97.13226,
+    "total_sleep_hours": 7.3,
+    "respiratory_rate": 16.9,
+    "day_strain": 2.8,
+    "day_avg_hr": 83,
+    "day_max_hr": 121,
+    "day_kilojoules": 3144
   },
   "trends": {
     "recovery": [
-      {
-        "date": "2026-03-19",
-        "score": 35,
-        "hrv": 24,
-        "rhr": 76
-      },
       {
         "date": "2026-03-20",
         "score": 32,
@@ -58,13 +52,15 @@
         "score": 46,
         "hrv": 22.3,
         "rhr": 79
+      },
+      {
+        "date": "2026-03-26",
+        "score": 35,
+        "hrv": 20,
+        "rhr": 82
       }
     ],
     "strain": [
-      {
-        "date": "2026-03-17",
-        "strain": 4.5
-      },
       {
         "date": "2026-03-18",
         "strain": 7.6
@@ -91,15 +87,14 @@
       },
       {
         "date": "2026-03-24",
-        "strain": 1
+        "strain": 4.4
+      },
+      {
+        "date": "2026-03-25",
+        "strain": 2.8
       }
     ],
     "sleep": [
-      {
-        "date": "2026-03-18",
-        "performance": 79,
-        "hours": 8.8
-      },
       {
         "date": "2026-03-19",
         "performance": 66,
@@ -129,6 +124,11 @@
         "date": "2026-03-24",
         "performance": 78,
         "hours": 8.2
+      },
+      {
+        "date": "2026-03-25",
+        "performance": 74,
+        "hours": 7.3
       }
     ]
   },
