@@ -134,3 +134,25 @@ writeFileSync(path.join(DIST, "index.html"), generateHtml(pages[0]));
 writeFileSync(path.join(DIST, "404.html"), generateHtml(pages[0]));
 
 console.log(`Pre-rendered meta tags for ${count + 2} pages (${count} routes + index.html + 404.html)`);
+
+// Generate sitemap.xml from the same pages list
+const today = new Date().toISOString().split("T")[0];
+const sitemapEntries = pages.map((page) => {
+  const freq = page.route === "/" ? "daily" : page.ogType === "article" ? "monthly" : "weekly";
+  const priority = page.route === "/" ? "1.0" : page.ogType === "article" ? "0.7" : "0.8";
+  return `  <url>
+    <loc>${BASE_URL}${page.route}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${freq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+});
+
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries.join("\n")}
+</urlset>
+`;
+
+writeFileSync(path.join(DIST, "sitemap.xml"), sitemap);
+console.log(`Generated sitemap.xml with ${pages.length} URLs`);
