@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-26T22:06:50.139Z",
+  "updated_at": "2026-03-26T23:07:45.360Z",
   "games": [
     {
       "appid": 2322010,
@@ -8,16 +8,16 @@
       "playtime_2weeks_hours": 9
     },
     {
-      "appid": 1790600,
-      "name": "DRAGON BALL: Sparking! ZERO",
-      "hours": "12h total",
-      "playtime_2weeks_hours": 7
-    },
-    {
       "appid": 2358720,
       "name": "Black Myth: Wukong",
       "hours": "13h total",
       "playtime_2weeks_hours": 7
+    },
+    {
+      "appid": 1790600,
+      "name": "DRAGON BALL: Sparking! ZERO",
+      "hours": "12h total",
+      "playtime_2weeks_hours": 6
     },
     {
       "appid": 2651280,
