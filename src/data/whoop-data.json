@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-27T10:17:34.668Z",
+  "updated_at": "2026-03-27T11:17:41.090Z",
   "latest": {
     "recovery_score": 38,
     "hrv_rmssd_milli": 20.339905,
@@ -10,10 +10,10 @@
     "sleep_efficiency_percentage": 92.15849,
     "total_sleep_hours": 7,
     "respiratory_rate": 16.7,
-    "day_strain": 3.7,
-    "day_avg_hr": 83,
-    "day_max_hr": 121,
-    "day_kilojoules": 4917
+    "day_strain": 3.8,
+    "day_avg_hr": 84,
+    "day_max_hr": 122,
+    "day_kilojoules": 5231
   },
   "trends": {
     "recovery": [
@@ -91,7 +91,7 @@
       },
       {
         "date": "2026-03-26",
-        "strain": 3.7
+        "strain": 3.8
       }
     ],
     "sleep": [
