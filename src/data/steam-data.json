@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-27T03:05:11.015Z",
+  "updated_at": "2026-03-27T04:48:26.126Z",
   "games": [
     {
       "appid": 2322010,
@@ -18,12 +18,6 @@
       "name": "Marvel's Spider-Man 2",
       "hours": "3h total",
       "playtime_2weeks_hours": 3
-    },
-    {
-      "appid": 1790600,
-      "name": "DRAGON BALL: Sparking! ZERO",
-      "hours": "12h total",
-      "playtime_2weeks_hours": 2
     },
     {
       "appid": 307690,
@@ -48,6 +42,12 @@
       "name": "Burnout™ Paradise Remastered",
       "hours": "1h total",
       "playtime_2weeks_hours": 1
+    },
+    {
+      "appid": 1790600,
+      "name": "DRAGON BALL: Sparking! ZERO",
+      "hours": "12h total",
+      "playtime_2weeks_hours": 0
     },
     {
       "appid": 2000950,
