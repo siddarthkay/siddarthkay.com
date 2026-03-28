@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-28T10:09:40.424Z",
+  "updated_at": "2026-03-28T11:08:33.659Z",
   "games": [
     {
       "appid": 2358720,
@@ -26,12 +26,6 @@
       "playtime_2weeks_hours": 2
     },
     {
-      "appid": 2322010,
-      "name": "God of War Ragnarök",
-      "hours": "325h total",
-      "playtime_2weeks_hours": 1
-    },
-    {
       "appid": 1985810,
       "name": "Call of Duty®: Black Ops Cold War",
       "hours": "22h total",
@@ -42,6 +36,12 @@
       "name": "Burnout™ Paradise Remastered",
       "hours": "1h total",
       "playtime_2weeks_hours": 1
+    },
+    {
+      "appid": 2322010,
+      "name": "God of War Ragnarök",
+      "hours": "325h total",
+      "playtime_2weeks_hours": 0
     },
     {
       "appid": 2000950,
