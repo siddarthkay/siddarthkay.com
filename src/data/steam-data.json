@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-28T09:12:33.111Z",
+  "updated_at": "2026-03-28T10:09:40.424Z",
   "games": [
     {
       "appid": 2358720,
@@ -14,12 +14,6 @@
       "playtime_2weeks_hours": 3
     },
     {
-      "appid": 2322010,
-      "name": "God of War Ragnarök",
-      "hours": "325h total",
-      "playtime_2weeks_hours": 2
-    },
-    {
       "appid": 307690,
       "name": "Sleeping Dogs: Definitive Edition",
       "hours": "2h total",
@@ -30,6 +24,12 @@
       "name": "Counter-Strike 2",
       "hours": "3h total",
       "playtime_2weeks_hours": 2
+    },
+    {
+      "appid": 2322010,
+      "name": "God of War Ragnarök",
+      "hours": "325h total",
+      "playtime_2weeks_hours": 1
     },
     {
       "appid": 1985810,
