@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-28T07:21:13.559Z",
+  "updated_at": "2026-03-28T08:12:07.229Z",
   "games": [
     {
       "appid": 2358720,
@@ -8,15 +8,15 @@
       "playtime_2weeks_hours": 7
     },
     {
-      "appid": 2322010,
-      "name": "God of War Ragnarök",
-      "hours": "325h total",
-      "playtime_2weeks_hours": 3
-    },
-    {
       "appid": 2651280,
       "name": "Marvel's Spider-Man 2",
       "hours": "3h total",
+      "playtime_2weeks_hours": 3
+    },
+    {
+      "appid": 2322010,
+      "name": "God of War Ragnarök",
+      "hours": "325h total",
       "playtime_2weeks_hours": 3
     },
     {
