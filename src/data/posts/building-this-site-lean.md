@@ -104,6 +104,8 @@ This also gives you a full history of every data point, for free. Want to see wh
 
 A React SPA on GitHub Pages has a major problem: crawlers see an empty `<div id="root"></div>`. Google's crawler does execute JavaScript, but it's deferred and unreliable for indexing.
 
+![Google](/blog/SEO.jpeg)
+
 The fix is a two-stage prerendering pipeline that runs at the end of every build:
 
 1. **`prerender-meta.mjs`** generates per-route HTML files with correct `<title>`, `<meta>`, Open Graph tags, structured data (JSON-LD), canonical URLs, and a sitemap. This ensures crawlers get the right metadata even without executing JavaScript.
@@ -139,6 +141,9 @@ The entire stack:
 - **CDN:** GitHub Pages includes Fastly CDN. Free.
 - **SSL:** GitHub Pages auto-provisions via Let's Encrypt. Free.
 
+
+![site budget](/blog/budget.jpeg)
+
 There's no server to pay for, no database to back up, no uptime monitoring to configure. If GitHub Pages goes down, so does every other GitHub-hosted project. That's a bet I'm comfortable making.
 
 ## Trade-offs
@@ -153,6 +158,8 @@ This approach has real limitations.
 
 **Secret management is manual once.** You need to set up the initial secrets in the GitHub repository settings by hand. After that, token rotation is automated, but the first setup requires clicking through the UI.
 
+![context](/blog/context.jpeg)
+
 None of these are dealbreakers for a personal site. They'd be serious problems for a production SaaS product. Know your context.
 
 ## The principle
@@ -160,5 +167,7 @@ None of these are dealbreakers for a personal site. They'd be serious problems f
 Every piece of infrastructure you run is a piece of infrastructure you maintain. For a personal site, the goal isn't to build something impressive. It's to build something that works while you're not looking at it.
 
 This site updates itself every hour, deploys itself on every push, handles API failures gracefully, rotates its own OAuth tokens, and costs nothing to run. There's no server to restart, no database to migrate, no container to rebuild.
+
+![fin](/blog/fin.jpeg)
 
 The best infrastructure is the infrastructure you don't have to think about.
