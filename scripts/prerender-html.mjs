@@ -9,7 +9,7 @@
  */
 import { chromium } from "playwright";
 import { readFileSync, writeFileSync, mkdirSync } from "fs";
-import { createServer } from "vite";
+import { preview } from "vite";
 import path from "path";
 
 // Extract slugs from blog-posts.ts
@@ -18,13 +18,12 @@ const slugs = [...blogSource.matchAll(/slug:\s*"([^"]+)"/g)].map((m) => m[1]);
 
 const routes = ["/", "/blog", "/uses", ...slugs.map((s) => `/blog/${s}`)];
 
-// Serve dist locally
-const server = await createServer({
-  root: "dist",
-  server: { port: 4173, strictPort: true },
+// Serve the production build from dist/
+const server = await preview({
+  root: ".",
+  preview: { port: 4173, strictPort: true },
   logLevel: "silent",
 });
-await server.listen();
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
@@ -41,8 +40,41 @@ for (const route of routes) {
     waitUntil: "networkidle",
   });
 
-  // Extract just the inner body content from the rendered page
-  const renderedBody = await page.evaluate(() => document.body.innerHTML);
+  // Scroll to bottom to trigger all useInView animations
+  await page.evaluate(async () => {
+    await new Promise(resolve => {
+      let totalHeight = 0;
+      const distance = 300;
+      const timer = setInterval(() => {
+        window.scrollBy(0, distance);
+        totalHeight += distance;
+        if (totalHeight >= document.body.scrollHeight) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 50);
+    });
+  });
+  await page.waitForTimeout(500);
+
+  // Extract body content, stripping Framer Motion initial animation styles
+  const renderedBody = await page.evaluate(() => {
+    document.querySelectorAll('[style*="opacity: 0"]').forEach(el => {
+      const style = el.getAttribute('style');
+      if (style) {
+        const cleaned = style
+          .replace(/opacity:\s*0\s*;?/g, '')
+          .replace(/transform:\s*translate[^;]*;?/g, '')
+          .trim();
+        if (cleaned) {
+          el.setAttribute('style', cleaned);
+        } else {
+          el.removeAttribute('style');
+        }
+      }
+    });
+    return document.body.innerHTML;
+  });
 
   // Replace the <body> contents in the existing HTML, preserving <head>
   const updatedHtml = existingHtml.replace(
@@ -56,4 +88,4 @@ for (const route of routes) {
 }
 
 await browser.close();
-await server.close();
+server.httpServer.close();
