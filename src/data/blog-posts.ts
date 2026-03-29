@@ -9,6 +9,7 @@ import migratingAndroidCi from "./posts/migrating-android-ci-qt-69.md?raw";
 import ethereumValidators from "./posts/ethereum-validators-year-in-review.md?raw";
 import leftThirdPartyDocker from "./posts/left-third-party-docker-behind.md?raw";
 import debuggingNimUtf8 from "./posts/debugging-nim-utf8-race-conditions.md?raw";
+import buildingThisSiteLean from "./posts/building-this-site-lean.md?raw";
 
 export interface BlogPost {
   slug: string;
@@ -21,6 +22,16 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    slug: "building-this-site-lean",
+    date: "March 2026",
+    title: "Zero Servers, Zero Dollars: How This Site Runs on GitHub Actions and Static Files",
+    excerpt:
+      "No backend, no database, no server. Just a GitHub Action that fetches live data every hour, commits it to the repo, and deploys a prerendered React SPA to GitHub Pages.",
+    readTime: "10 min read",
+    tags: ["GitHub Actions", "GitHub Pages", "CI/CD", "DevOps", "React"],
+    content: buildingThisSiteLean,
+  },
   {
     slug: "react-native-nim",
     date: "March 2026",
