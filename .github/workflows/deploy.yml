@@ -64,10 +64,10 @@ jobs:
           git add src/data/whoop-data.json src/data/steam-data.json
           git diff --cached --quiet || git commit -m "chore: update live data" && git push
 
-      - run: npm run build
-
       - name: Install Playwright
         run: npx playwright install --with-deps chromium
+
+      - run: npm run build
 
       - name: Run Playwright tests
         run: npx playwright test

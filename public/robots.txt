@@ -14,3 +14,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://siddarthkay.com/sitemap.xml
+Feed: https://siddarthkay.com/feed.xml

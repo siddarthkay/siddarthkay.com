@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { ease } from "@/lib/motion";
 
 interface NavItem {
@@ -72,33 +72,40 @@ export default function SiteNav() {
       >
         <div className="max-w-5xl mx-auto px-6 md:px-8 flex items-center justify-between h-12">
           {/* Name only — minimal, no logo */}
-          <a
-            href="/"
-            onClick={(e) => {
-              e.preventDefault();
+          <Link
+            to="/"
+            onClick={() => {
               if (location.pathname === "/") {
                 window.scrollTo({ top: 0, behavior: "smooth" });
-              } else {
-                navigate("/");
               }
             }}
             className="font-serif text-navy text-[0.9375rem] font-medium tracking-tight hover:text-burnt transition-colors duration-200"
           >
             Siddarth Kumar
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => { e.preventDefault(); handleNavClick(item); }}
-                className={`nav-link link-underline ${item.type === "route" && location.pathname === item.href ? "text-burnt" : ""}`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.type === "route" ? (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className={`nav-link link-underline ${location.pathname === item.href ? "text-burnt" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => { e.preventDefault(); handleNavClick(item); }}
+                  className="nav-link link-underline"
+                >
+                  {item.label}
+                </a>
+              )
+            )}
           </nav>
 
           {/* Mobile Hamburger */}
@@ -123,16 +130,26 @@ export default function SiteNav() {
               transition={{ duration: 0.18, ease }}
               className="md:hidden bg-parchment border-t border-navy/[0.08] px-6 py-6 flex flex-col gap-5 shadow-lg"
             >
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(item); }}
-                  className="font-sans text-navy text-sm uppercase tracking-widest font-medium hover:text-burnt transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item) =>
+                item.type === "route" ? (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className="font-sans text-navy text-sm uppercase tracking-widest font-medium hover:text-burnt transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => { e.preventDefault(); handleNavClick(item); }}
+                    className="font-sans text-navy text-sm uppercase tracking-widest font-medium hover:text-burnt transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                )
+              )}
             </motion.nav>
           )}
         </AnimatePresence>

@@ -105,18 +105,26 @@ export default function HeroSection() {
               transition={{ duration: 0.5, delay: 0.7, ease }}
               className="flex flex-wrap gap-4 mt-10"
             >
-              <button
-                onClick={() => handleScroll("#work")}
-                className="font-mono text-xs uppercase tracking-widest px-6 py-3 bg-navy text-parchment border border-navy hover:bg-burnt hover:border-burnt transition-all duration-200 rounded-sm"
+              <a
+                href="#work"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll("#work");
+                }}
+                className="font-mono text-xs uppercase tracking-widest px-6 py-3 bg-navy text-parchment border border-navy hover:bg-burnt hover:border-burnt transition-all duration-200 rounded-sm inline-block"
               >
                 View Work
-              </button>
-              <button
-                onClick={() => handleScroll("#contact")}
-                className="font-mono text-xs uppercase tracking-widest px-6 py-3 bg-transparent text-navy border border-navy/40 hover:border-navy transition-all duration-200 rounded-sm"
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll("#contact");
+                }}
+                className="font-mono text-xs uppercase tracking-widest px-6 py-3 bg-transparent text-navy border border-navy/40 hover:border-navy transition-all duration-200 rounded-sm inline-block"
               >
                 Get in Touch
-              </button>
+              </a>
             </motion.div>
           </div>
 

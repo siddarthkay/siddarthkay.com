@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
+import { blogPosts } from "@/data/blog-posts";
 import { ease } from "@/lib/motion";
 
 interface Post {
@@ -10,32 +11,12 @@ interface Post {
   excerpt: string;
 }
 
-const posts: Post[] = [
-  {
-    date: "Dec 2023",
-    slug: "android-seccomp-epoll-crash",
-    title: "A Kernel Syscall Was Killing Our Android App on x86_64",
-    excerpt: "The app worked on ARM, worked on x86, and crashed instantly on x86_64 emulators. Three months to find two Go libraries making raw epoll_wait calls that Android's seccomp filter blocked.",
-  },
-  {
-    date: "May 2023",
-    slug: "ios-build-fails-xcodebuild-not-xcode",
-    title: "Six Months of Broken iOS Builds, Fixed by One Environment Variable",
-    excerpt: "Our app compiled in Xcode but failed via xcodebuild. For half a year nobody could figure out why. The fix was a single line in the Podfile.",
-  },
-  {
-    date: "Mar 2026",
-    slug: "og-image-memory-leak-nextjs",
-    title: "A Single Config Line Was Leaking 1.8GB in Our Next.js App",
-    excerpt: "How a copy-pasted Edge runtime directive caused OG image generation to eat 4.4GB of memory in three minutes.",
-  },
-  {
-    date: "Mar 2024",
-    slug: "react-native-upgrade-status-mobile",
-    title: "Upgrading React Native from 0.63 to 0.73 in a Production App",
-    excerpt: "A year-long incremental upgrade across five major versions in Status, a ClojureScript app with Go bridges, nix builds, and a full Java-to-Kotlin migration along the way.",
-  },
-];
+const posts: Post[] = blogPosts.slice(0, 4).map((p) => ({
+  date: p.date.split(" ")[0].slice(0, 3) + " " + p.date.split(" ")[1],
+  slug: p.slug,
+  title: p.title,
+  excerpt: p.excerpt,
+}));
 
 export default function BlogSection() {
   const headerRef = useRef<HTMLDivElement>(null);

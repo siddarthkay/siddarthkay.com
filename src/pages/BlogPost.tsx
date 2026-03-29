@@ -60,7 +60,7 @@ export default function BlogPost() {
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
       <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">
-        <div className="max-w-2xl mx-auto">
+        <article className="max-w-2xl mx-auto">
           {/* Back */}
           <motion.div
             initial={{ opacity: 0, y: 6 }}
@@ -154,7 +154,7 @@ export default function BlogPost() {
               </Link>
             )}
           </div>
-        </div>
+        </article>
       </main>
       <SiteFooter />
     </>

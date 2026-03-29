@@ -213,8 +213,13 @@ for (const page of pages) {
 // Also update the root index.html with correct home meta
 writeFileSync(path.join(DIST, "index.html"), generateHtml(pages[0]));
 
-// Update 404.html to match root
-writeFileSync(path.join(DIST, "404.html"), generateHtml(pages[0]));
+// Update 404.html to match root, but mark as noindex
+let notFoundHtml = generateHtml(pages[0]);
+notFoundHtml = notFoundHtml.replace(
+  '<meta name="robots" content="index, follow" />',
+  '<meta name="robots" content="noindex, nofollow" />'
+);
+writeFileSync(path.join(DIST, "404.html"), notFoundHtml);
 
 console.log(`Pre-rendered meta tags for ${count + 2} pages (${count} routes + index.html + 404.html)`);
 
@@ -240,3 +245,35 @@ ${sitemapEntries.join("\n")}
 
 writeFileSync(path.join(DIST, "sitemap.xml"), sitemap);
 console.log(`Generated sitemap.xml with ${pages.length} URLs`);
+
+// Generate RSS feed
+const feedItems = pages
+  .filter((p) => p.ogType === "article")
+  .map((p) => {
+    const isoDate = parseDate(p.date) || today;
+    const url = `${BASE_URL}${p.route}`;
+    const title = p.title.replace(" | Siddarth Kumar", "");
+    return `  <item>
+    <title>${escapeHtml(title)}</title>
+    <link>${url}</link>
+    <guid>${url}</guid>
+    <pubDate>${new Date(isoDate).toUTCString()}</pubDate>
+    <description>${escapeHtml(p.description)}</description>
+  </item>`;
+  });
+
+const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Siddarth Kumar</title>
+  <link>${BASE_URL}</link>
+  <description>Notes on CI/CD pipelines, infrastructure engineering, Ethereum nodes, and DevOps.</description>
+  <language>en</language>
+  <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml" />
+${feedItems.join("\n")}
+</channel>
+</rss>
+`;
+
+writeFileSync(path.join(DIST, "feed.xml"), rss);
+console.log(`Generated feed.xml with ${feedItems.length} items`);

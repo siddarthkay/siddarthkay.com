@@ -64,32 +64,34 @@ export default function BlogIndex() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: i * 0.07, ease }}
             >
-              <Link
-                to={`/blog/${post.slug}`}
-                className="grid grid-cols-[5rem_1fr] md:grid-cols-[7rem_1fr_6rem] gap-4 py-5 border-b border-navy/[0.06] group hover:bg-navy/[0.02] transition-colors duration-150 -mx-4 px-4 rounded-sm block"
-              >
-                <span className="label-mono text-slate mt-0.5 group-hover:text-burnt transition-colors duration-150">
-                  {post.date.split(" ")[0].slice(0, 3)} {post.date.split(" ")[1]}
-                </span>
-                <div>
-                  <h2 className="font-serif text-navy text-lg md:text-xl font-medium leading-snug group-hover:text-burnt transition-colors duration-200">
-                    {post.title}
-                  </h2>
-                  <p className="font-sans text-slate text-sm leading-relaxed mt-1 max-w-prose">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {post.tags.map((tag) => (
-                      <span key={tag} className="label-mono text-slate/60 text-[0.6rem]">
-                        {tag}
-                      </span>
-                    ))}
+              <article>
+                <Link
+                  to={`/blog/${post.slug}`}
+                  className="grid grid-cols-[5rem_1fr] md:grid-cols-[7rem_1fr_6rem] gap-4 py-5 border-b border-navy/[0.06] group hover:bg-navy/[0.02] transition-colors duration-150 -mx-4 px-4 rounded-sm block"
+                >
+                  <span className="label-mono text-slate mt-0.5 group-hover:text-burnt transition-colors duration-150">
+                    {post.date.split(" ")[0].slice(0, 3)} {post.date.split(" ")[1]}
+                  </span>
+                  <div>
+                    <h2 className="font-serif text-navy text-lg md:text-xl font-medium leading-snug group-hover:text-burnt transition-colors duration-200">
+                      {post.title}
+                    </h2>
+                    <p className="font-sans text-slate text-sm leading-relaxed mt-1 max-w-prose">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {post.tags.map((tag) => (
+                        <span key={tag} className="label-mono text-slate/60 text-[0.6rem]">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <span className="label-mono text-slate/50 text-right hidden md:block mt-0.5">
-                  {post.readTime}
-                </span>
-              </Link>
+                  <span className="label-mono text-slate/50 text-right hidden md:block mt-0.5">
+                    {post.readTime}
+                  </span>
+                </Link>
+              </article>
             </motion.div>
           ))}
         </div>

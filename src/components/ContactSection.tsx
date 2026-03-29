@@ -79,7 +79,7 @@ export default function ContactSection() {
                 {[
                   { label: "Email", href: "mailto:hello@siddarthkay.com", text: "hello@siddarthkay.com" },
                   { label: "GitHub", href: "https://github.com/siddarthkay", text: "github.com/siddarthkay", external: true },
-                  { label: "Twitter", href: "https://twitter.com/siddarthkay", text: "@siddarthkay", external: true },
+                  { label: "Twitter", href: "https://x.com/siddarthkay", text: "@siddarthkay", external: true },
                   { label: "LinkedIn", href: "https://linkedin.com/in/siddarth-kumar", text: "linkedin.com/in/siddarth-kumar", external: true },
                 ].map(({ label, href, text, external }) => (
                   <div key={label} className="flex items-center gap-4">
