@@ -6,6 +6,8 @@ This site has no backend. No database. No server you need to SSH into at 2 AM be
 
 I've spent years building and maintaining CI/CD pipelines, Docker images, and cloud infrastructure for other projects. The last thing I wanted for my personal site was another piece of infrastructure to babysit.
 
+![burnt out brother](/blog/burnt-out.jpeg)
+
 The typical approach for a personal site with live data would be: spin up a small server, write an API, add a database, set up SSL, configure a reverse proxy, monitor uptime, handle deployments. For what? To show my recent Steam games and sleep data from a fitness tracker.
 
 The constraint I set was simple: the site should run entirely on free static hosting, with no server process running anywhere. Everything the visitor sees should be a static file served from a CDN.
@@ -54,6 +56,9 @@ Second, every fetch is wrapped in `|| echo "... failed, using committed data"`. 
 ## Token rotation without a server
 
 The Whoop API uses OAuth2 with rotating refresh tokens. Every time you use a refresh token, the old one is invalidated and you get a new one. If you lose the new token, you're locked out.
+
+
+![locked out frustration](/blog/locked-out.jpeg)
 
 In a traditional setup, you'd store the token in a database and update it after each refresh. Without a server, I needed somewhere durable to put it.
 
