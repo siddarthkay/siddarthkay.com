@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-29T10:56:30.545Z",
+  "updated_at": "2026-03-29T11:09:07.497Z",
   "games": [
     {
       "appid": 2651280,
@@ -8,15 +8,15 @@
       "playtime_2weeks_hours": 3
     },
     {
-      "appid": 2358720,
-      "name": "Black Myth: Wukong",
-      "hours": "13h total",
-      "playtime_2weeks_hours": 2
-    },
-    {
       "appid": 307690,
       "name": "Sleeping Dogs: Definitive Edition",
       "hours": "2h total",
+      "playtime_2weeks_hours": 2
+    },
+    {
+      "appid": 2358720,
+      "name": "Black Myth: Wukong",
+      "hours": "13h total",
       "playtime_2weeks_hours": 2
     },
     {
