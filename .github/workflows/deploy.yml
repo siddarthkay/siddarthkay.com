@@ -37,7 +37,7 @@ jobs:
           WHOOP_CLIENT_ID: ${{ secrets.WHOOP_CLIENT_ID }}
           WHOOP_CLIENT_SECRET: ${{ secrets.WHOOP_CLIENT_SECRET }}
           WHOOP_REFRESH_TOKEN: ${{ secrets.WHOOP_REFRESH_TOKEN }}
-        run: node scripts/fetch-whoop.mjs || echo "Whoop fetch failed, using committed data"
+        run: make fetch-whoop || echo "Whoop fetch failed, using committed data"
 
       - name: Update refresh token secret if rotated
         if: always()
@@ -55,7 +55,7 @@ jobs:
       - name: Fetch Steam data
         env:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
-        run: node scripts/fetch-steam.mjs || echo "Steam fetch failed, using committed data"
+        run: make fetch-steam || echo "Steam fetch failed, using committed data"
 
       - name: Commit updated data
         run: |
@@ -67,10 +67,11 @@ jobs:
       - name: Install Playwright
         run: npx playwright install --with-deps chromium
 
-      - run: npm run build
+      - name: Build
+        run: make build
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: make test-e2e
 
       - uses: actions/upload-pages-artifact@v4
         with:
