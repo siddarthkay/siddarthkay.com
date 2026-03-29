@@ -66,6 +66,12 @@ jobs:
 
       - run: npm run build
 
+      - name: Install Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright tests
+        run: npx playwright test
+
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
