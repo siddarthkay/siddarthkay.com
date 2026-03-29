@@ -1,6 +1,6 @@
 This site has no backend. No database. No server you need to SSH into at 2 AM because a process died. It's a React SPA deployed to GitHub Pages, with live data pulled by a GitHub Action on an hourly cron. The total infrastructure cost is zero dollars.
 
-That's not a limitation. It's the design.
+![That's not a limitation. It's the design.](/blog/it-was-by-design.png)
 
 ## Why not a "real" backend
 
