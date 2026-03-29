@@ -1,6 +1,9 @@
 /**
- * Post-build: render each route with Playwright and write the full HTML
- * back to dist so crawlers see real content, not an empty shell.
+ * Post-build: render each route with Playwright and inject the rendered
+ * <body> into the pre-rendered HTML files so crawlers see real content.
+ *
+ * Preserves the <head> written by prerender-meta.mjs (meta tags, OG,
+ * structured data) and only replaces the <body> with rendered content.
  *
  * Runs AFTER `vite build` and `prerender-meta.mjs`, BEFORE deploy.
  */
@@ -27,14 +30,28 @@ const browser = await chromium.launch();
 const page = await browser.newPage();
 
 for (const route of routes) {
+  const file =
+    route === "/" ? "dist/index.html" : `dist${route}/index.html`;
+
+  // Read the existing HTML with correct <head> from prerender-meta.mjs
+  const existingHtml = readFileSync(file, "utf-8");
+
+  // Render the route in the browser to get the full DOM
   await page.goto(`http://localhost:4173${route}`, {
     waitUntil: "networkidle",
   });
-  const html = await page.content();
-  const file =
-    route === "/" ? "dist/index.html" : `dist${route}/index.html`;
+
+  // Extract just the inner body content from the rendered page
+  const renderedBody = await page.evaluate(() => document.body.innerHTML);
+
+  // Replace the <body> contents in the existing HTML, preserving <head>
+  const updatedHtml = existingHtml.replace(
+    /<body>[\s\S]*<\/body>/,
+    `<body>\n    ${renderedBody}\n  </body>`
+  );
+
   mkdirSync(path.dirname(file), { recursive: true });
-  writeFileSync(file, `<!DOCTYPE html>${html}`);
+  writeFileSync(file, updatedHtml);
   console.log(`Pre-rendered: ${route}`);
 }
 
