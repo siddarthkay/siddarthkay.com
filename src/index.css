@@ -238,6 +238,21 @@
   color: hsl(222 45% 19%);
 }
 
+/* Code blocks */
+.prose-blog pre {
+  max-width: 100%;
+  margin-bottom: 1.5rem !important;
+  border-radius: 6px;
+  overflow-x: hidden !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
+.prose-blog pre code {
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
 .prose-blog code {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.875rem;

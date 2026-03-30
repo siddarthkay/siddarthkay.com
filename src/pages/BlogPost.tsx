@@ -1,6 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Markdown, { type Components } from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -41,6 +43,31 @@ function HeadingWithAnchor({
 const markdownComponents: Components = {
   h2: ({ children }) => <HeadingWithAnchor level={2}>{children}</HeadingWithAnchor>,
   h3: ({ children }) => <HeadingWithAnchor level={3}>{children}</HeadingWithAnchor>,
+  pre: ({ children }) => {
+    const child = children as React.ReactElement<{ className?: string; children?: string }>;
+    const className = child?.props?.className || "";
+    const match = /language-(\w+)/.exec(className);
+    const code = String(child?.props?.children || "").replace(/\n$/, "");
+    if (match) {
+      return (
+        <SyntaxHighlighter
+          style={oneDark}
+          language={match[1]}
+          wrapLongLines
+          customStyle={{
+            borderRadius: "6px",
+            margin: 0,
+            fontSize: "0.8125rem",
+            lineHeight: "1.7",
+            fontFamily: "'JetBrains Mono', monospace",
+          }}
+        >
+          {code}
+        </SyntaxHighlighter>
+      );
+    }
+    return <pre>{children}</pre>;
+  },
 };
 
 export default function BlogPost() {
