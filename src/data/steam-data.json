@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-01T09:27:48.626Z",
+  "updated_at": "2026-04-01T10:23:37.454Z",
   "games": [
     {
       "appid": 2651280,
@@ -8,15 +8,15 @@
       "playtime_2weeks_hours": 3
     },
     {
-      "appid": 730,
-      "name": "Counter-Strike 2",
-      "hours": "3h total",
-      "playtime_2weeks_hours": 1
-    },
-    {
       "appid": 1985810,
       "name": "Call of Duty®: Black Ops Cold War",
       "hours": "22h total",
+      "playtime_2weeks_hours": 0
+    },
+    {
+      "appid": 730,
+      "name": "Counter-Strike 2",
+      "hours": "3h total",
       "playtime_2weeks_hours": 0
     },
     {
