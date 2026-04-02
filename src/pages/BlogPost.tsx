@@ -1,9 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Markdown, { type Components } from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
+import CodeBlock from "@/components/CodeBlock";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { getPost, blogPosts } from "@/data/blog-posts";
@@ -50,22 +49,7 @@ const markdownComponents: Components = {
     const match = /language-(\w+)/.exec(className);
     const code = String(child?.props?.children || "").replace(/\n$/, "");
     if (match) {
-      return (
-        <SyntaxHighlighter
-          style={oneDark}
-          language={match[1]}
-          wrapLongLines
-          customStyle={{
-            borderRadius: "6px",
-            margin: 0,
-            fontSize: "0.8125rem",
-            lineHeight: "1.7",
-            fontFamily: "'JetBrains Mono', monospace",
-          }}
-        >
-          {code}
-        </SyntaxHighlighter>
-      );
+      return <CodeBlock language={match[1]}>{code}</CodeBlock>;
     }
     return <pre>{children}</pre>;
   },
