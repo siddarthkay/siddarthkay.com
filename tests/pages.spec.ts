@@ -59,7 +59,7 @@ test.describe("Blog index", () => {
 
   test("pre-rendered HTML has correct canonical", () => {
     const html = readDistHtml("/blog");
-    expect(html).toContain('href="https://siddarthkay.com/blog"');
+    expect(html).toContain('href="https://siddarthkay.com/blog/"');
   });
 });
 
@@ -109,7 +109,7 @@ test.describe("Uses page", () => {
 
   test("pre-rendered HTML has correct canonical", () => {
     const html = readDistHtml("/uses");
-    expect(html).toContain('href="https://siddarthkay.com/uses"');
+    expect(html).toContain('href="https://siddarthkay.com/uses/"');
   });
 });
 

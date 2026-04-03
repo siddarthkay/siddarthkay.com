@@ -85,10 +85,14 @@ function escapeJsonLd(str) {
   return str.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 }
 
+function trailingSlash(route) {
+  return route.endsWith("/") ? route : route + "/";
+}
+
 function generateHtml(page) {
   const title = escapeHtml(page.title);
   const description = escapeHtml(page.description);
-  const url = `${BASE_URL}${page.route}`;
+  const url = `${BASE_URL}${trailingSlash(page.route)}`;
   const ogType = page.ogType || "website";
 
   let html = template;
@@ -230,7 +234,7 @@ const sitemapEntries = pages.map((page) => {
   const priority = page.route === "/" ? "1.0" : page.ogType === "article" ? "0.7" : "0.8";
   const lastmod = page.date ? (parseDate(page.date) || today) : today;
   return `  <url>
-    <loc>${BASE_URL}${page.route}</loc>
+    <loc>${BASE_URL}${trailingSlash(page.route)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${freq}</changefreq>
     <priority>${priority}</priority>
@@ -251,7 +255,7 @@ const feedItems = pages
   .filter((p) => p.ogType === "article")
   .map((p) => {
     const isoDate = parseDate(p.date) || today;
-    const url = `${BASE_URL}${p.route}`;
+    const url = `${BASE_URL}${trailingSlash(p.route)}`;
     const title = p.title.replace(" | Siddarth Kumar", "");
     return `  <item>
     <title>${escapeHtml(title)}</title>
