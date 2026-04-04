@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-04T11:09:49.700Z",
+  "updated_at": "2026-04-04T12:11:06.179Z",
   "games": [
     {
       "appid": 2651280,
@@ -17,12 +17,6 @@
       "appid": 730,
       "name": "Counter-Strike 2",
       "hours": "4h total",
-      "playtime_2weeks_hours": 0
-    },
-    {
-      "appid": 2000950,
-      "name": "Call of Duty®: Modern Warfare®",
-      "hours": "0h total",
       "playtime_2weeks_hours": 0
     }
   ]
