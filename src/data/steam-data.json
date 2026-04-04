@@ -1,11 +1,23 @@
 {
-  "updated_at": "2026-04-04T09:14:48.011Z",
+  "updated_at": "2026-04-04T10:10:37.196Z",
   "games": [
     {
       "appid": 2651280,
       "name": "Marvel's Spider-Man 2",
       "hours": "3h total",
       "playtime_2weeks_hours": 3
+    },
+    {
+      "appid": 2358720,
+      "name": "Black Myth: Wukong",
+      "hours": "13h total",
+      "playtime_2weeks_hours": 1
+    },
+    {
+      "appid": 730,
+      "name": "Counter-Strike 2",
+      "hours": "4h total",
+      "playtime_2weeks_hours": 0
     },
     {
       "appid": 2000950,
