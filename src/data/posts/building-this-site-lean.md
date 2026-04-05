@@ -8,7 +8,10 @@ I've spent years building and maintaining CI/CD pipelines, Docker images, and cl
 
 ![burnt out brother](/blog/burnt-out.jpeg)
 
-The typical approach for a personal site with live data would be: spin up a small server, write an API, add a database, set up SSL, configure a reverse proxy, monitor uptime, handle deployments. For what? To show my recent Steam games and sleep data from a fitness tracker.
+The typical approach for a personal site with live data would be: spin up a small server, write an API, add a database, set up SSL, configure a reverse proxy, monitor uptime, handle deployments. 
+For what? A website that the primeagen wont even review on his stream.
+![primeagen-disaaproval](/blog/primeagen-dissaproval.png)
+
 
 The constraint I set was simple: the site should run entirely on free static hosting, with no server process running anywhere. Everything the visitor sees should be a static file served from a CDN.
 
@@ -39,19 +42,19 @@ The site currently pulls from two APIs: Whoop (health and recovery data) and Ste
     WHOOP_CLIENT_ID: ${{ secrets.WHOOP_CLIENT_ID }}
     WHOOP_CLIENT_SECRET: ${{ secrets.WHOOP_CLIENT_SECRET }}
     WHOOP_REFRESH_TOKEN: ${{ secrets.WHOOP_REFRESH_TOKEN }}
-  run: node scripts/fetch-whoop.mjs || echo "Whoop fetch failed, using committed data"
+  run: node scripts/fetch-whoop.mjs
 
 - name: Fetch Steam data
   env:
     STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
-  run: node scripts/fetch-steam.mjs || echo "Steam fetch failed, using committed data"
+  run: node scripts/fetch-steam.mjs
 ```
 
 Two things to note here.
 
 First, secrets never touch the codebase. No `.env` files, no config objects with API keys, no "remember to add this to .gitignore" mistakes. Everything sensitive lives in GitHub Actions secrets and is injected as environment variables at runtime.
 
-Second, every fetch is wrapped in `|| echo "... failed, using committed data"`. If the Whoop API is down, or Steam rate-limits us, or the network flakes out, the build doesn't fail. It just uses whatever data was committed last time. The site always deploys, even if the APIs don't cooperate.
+Second, If the Whoop API is down, or Steam rate-limits us, or the network flakes out, the build doesn't fail. It just uses whatever data was committed last time. The site always deploys, even if the APIs don't cooperate.
 
 ## Token rotation without a server
 
@@ -164,10 +167,11 @@ None of these are dealbreakers for a personal site. They'd be serious problems f
 
 ## The principle
 
-Every piece of infrastructure you run is a piece of infrastructure you maintain. For a personal site, the goal isn't to build something impressive. It's to build something that works while you're not looking at it.
+Every piece of infrastructure you run is a piece of infrastructure you maintain. For a personal site, my goal isn't to build something impressive. It's to build something that works while I'm not looking at it.
 
 This site updates itself every hour, deploys itself on every push, handles API failures gracefully, rotates its own OAuth tokens, and costs nothing to run. There's no server to restart, no database to migrate, no container to rebuild.
 
 ![fin](/blog/fin.jpeg)
 
 The best infrastructure is the infrastructure you don't have to think about.
+Fin.

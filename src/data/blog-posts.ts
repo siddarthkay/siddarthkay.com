@@ -27,7 +27,7 @@ export const blogPosts: BlogPost[] = [
     date: "March 2026",
     title: "Zero servers, zero dollars: How this site runs on GitHub Actions and static files",
     excerpt:
-      "No backend, no database, no server. Just a GitHub Action that fetches live data every hour, commits it to the repo, and deploys a prerendered React SPA to GitHub Pages.",
+      "Conventional wisdom dictates that you need a backend if you want API integration without revealing your API keys client side, If you think outside the box there are many ways to skin a cat!",
     readTime: "10 min read",
     tags: ["GitHub Actions", "GitHub Pages", "CI/CD", "DevOps", "React"],
     content: buildingThisSiteLean,
