@@ -48,6 +48,8 @@ The crash was deeper than the application code. Something in the Go runtime or o
 
 ## The breakthrough
 
+![Call chain from React Native user action down to the Android seccomp filter blocking syscall 232 and killing the process with SIGSYS](/blog/seccomp-epoll-crash-chain.svg)
+
 A colleague, bitgamma, pointed me to the key insight: syscall 232 on x86_64 Linux is `epoll_wait`. The Go standard library uses `epoll` for I/O multiplexing on Linux. But Android's seccomp policy, which got stricter starting with Android 11, blocks certain legacy syscalls on x86_64. `epoll_wait` is one of them. The "correct" syscall is `epoll_pwait` (syscall 281), which is what modern versions of the Go runtime use. But not all Go libraries go through the standard library's syscall wrappers. Some make raw syscalls directly.
 
 I searched our dependency tree for direct uses of `epoll_wait` and found two:

@@ -16,12 +16,12 @@
   <rect x="78" y="110" width="744" height="860" fill="none" stroke="#d4702a" stroke-width="1.5" stroke-dasharray="6 4"/>
   <!-- mask the border behind the label -->
   <rect x="100" y="102" width="360" height="16" fill="#f5f2ed"/>
-  <text x="112" y="115" font-size="12" fill="#d4702a" letter-spacing="2">NIX DERIVATIONS — REPRODUCIBLE BUILDS</text>
+  <text x="112" y="115" font-size="12" fill="#d4702a" letter-spacing="2">NIX DERIVATIONS · REPRODUCIBLE BUILDS</text>
   <rect x="570" y="102" width="250" height="16" fill="#f5f2ed"/>
   <text x="812" y="115" font-size="11" fill="#6b7280" letter-spacing="1" text-anchor="end">pinned toolchains · CI parity</text>
 
-  <!-- ============ LAYER 01 — SOURCE ============ -->
-  <text x="130" y="148" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 01 — SOURCE</text>
+  <!-- ============ LAYER 01 · SOURCE ============ -->
+  <text x="130" y="148" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 01 · SOURCE</text>
   <rect x="130" y="158" width="640" height="70" fill="none" stroke="#1a2744" stroke-width="1.5"/>
   <text x="148" y="186" font-size="16" fill="#1a2744" font-weight="600">ClojureScript application</text>
   <line x1="148" y1="196" x2="300" y2="196" stroke="#1a2744" stroke-width="0.5" opacity="0.3"/>
@@ -31,8 +31,8 @@
   <line x1="450" y1="228" x2="450" y2="266" stroke="#1a2744" stroke-width="1.5" marker-end="url(#arrow)"/>
   <text x="460" y="252" font-size="11" fill="#6b7280">shadow-cljs compile</text>
 
-  <!-- ============ LAYER 02 — BUNDLE ============ -->
-  <text x="130" y="286" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 02 — BUNDLE</text>
+  <!-- ============ LAYER 02 · BUNDLE ============ -->
+  <text x="130" y="286" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 02 · BUNDLE</text>
   <rect x="130" y="296" width="640" height="62" fill="none" stroke="#1a2744" stroke-width="1.5"/>
   <text x="148" y="324" font-size="16" fill="#1a2744" font-weight="600">JavaScript bundle</text>
   <line x1="148" y1="334" x2="300" y2="334" stroke="#1a2744" stroke-width="0.5" opacity="0.3"/>
@@ -41,8 +41,8 @@
   <!-- Arrow 2 -->
   <line x1="450" y1="358" x2="450" y2="396" stroke="#1a2744" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <!-- ============ LAYER 03 — RUNTIME ============ -->
-  <text x="130" y="416" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 03 — RUNTIME</text>
+  <!-- ============ LAYER 03 · RUNTIME ============ -->
+  <text x="130" y="416" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 03 · RUNTIME</text>
   <rect x="130" y="426" width="640" height="112" fill="none" stroke="#1a2744" stroke-width="1.5"/>
   <text x="148" y="454" font-size="16" fill="#1a2744" font-weight="600">React Native 0.73.5</text>
   <line x1="148" y1="464" x2="300" y2="464" stroke="#1a2744" stroke-width="0.5" opacity="0.3"/>
@@ -58,8 +58,8 @@
   <line x1="450" y1="538" x2="450" y2="580" stroke="#1a2744" stroke-width="1.5" marker-end="url(#arrow)"/>
   <text x="460" y="564" font-size="11" fill="#6b7280">JSI  ·  TurboModules</text>
 
-  <!-- ============ LAYER 04 — NATIVE MODULES ============ -->
-  <text x="130" y="600" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 04 — NATIVE MODULES</text>
+  <!-- ============ LAYER 04 · NATIVE MODULES ============ -->
+  <text x="130" y="600" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 04 · NATIVE MODULES</text>
   <rect x="130" y="610" width="640" height="192" fill="none" stroke="#1a2744" stroke-width="1.5"/>
   <text x="148" y="638" font-size="16" fill="#1a2744" font-weight="600">react-native-status</text>
   <line x1="148" y1="648" x2="300" y2="648" stroke="#1a2744" stroke-width="0.5" opacity="0.3"/>
@@ -104,8 +104,8 @@
   <line x1="450" y1="802" x2="450" y2="844" stroke="#1a2744" stroke-width="1.5" marker-end="url(#arrow)"/>
   <text x="460" y="828" font-size="11" fill="#6b7280">JNI  ·  C ABI  ·  gomobile</text>
 
-  <!-- ============ LAYER 05 — BACKEND ============ -->
-  <text x="130" y="864" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 05 — BACKEND</text>
+  <!-- ============ LAYER 05 · BACKEND ============ -->
+  <text x="130" y="864" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 05 · BACKEND</text>
   <rect x="130" y="874" width="640" height="82" fill="#1a2744"/>
   <text x="148" y="902" font-size="16" fill="#f5f2ed" font-weight="600">status-go</text>
   <text x="262" y="902" font-size="12" fill="#f5f2ed" opacity="0.55">Go backend  ·  p2p  ·  protocol  ·  keystore</text>

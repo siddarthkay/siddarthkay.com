@@ -55,6 +55,8 @@ Deep in `generate-artifacts.js`, there was a check for an environment variable: 
 
 ## The fix
 
+![Xcode.app vs xcodebuild CLI: the same Podfile, the same source, but USE_CODEGEN_DISCOVERY is unset on the CLI, codegen is skipped, FBReactNativeSpec headers stay empty, and the build fails](/blog/xcode-vs-xcodebuild-codegen.svg)
+
 One line in the Podfile:
 
 ```ruby

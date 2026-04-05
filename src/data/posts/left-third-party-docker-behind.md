@@ -4,6 +4,8 @@ What changed my mind was build drift.
 
 ## Build drift
 
+![Trust chain comparison: five layers of implicit trust when pulling a third-party Docker image versus two explicit, verifiable layers with a self-built digest-pinned base](/blog/docker-trust-chain.svg)
+
 Build drift is what happens when your build environment changes without you knowing. It's subtle. An upstream image gets a minor OS update. A library that was previously at version 1.2.3 is now 1.2.4. Your build still passes. Your tests still pass. The artifact that comes out looks the same.
 
 Until it doesn't.

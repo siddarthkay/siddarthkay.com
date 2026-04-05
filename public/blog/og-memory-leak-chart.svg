@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 20 800 580" preserveAspectRatio="xMidYMid meet" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, monospace">
+  <rect width="900" height="600" fill="#f5f2ed"/>
+
+  <!-- Title -->
+  <text x="450" y="48" font-family="'Newsreader', Georgia, serif" font-size="28" font-style="italic" fill="#1a2744" text-anchor="middle">Memory Under Load: Before / After</text>
+  <line x1="340" y1="64" x2="560" y2="64" stroke="#d4702a" stroke-width="1.5"/>
+  <text x="450" y="86" font-size="12" fill="#6b7280" text-anchor="middle" letter-spacing="2.5">@vercel/og · resvg-wasm · 3 MIN LOAD TEST · RSS</text>
+
+  <!-- Chart frame -->
+  <rect x="100" y="130" width="720" height="360" fill="none" stroke="#1a2744" stroke-width="1" opacity="0.15"/>
+
+  <!-- Y axis gridlines + labels -->
+  <!-- 0 MB: y=460 -->
+  <line x1="140" y1="460" x2="760" y2="460" stroke="#1a2744" stroke-width="1" opacity="0.2"/>
+  <text x="132" y="464" font-size="10" fill="#6b7280" text-anchor="end">0</text>
+  <!-- 1000 MB: y=393 -->
+  <line x1="140" y1="393" x2="760" y2="393" stroke="#1a2744" stroke-width="0.5" opacity="0.1" stroke-dasharray="2 4"/>
+  <text x="132" y="397" font-size="10" fill="#6b7280" text-anchor="end">1000</text>
+  <!-- 2000 MB: y=327 -->
+  <line x1="140" y1="327" x2="760" y2="327" stroke="#1a2744" stroke-width="0.5" opacity="0.1" stroke-dasharray="2 4"/>
+  <text x="132" y="331" font-size="10" fill="#6b7280" text-anchor="end">2000</text>
+  <!-- 3000 MB: y=260 -->
+  <line x1="140" y1="260" x2="760" y2="260" stroke="#1a2744" stroke-width="0.5" opacity="0.1" stroke-dasharray="2 4"/>
+  <text x="132" y="264" font-size="10" fill="#6b7280" text-anchor="end">3000</text>
+  <!-- 4000 MB: y=193 -->
+  <line x1="140" y1="193" x2="760" y2="193" stroke="#1a2744" stroke-width="0.5" opacity="0.1" stroke-dasharray="2 4"/>
+  <text x="132" y="197" font-size="10" fill="#6b7280" text-anchor="end">4000</text>
+
+  <!-- Y axis label -->
+  <text x="100" y="148" font-size="10" fill="#6b7280" letter-spacing="1.5">MB · RSS</text>
+
+  <!-- X axis -->
+  <line x1="140" y1="460" x2="760" y2="460" stroke="#1a2744" stroke-width="1"/>
+  <!-- X axis ticks + labels at 0, 60, 120, 180 seconds -->
+  <line x1="140" y1="460" x2="140" y2="465" stroke="#1a2744" stroke-width="1"/>
+  <text x="140" y="480" font-size="10" fill="#6b7280" text-anchor="middle">0s</text>
+  <line x1="343" y1="460" x2="343" y2="465" stroke="#1a2744" stroke-width="1"/>
+  <text x="343" y="480" font-size="10" fill="#6b7280" text-anchor="middle">60s</text>
+  <line x1="547" y1="460" x2="547" y2="465" stroke="#1a2744" stroke-width="1"/>
+  <text x="547" y="480" font-size="10" fill="#6b7280" text-anchor="middle">120s</text>
+  <line x1="750" y1="460" x2="750" y2="465" stroke="#1a2744" stroke-width="1"/>
+  <text x="750" y="480" font-size="10" fill="#6b7280" text-anchor="middle">180s</text>
+
+  <!-- MASTER (broken) line · red climbing -->
+  <polyline
+    points="140,380 245,313 347,281 451,245 553,212 658,188 760,166"
+    fill="none" stroke="#cf222e" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Master data points -->
+  <circle cx="140" cy="380" r="3" fill="#cf222e"/>
+  <circle cx="245" cy="313" r="3" fill="#cf222e"/>
+  <circle cx="347" cy="281" r="3" fill="#cf222e"/>
+  <circle cx="451" cy="245" r="3" fill="#cf222e"/>
+  <circle cx="553" cy="212" r="3" fill="#cf222e"/>
+  <circle cx="658" cy="188" r="3" fill="#cf222e"/>
+  <circle cx="760" cy="166" r="4.5" fill="#cf222e"/>
+
+  <!-- FIX (stable) line · green flat -->
+  <polyline
+    points="140,365 245,298 347,293 451,287 553,290 658,285 760,289"
+    fill="none" stroke="#1a7f37" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Fix data points -->
+  <circle cx="140" cy="365" r="3" fill="#1a7f37"/>
+  <circle cx="245" cy="298" r="3" fill="#1a7f37"/>
+  <circle cx="347" cy="293" r="3" fill="#1a7f37"/>
+  <circle cx="451" cy="287" r="3" fill="#1a7f37"/>
+  <circle cx="553" cy="290" r="3" fill="#1a7f37"/>
+  <circle cx="658" cy="285" r="3" fill="#1a7f37"/>
+  <circle cx="760" cy="289" r="4.5" fill="#1a7f37"/>
+
+  <!-- Line labels -->
+  <text x="770" y="158" font-size="12" fill="#cf222e" font-weight="600">master</text>
+  <text x="770" y="172" font-size="11" fill="#cf222e">4404 MB</text>
+  <text x="770" y="281" font-size="12" fill="#1a7f37" font-weight="600">fix</text>
+  <text x="770" y="295" font-size="11" fill="#1a7f37">2571 MB</text>
+
+  <!-- Annotation: delta -->
+  <line x1="740" y1="175" x2="740" y2="280" stroke="#1a2744" stroke-width="1" opacity="0.4"/>
+  <line x1="735" y1="175" x2="745" y2="175" stroke="#1a2744" stroke-width="1" opacity="0.4"/>
+  <line x1="735" y1="280" x2="745" y2="280" stroke="#1a2744" stroke-width="1" opacity="0.4"/>
+  <rect x="700" y="215" width="80" height="22" fill="#f5f2ed"/>
+  <text x="740" y="231" font-size="12" fill="#1a2744" text-anchor="middle" font-weight="600">−1833 MB</text>
+
+  <!-- Fix banner -->
+  <rect x="100" y="498" width="720" height="74" fill="#1a2744"/>
+  <text x="116" y="518" font-size="11" fill="#d4702a" letter-spacing="2">THE FIX  ·  1 LINE REMOVED</text>
+  <line x1="116" y1="526" x2="280" y2="526" stroke="#d4702a" stroke-width="0.5" opacity="0.5"/>
+  <text x="116" y="546" font-size="13" fill="#f5f2ed">delete <tspan fill="#d4702a">export const config = { runtime: 'edge' }</tspan></text>
+  <text x="116" y="564" font-size="12" fill="#f5f2ed" opacity="0.6">→  falls back to next/og, skips leaky WASM path</text>
+</svg>

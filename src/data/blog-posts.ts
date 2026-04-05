@@ -8,7 +8,6 @@ import rnUpgradeStatusMobile from "./posts/react-native-upgrade-status-mobile.md
 import migratingAndroidCi from "./posts/migrating-android-ci-qt-69.md?raw";
 import ethereumValidators from "./posts/ethereum-validators-year-in-review.md?raw";
 import leftThirdPartyDocker from "./posts/left-third-party-docker-behind.md?raw";
-import debuggingNimUtf8 from "./posts/debugging-nim-utf8-race-conditions.md?raw";
 import buildingThisSiteLean from "./posts/building-this-site-lean.md?raw";
 
 export interface BlogPost {
@@ -68,7 +67,7 @@ export const blogPosts: BlogPost[] = [
     title: "Migrating Android CI to Qt 6.9 with self-controlled Docker images",
     excerpt:
       "Why we stopped trusting upstream images and what it took to own the build environment entirely.",
-    readTime: "9 min read",
+    readTime: "5 min read",
     tags: ["CI/CD", "Android", "Docker", "Qt", "Jenkins"],
     content: migratingAndroidCi,
   },
@@ -91,16 +90,6 @@ export const blogPosts: BlogPost[] = [
     readTime: "7 min read",
     tags: ["Docker", "Security", "CI/CD", "DevOps"],
     content: leftThirdPartyDocker,
-  },
-  {
-    slug: "debugging-nim-utf8-race-conditions",
-    date: "September 2025",
-    title: "Debugging Nim UTF-8 race conditions on macOS ARM64",
-    excerpt:
-      "A weekend deep-dive into a non-deterministic crash that only appeared on Apple Silicon.",
-    readTime: "13 min read",
-    tags: ["Nim", "Debugging", "macOS", "ARM64", "Concurrency"],
-    content: debuggingNimUtf8,
   },
   {
     slug: "missing-symbol-called-macos-go",

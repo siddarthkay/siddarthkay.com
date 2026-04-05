@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 20 800 720" preserveAspectRatio="xMidYMid meet" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, monospace">
+  <rect width="900" height="740" fill="#f5f2ed"/>
+
+  <!-- Title -->
+  <text x="450" y="48" font-family="'Newsreader', Georgia, serif" font-size="28" font-style="italic" fill="#1a2744" text-anchor="middle">The Symbol That Wasn't There</text>
+  <line x1="340" y1="64" x2="560" y2="64" stroke="#d4702a" stroke-width="1.5"/>
+  <text x="450" y="86" font-size="12" fill="#6b7280" text-anchor="middle" letter-spacing="2.5">Go 1.20 · macOS ARM64 · nm -u libstatus.a</text>
+
+  <!-- ===================== LEFT PANEL: Go 1.19 ===================== -->
+  <rect x="80" y="110" width="360" height="500" fill="#1a2744"/>
+
+  <!-- Terminal header -->
+  <rect x="80" y="110" width="360" height="44" fill="#2a3758"/>
+  <circle cx="96" cy="132" r="5" fill="#1a7f37"/>
+  <text x="112" y="136" font-size="11" fill="#f5f2ed" opacity="0.8">go1.19  ·  known-good</text>
+  <text x="424" y="136" font-size="10" fill="#f5f2ed" text-anchor="end" opacity="0.5">42 symbols</text>
+
+  <!-- Command prompt -->
+  <text x="96" y="176" font-size="12" fill="#d4702a">$ </text>
+  <text x="112" y="176" font-size="12" fill="#f5f2ed">nm -u libstatus.a | sort</text>
+
+  <!-- Symbol list -->
+  <text x="96" y="202" font-size="12" fill="#f5f2ed" opacity="0.9">_abort</text>
+  <text x="96" y="220" font-size="12" fill="#f5f2ed" opacity="0.9">_close</text>
+  <text x="96" y="238" font-size="12" fill="#f5f2ed" opacity="0.9">_fcntl</text>
+  <text x="96" y="256" font-size="12" fill="#f5f2ed" opacity="0.9">_getcwd</text>
+  <text x="96" y="274" font-size="12" fill="#f5f2ed" opacity="0.9">_getenv</text>
+  <text x="96" y="292" font-size="12" fill="#f5f2ed" opacity="0.9">_mach_absolute_time</text>
+  <text x="96" y="310" font-size="12" fill="#f5f2ed" opacity="0.9">_malloc</text>
+  <text x="96" y="328" font-size="12" fill="#f5f2ed" opacity="0.9">_mmap</text>
+  <text x="96" y="346" font-size="12" fill="#f5f2ed" opacity="0.9">_munmap</text>
+  <text x="96" y="364" font-size="12" fill="#f5f2ed" opacity="0.9">_pthread_create</text>
+  <text x="96" y="382" font-size="12" fill="#f5f2ed" opacity="0.9">_pthread_mutex_lock</text>
+  <text x="96" y="400" font-size="12" fill="#f5f2ed" opacity="0.9">_read</text>
+  <text x="96" y="418" font-size="12" fill="#f5f2ed" opacity="0.9">_sigaction</text>
+  <text x="96" y="436" font-size="12" fill="#f5f2ed" opacity="0.9">_usleep</text>
+  <text x="96" y="454" font-size="12" fill="#f5f2ed" opacity="0.9">_write</text>
+  <text x="96" y="472" font-size="12" fill="#f5f2ed" opacity="0.5">... (27 more)</text>
+
+  <!-- Bottom divider + status -->
+  <line x1="96" y1="500" x2="424" y2="500" stroke="#d4702a" stroke-width="0.5" opacity="0.4"/>
+  <text x="96" y="522" font-size="11" fill="#dafbe1" letter-spacing="1">STATUS</text>
+  <text x="96" y="544" font-size="13" fill="#dafbe1" font-weight="600">all symbols resolve at load</text>
+  <text x="96" y="562" font-size="11" fill="#f5f2ed" opacity="0.7">dyld finds everything in libSystem</text>
+  <text x="96" y="588" font-size="12" fill="#dafbe1">→  tests pass on macOS ✓</text>
+
+  <!-- ===================== RIGHT PANEL: Go 1.20 ===================== -->
+  <rect x="460" y="110" width="360" height="500" fill="#1a2744"/>
+
+  <!-- Terminal header -->
+  <rect x="460" y="110" width="360" height="44" fill="#2a3758"/>
+  <circle cx="476" cy="132" r="5" fill="#cf222e"/>
+  <text x="492" y="136" font-size="11" fill="#f5f2ed" opacity="0.8">go1.20  ·  crashing</text>
+  <text x="804" y="136" font-size="10" fill="#f5f2ed" text-anchor="end" opacity="0.5">47 symbols  (+5)</text>
+
+  <!-- Command prompt -->
+  <text x="476" y="176" font-size="12" fill="#d4702a">$ </text>
+  <text x="492" y="176" font-size="12" fill="#f5f2ed">nm -u libstatus.a | sort</text>
+
+  <!-- Symbol list · same as 1.19 first -->
+  <text x="476" y="202" font-size="12" fill="#f5f2ed" opacity="0.55">_abort</text>
+  <text x="476" y="220" font-size="12" fill="#f5f2ed" opacity="0.55">_close</text>
+  <text x="476" y="238" font-size="12" fill="#f5f2ed" opacity="0.55">_fcntl</text>
+  <text x="476" y="256" font-size="12" fill="#f5f2ed" opacity="0.55">_getcwd</text>
+  <text x="476" y="274" font-size="12" fill="#f5f2ed" opacity="0.55">_getenv</text>
+  <text x="476" y="292" font-size="12" fill="#f5f2ed" opacity="0.55">_mach_absolute_time</text>
+  <text x="476" y="310" font-size="12" fill="#f5f2ed" opacity="0.55">_malloc</text>
+  <text x="476" y="328" font-size="12" fill="#f5f2ed" opacity="0.55">... (30 more)</text>
+
+  <!-- Diff block: new symbols highlighted -->
+  <rect x="466" y="342" width="348" height="108" fill="#cf222e" opacity="0.15"/>
+  <text x="476" y="360" font-size="10" fill="#d4702a" letter-spacing="1.5">NEW IN GO 1.20 · libresolv symbols</text>
+  <text x="476" y="380" font-size="12" fill="#ff8a92" font-weight="600">_res_9_init</text>
+  <text x="476" y="398" font-size="12" fill="#ff8a92" font-weight="600">_res_9_ninit</text>
+  <text x="476" y="416" font-size="12" fill="#ff8a92" font-weight="600">_res_9_nclose</text>
+  <text x="476" y="434" font-size="12" fill="#ff8a92" font-weight="600">_res_9_nquery</text>
+  <text x="810" y="380" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.6">libresolv</text>
+  <text x="810" y="398" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.6">libresolv</text>
+  <text x="810" y="416" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.6">libresolv</text>
+  <text x="810" y="434" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.6">libresolv</text>
+
+  <text x="476" y="472" font-size="12" fill="#f5f2ed" opacity="0.55">... _write</text>
+
+  <!-- Bottom divider + status -->
+  <line x1="476" y1="500" x2="804" y2="500" stroke="#d4702a" stroke-width="0.5" opacity="0.4"/>
+  <text x="476" y="522" font-size="11" fill="#ffebe9" letter-spacing="1">STATUS</text>
+  <text x="476" y="544" font-size="13" fill="#ffebe9" font-weight="600">dyld: missing symbol called</text>
+  <text x="476" y="562" font-size="11" fill="#f5f2ed" opacity="0.7">libresolv not linked · symbols unresolved</text>
+  <text x="476" y="588" font-size="12" fill="#ffebe9">→  process aborts at load ✗</text>
+
+  <!-- ===================== FIX BANNER ===================== -->
+  <rect x="80" y="630" width="740" height="80" fill="#1a2744"/>
+  <text x="100" y="654" font-size="11" fill="#d4702a" letter-spacing="2">THE FIX  ·  Darwin-only Nix flags  ·  +7/−7 lines</text>
+  <line x1="100" y1="662" x2="380" y2="662" stroke="#d4702a" stroke-width="0.5" opacity="0.5"/>
+  <text x="100" y="682" font-size="13" fill="#f5f2ed">ldflags += <tspan fill="#d4702a">-extldflags=-lresolv</tspan>   <tspan fill="#f5f2ed" opacity="0.6">// link against libresolv</tspan></text>
+  <text x="100" y="702" font-size="13" fill="#f5f2ed">buildTags += <tspan fill="#d4702a">netgo</tspan>                 <tspan fill="#f5f2ed" opacity="0.6">// pure-Go DNS resolver, no cgo</tspan></text>
+</svg>

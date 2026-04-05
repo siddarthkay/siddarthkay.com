@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 20 800 720" preserveAspectRatio="xMidYMid meet" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, monospace">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a2744"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="740" fill="#f5f2ed"/>
+
+  <!-- Title -->
+  <text x="450" y="48" font-family="'Newsreader', Georgia, serif" font-size="28" font-style="italic" fill="#1a2744" text-anchor="middle">Upstream Drift vs Pinned Base</text>
+  <line x1="340" y1="64" x2="560" y2="64" stroke="#d4702a" stroke-width="1.5"/>
+  <text x="450" y="86" font-size="12" fill="#6b7280" text-anchor="middle" letter-spacing="2.5">ANDROID CI · QT 6.9 · DOCKER BASE IMAGE</text>
+
+  <!-- ===================== LEFT PANEL: UPSTREAM ===================== -->
+  <rect x="80" y="110" width="360" height="540" fill="none" stroke="#cf222e" stroke-width="2"/>
+
+  <!-- Header band -->
+  <rect x="80" y="110" width="360" height="62" fill="#1a2744"/>
+  <text x="100" y="138" font-size="11" fill="#d4702a" letter-spacing="2">BEFORE · GH ACTIONS</text>
+  <text x="100" y="160" font-size="15" fill="#f5f2ed" font-weight="600">carlonluca/qt-dev:6.8.3</text>
+  <text x="420" y="138" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.55">third-party</text>
+  <text x="420" y="160" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.7">Docker Hub</text>
+
+  <!-- Stack label -->
+  <text x="100" y="198" font-size="11" fill="#d4702a" letter-spacing="1.5">LAYER STACK</text>
+
+  <!-- Layers -->
+  <rect x="100" y="208" width="320" height="44" fill="none" stroke="#cf222e" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="114" y="228" font-size="13" fill="#1a2744" font-weight="600">Base OS (upstream-picked)</text>
+  <text x="406" y="228" font-size="11" fill="#cf222e" text-anchor="end" font-weight="600">?</text>
+  <text x="114" y="244" font-size="11" fill="#6b7280">whichever distro Luca built on</text>
+
+  <rect x="100" y="260" width="320" height="44" fill="none" stroke="#cf222e" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="114" y="280" font-size="13" fill="#1a2744" font-weight="600">Qt 6.8.3 (bundled)</text>
+  <text x="406" y="280" font-size="11" fill="#cf222e" text-anchor="end" font-weight="600">opaque</text>
+  <text x="114" y="296" font-size="11" fill="#6b7280">compile flags not declared</text>
+
+  <rect x="100" y="312" width="320" height="44" fill="none" stroke="#cf222e" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="114" y="332" font-size="13" fill="#1a2744" font-weight="600">Android NDK r26b (bundled)</text>
+  <text x="406" y="332" font-size="11" fill="#cf222e" text-anchor="end" font-weight="600">transitive</text>
+  <text x="114" y="348" font-size="11" fill="#6b7280">26.1.10909125 · author's choice</text>
+
+  <rect x="100" y="364" width="320" height="44" fill="none" stroke="#cf222e" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="114" y="384" font-size="13" fill="#1a2744" font-weight="600">OpenJDK 17 (system apt)</text>
+  <text x="406" y="384" font-size="11" fill="#cf222e" text-anchor="end" font-weight="600">transitive</text>
+  <text x="114" y="400" font-size="11" fill="#6b7280">whichever apt had at image build</text>
+
+  <rect x="100" y="416" width="320" height="44" fill="none" stroke="#cf222e" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="114" y="436" font-size="13" fill="#1a2744" font-weight="600">apt layers · unknown extras</text>
+  <text x="406" y="436" font-size="11" fill="#cf222e" text-anchor="end" font-weight="600">transitive</text>
+  <text x="114" y="452" font-size="11" fill="#6b7280">everything else author installed</text>
+
+  <!-- Transitive trust indicator -->
+  <text x="100" y="488" font-size="11" fill="#d4702a" letter-spacing="1.5">TRANSITIVE TRUST</text>
+  <rect x="100" y="498" width="320" height="58" fill="none" stroke="#cf222e" stroke-width="1" opacity="0.6"/>
+  <text x="114" y="518" font-size="12" fill="#cf222e">tag :6.8.3 is pinned, layers are not</text>
+  <text x="114" y="534" font-size="12" fill="#cf222e">author can re-push without a changelog</text>
+  <text x="114" y="550" font-size="11" fill="#6b7280">every run of GH Actions re-trusts it</text>
+
+  <!-- Status banner -->
+  <rect x="100" y="578" width="320" height="54" fill="#ffebe9" stroke="#cf222e" stroke-width="1.5"/>
+  <text x="260" y="602" font-size="12" fill="#cf222e" text-anchor="middle" font-weight="600">tags mutable · image opaque</text>
+  <text x="260" y="620" font-size="11" fill="#cf222e" text-anchor="middle">every pull is a gamble</text>
+
+  <!-- ===================== RIGHT PANEL: PINNED ===================== -->
+  <rect x="460" y="110" width="360" height="540" fill="none" stroke="#1a2744" stroke-width="1.5"/>
+
+  <!-- Header band -->
+  <rect x="460" y="110" width="360" height="62" fill="#1a2744"/>
+  <text x="480" y="138" font-size="11" fill="#d4702a" letter-spacing="2">AFTER · JENKINS</text>
+  <text x="480" y="160" font-size="15" fill="#f5f2ed" font-weight="600">mobile/docker/Dockerfile</text>
+  <text x="800" y="138" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.55">own-built · pinned</text>
+  <text x="800" y="160" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.7">private registry</text>
+
+  <!-- Stack label -->
+  <text x="480" y="198" font-size="11" fill="#d4702a" letter-spacing="1.5">LAYER STACK</text>
+
+  <!-- Layers -->
+  <rect x="480" y="208" width="320" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="494" y="228" font-size="13" fill="#1a2744" font-weight="600">ubuntu:noble (24.04)</text>
+  <text x="786" y="228" font-size="11" fill="#1a7f37" text-anchor="end" font-weight="600">pinned</text>
+  <text x="494" y="244" font-size="11" fill="#6b7280">declared, auditable</text>
+
+  <rect x="480" y="260" width="320" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="494" y="280" font-size="13" fill="#1a2744" font-weight="600">Qt 6.9.2 via aqtinstall</text>
+  <text x="786" y="280" font-size="11" fill="#1a7f37" text-anchor="end" font-weight="600">pinned</text>
+  <text x="494" y="296" font-size="11" fill="#6b7280">prebuilt binaries · trimmed modules</text>
+
+  <rect x="480" y="312" width="320" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="494" y="332" font-size="13" fill="#1a2744" font-weight="600">Android NDK r27c</text>
+  <text x="786" y="332" font-size="11" fill="#1a7f37" text-anchor="end" font-weight="600">pinned</text>
+  <text x="494" y="348" font-size="11" fill="#6b7280">27.2.12479018 · declared ARG</text>
+
+  <rect x="480" y="364" width="320" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="494" y="384" font-size="13" fill="#1a2744" font-weight="600">OpenJDK 17 (apt)</text>
+  <text x="786" y="384" font-size="11" fill="#1a7f37" text-anchor="end" font-weight="600">pinned</text>
+  <text x="494" y="400" font-size="11" fill="#6b7280">openjdk-17-jdk · Ubuntu package</text>
+
+  <rect x="480" y="416" width="320" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="494" y="436" font-size="13" fill="#1a2744" font-weight="600">multi-stage Dockerfile</text>
+  <text x="786" y="436" font-size="11" fill="#1a7f37" text-anchor="end" font-weight="600">owned</text>
+  <text x="494" y="452" font-size="11" fill="#6b7280">every ARG reviewed, versioned</text>
+
+  <!-- Migration path -->
+  <text x="480" y="488" font-size="11" fill="#d4702a" letter-spacing="1.5">MIGRATION PATH</text>
+  <rect x="480" y="498" width="320" height="58" fill="none" stroke="#1a2744" stroke-width="1" opacity="0.5"/>
+  <text x="494" y="518" font-size="12" fill="#1a2744">PR #18597 · Jenkins + Qt from source</text>
+  <text x="494" y="534" font-size="12" fill="#1a2744">PR #19746 · swap to aqtinstall · trim</text>
+  <text x="494" y="550" font-size="11" fill="#6b7280">PR #19849 · re-apply + qmllint job</text>
+
+  <!-- Status banner -->
+  <rect x="460" y="578" width="360" height="54" fill="#dafbe1" stroke="#1a7f37" stroke-width="1.5"/>
+  <text x="640" y="602" font-size="12" fill="#1a7f37" text-anchor="middle" font-weight="600">reproducible · auditable · owned</text>
+  <text x="640" y="620" font-size="11" fill="#1a7f37" text-anchor="middle">image is never the mystery variable</text>
+
+  <!-- ===================== MIGRATION ARROW ===================== -->
+  <rect x="80" y="670" width="740" height="50" fill="#1a2744"/>
+  <text x="100" y="692" font-size="11" fill="#d4702a" letter-spacing="2">TIMELINE  ·  Aug 2025 → Feb 2026</text>
+  <text x="100" y="710" font-size="13" fill="#f5f2ed">~6 months  ·  5 PRs  <tspan fill="#f5f2ed" opacity="0.55">across status-app · old GH Actions workflow deleted in PR #19238</tspan></text>
+</svg>

@@ -66,6 +66,8 @@ The diff showed symbols related to `resolv` that were present as undefined in th
 
 ## The fix
 
+![Side-by-side nm -u output: Go 1.19 resolves all 42 undefined symbols, Go 1.20 adds five libresolv symbols that dyld cannot find, causing the "missing symbol called" abort](/blog/go-darwin-symbol-diff.svg)
+
 [PR #20248](https://github.com/status-im/status-legacy/pull/20248). One Nix file changed, +7/-7 lines. Two flags added to the Go build, Darwin-only:
 
 1. `-ldflags=-extldflags=-lresolv` to tell the external linker to link against `libresolv`

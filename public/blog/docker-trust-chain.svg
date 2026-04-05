@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 20 800 740" preserveAspectRatio="xMidYMid meet" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, monospace">
+  <defs>
+    <marker id="arrow-up" viewBox="0 0 10 10" refX="5" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 8 L 5 2 L 10 8 z" fill="#cf222e"/>
+    </marker>
+    <marker id="arrow-up-green" viewBox="0 0 10 10" refX="5" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 8 L 5 2 L 10 8 z" fill="#1a7f37"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="760" fill="#f5f2ed"/>
+
+  <!-- Title -->
+  <text x="450" y="48" font-family="'Newsreader', Georgia, serif" font-size="28" font-style="italic" fill="#1a2744" text-anchor="middle">What You Trust When You `docker pull`</text>
+  <line x1="310" y1="64" x2="590" y2="64" stroke="#d4702a" stroke-width="1.5"/>
+  <text x="450" y="86" font-size="12" fill="#6b7280" text-anchor="middle" letter-spacing="2.5">TRUST CHAIN · BUILD DRIFT · SUPPLY CHAIN</text>
+
+  <!-- ===================== LEFT PANEL: THIRD-PARTY ===================== -->
+  <rect x="80" y="110" width="360" height="540" fill="none" stroke="#cf222e" stroke-width="2"/>
+
+  <!-- Header band -->
+  <rect x="80" y="110" width="360" height="62" fill="#1a2744"/>
+  <text x="100" y="138" font-size="11" fill="#d4702a" letter-spacing="2">THIRD-PARTY IMAGE</text>
+  <text x="100" y="160" font-size="15" fill="#f5f2ed" font-weight="600">build-tools:latest</text>
+  <text x="420" y="138" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.55">Docker Hub · public</text>
+  <text x="420" y="160" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.7">5 implicit trust layers</text>
+
+  <!-- Section label -->
+  <text x="100" y="198" font-size="11" fill="#d4702a" letter-spacing="1.5">WHAT YOU'RE TRUSTING</text>
+
+  <!-- Trust stack · 5 layers, arrows pointing up through them -->
+  <!-- Layer 1 (top / most abstract): author identity -->
+  <rect x="100" y="212" width="320" height="40" fill="none" stroke="#cf222e" stroke-width="1" opacity="0.7"/>
+  <text x="114" y="230" font-size="12" fill="#1a2744" font-weight="600">author's identity verification</text>
+  <text x="114" y="244" font-size="10" fill="#6b7280">no enforced checks on Docker Hub</text>
+
+  <!-- arrow up -->
+  <line x1="260" y1="260" x2="260" y2="270" stroke="#cf222e" stroke-width="1.5" marker-end="url(#arrow-up)"/>
+
+  <!-- Layer 2: account security -->
+  <rect x="100" y="276" width="320" height="40" fill="none" stroke="#cf222e" stroke-width="1" opacity="0.7"/>
+  <text x="114" y="294" font-size="12" fill="#1a2744" font-weight="600">their Docker Hub account security</text>
+  <text x="114" y="308" font-size="10" fill="#6b7280">2FA? token rotation? leaked creds?</text>
+
+  <line x1="260" y1="324" x2="260" y2="334" stroke="#cf222e" stroke-width="1.5" marker-end="url(#arrow-up)"/>
+
+  <!-- Layer 3: layer provenance -->
+  <rect x="100" y="340" width="320" height="40" fill="none" stroke="#cf222e" stroke-width="1" opacity="0.7"/>
+  <text x="114" y="358" font-size="12" fill="#1a2744" font-weight="600">provenance of every layer</text>
+  <text x="114" y="372" font-size="10" fill="#6b7280">transitive deps · you cannot audit</text>
+
+  <line x1="260" y1="388" x2="260" y2="398" stroke="#cf222e" stroke-width="1.5" marker-end="url(#arrow-up)"/>
+
+  <!-- Layer 4: coercion -->
+  <rect x="100" y="404" width="320" height="40" fill="none" stroke="#cf222e" stroke-width="1" opacity="0.7"/>
+  <text x="114" y="422" font-size="12" fill="#1a2744" font-weight="600">no coercion / compromise</text>
+  <text x="114" y="436" font-size="10" fill="#6b7280">subpoena, social eng., insider threat</text>
+
+  <line x1="260" y1="452" x2="260" y2="462" stroke="#cf222e" stroke-width="1.5" marker-end="url(#arrow-up)"/>
+
+  <!-- Layer 5: tag immutability (the base lie) -->
+  <rect x="100" y="468" width="320" height="40" fill="#ffebe9" stroke="#cf222e" stroke-width="1.5"/>
+  <text x="114" y="486" font-size="12" fill="#cf222e" font-weight="600">tag points to the same image ✗</text>
+  <text x="114" y="500" font-size="10" fill="#cf222e">tags are mutable · :latest is a lie</text>
+
+  <!-- Drift incident callout -->
+  <text x="100" y="536" font-size="11" fill="#d4702a" letter-spacing="1.5">OBSERVED DRIFT · EARLY 2025</text>
+  <rect x="100" y="546" width="320" height="80" fill="none" stroke="#cf222e" stroke-width="1" opacity="0.6"/>
+  <text x="114" y="566" font-size="12" fill="#cf222e" font-weight="600">upstream bumps bundled libssl</text>
+  <text x="114" y="582" font-size="11" fill="#6b7280">→ TLS handshake timeout in integration tests</text>
+  <text x="114" y="598" font-size="11" fill="#6b7280">→ intermittent · network-dependent</text>
+  <text x="114" y="616" font-size="12" fill="#cf222e">4 days  ·  2 engineers  ·  to trace it back</text>
+
+  <!-- ===================== RIGHT PANEL: SELF-BUILT ===================== -->
+  <rect x="460" y="110" width="360" height="540" fill="none" stroke="#1a2744" stroke-width="1.5"/>
+
+  <!-- Header band -->
+  <rect x="460" y="110" width="360" height="62" fill="#1a2744"/>
+  <text x="480" y="138" font-size="11" fill="#d4702a" letter-spacing="2">SELF-BUILT IMAGE</text>
+  <text x="480" y="160" font-size="15" fill="#f5f2ed" font-weight="600">base:sha-7b3f2c</text>
+  <text x="800" y="138" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.55">private registry</text>
+  <text x="800" y="160" font-size="11" fill="#f5f2ed" text-anchor="end" opacity="0.7">2 explicit trust layers</text>
+
+  <!-- Section label -->
+  <text x="480" y="198" font-size="11" fill="#d4702a" letter-spacing="1.5">WHAT YOU CONTROL</text>
+
+  <!-- Trust stack · 2 layers + visibility -->
+  <rect x="480" y="212" width="320" height="40" fill="none" stroke="#1a7f37" stroke-width="1" opacity="0.7"/>
+  <text x="494" y="230" font-size="12" fill="#1a2744" font-weight="600">your Dockerfile · reviewed, versioned</text>
+  <text x="494" y="244" font-size="10" fill="#6b7280">every package declared + pinned</text>
+
+  <line x1="640" y1="260" x2="640" y2="270" stroke="#1a7f37" stroke-width="1.5" marker-end="url(#arrow-up-green)"/>
+
+  <rect x="480" y="276" width="320" height="40" fill="none" stroke="#1a7f37" stroke-width="1" opacity="0.7"/>
+  <text x="494" y="294" font-size="12" fill="#1a2744" font-weight="600">base pinned by content digest</text>
+  <text x="494" y="308" font-size="10" fill="#6b7280">sha256@... · bit-for-bit reproducible</text>
+
+  <!-- Visibility section -->
+  <text x="480" y="344" font-size="11" fill="#d4702a" letter-spacing="1.5">WHAT YOU GET</text>
+  <rect x="480" y="354" width="320" height="154" fill="none" stroke="#1a7f37" stroke-width="1" opacity="0.5"/>
+  <text x="494" y="376" font-size="12" fill="#1a7f37" font-weight="600">complete visibility</text>
+  <text x="494" y="392" font-size="11" fill="#1a2744" opacity="0.75">every layer auditable, reproducible</text>
+
+  <text x="494" y="416" font-size="12" fill="#1a7f37" font-weight="600">upgrade on your schedule</text>
+  <text x="494" y="432" font-size="11" fill="#1a2744" opacity="0.75">weekly automated update PR · human merge</text>
+
+  <text x="494" y="456" font-size="12" fill="#1a7f37" font-weight="600">image never the mystery variable</text>
+  <text x="494" y="472" font-size="11" fill="#1a2744" opacity="0.75">if the build fails, look at the code</text>
+
+  <text x="494" y="496" font-size="12" fill="#1a7f37" font-weight="600">provenance you can attest to</text>
+
+  <!-- Cost callout -->
+  <text x="480" y="536" font-size="11" fill="#d4702a" letter-spacing="1.5">ONGOING COST</text>
+  <rect x="480" y="546" width="320" height="80" fill="#dafbe1" stroke="#1a7f37" stroke-width="1"/>
+  <text x="494" y="566" font-size="12" fill="#1a7f37" font-weight="600">initial setup: 1–2 weeks</text>
+  <text x="494" y="584" font-size="11" fill="#1a7f37">Dockerfiles · private registry · CI wiring</text>
+  <text x="494" y="604" font-size="12" fill="#1a7f37" font-weight="600">ongoing: ~30 min / week</text>
+  <text x="494" y="620" font-size="11" fill="#1a7f37">automated update PRs · human review loop</text>
+
+  <!-- ===================== SUMMARY BANNER ===================== -->
+  <rect x="80" y="670" width="740" height="60" fill="#1a2744"/>
+  <text x="100" y="694" font-size="11" fill="#d4702a" letter-spacing="2">THE TRADE</text>
+  <text x="100" y="716" font-size="13" fill="#f5f2ed">trade <tspan fill="#d4702a">5 layers of trust you cannot verify</tspan> for <tspan fill="#dafbe1">30 minutes of maintenance you own</tspan></text>
+</svg>

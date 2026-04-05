@@ -22,17 +22,19 @@ Removing that one line switches the route to a standard Node.js API handler, whi
 
 ## Measuring the fix
 
+![RSS memory climbing linearly to 4.4GB on master, flat around 2.5GB on the fix branch, over a 3-minute load test](/blog/og-memory-leak-chart.svg)
+
 I ran the same load test against master and the fix branch, sampling RSS and heap every 30 seconds ([PR #264](https://github.com/acid-info/logos-press-engine/pull/264)):
 
-```
-Time          Master RSS   Master Heap     Fix RSS    Fix Heap
-18:08:21          1194MB          57MB      1424MB        46MB
-18:08:52          2201MB          60MB      2425MB        77MB
-18:09:22          2690MB         311MB      2514MB       152MB
-18:09:53          3230MB         598MB      2597MB       238MB
-18:10:23          3720MB         994MB      2553MB       109MB
-18:10:54          4083MB        1194MB      2627MB       220MB
-18:11:24          4404MB        1580MB      2571MB       148MB
+```table
+Time     | Master RSS | Master Heap | Fix RSS | Fix Heap
+18:08:21 | 1194 MB    | 57 MB       | 1424 MB | 46 MB
+18:08:52 | 2201 MB    | 60 MB       | 2425 MB | 77 MB
+18:09:22 | 2690 MB    | 311 MB      | 2514 MB | 152 MB
+18:09:53 | 3230 MB    | 598 MB      | 2597 MB | 238 MB
+18:10:23 | 3720 MB    | 994 MB      | 2553 MB | 109 MB
+18:10:54 | 4083 MB    | 1194 MB     | 2627 MB | 220 MB
+18:11:24 | 4404 MB    | 1580 MB     | 2571 MB | 148 MB
 ```
 
 After three minutes, master was at 4404MB RSS with heap still climbing. The fix branch stabilized around 2571MB RSS and 148MB heap. That's 1833MB saved, and more importantly, the heap was flat instead of climbing linearly.

@@ -89,6 +89,8 @@ In the [signed Android PR](https://github.com/status-im/status-app/pull/18992), 
 
 ## What the pipeline looks like now
 
+![Status app CI pipeline: Jenkins triggers fan out to PR and release lanes, producing signed artifacts for six platforms and distributing to DIAWI, Google Play, TestFlight, and F-Droid](/blog/status-app-ci-pipeline.svg)
+
 Every PR triggers:
 - **Linux** AppImage build
 - **Android** signed APK (PR bundle ID, uploaded to DIAWI)
