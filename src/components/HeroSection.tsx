@@ -33,7 +33,7 @@ export default function HeroSection() {
         {/* ── Main hero grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-16 items-start">
 
-          {/* Left: name + content — full width on mobile */}
+          {/* Left: name + content - full width on mobile */}
           <div>
             {/* Eyebrow label */}
             <motion.p
@@ -45,7 +45,7 @@ export default function HeroSection() {
               DevOps · CI/CD Pipelines · Ethereum Infrastructure
             </motion.p>
 
-            {/* Name — oversized, editorial weight */}
+            {/* Name - oversized, editorial weight */}
             <h1 className="font-serif text-navy font-medium leading-[0.95] tracking-[-0.03em]"
                 style={{ fontSize: "clamp(4rem, 10vw, 8.5rem)" }}>
               <div className="overflow-hidden pt-3 mb-6">
@@ -128,7 +128,7 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: SK logo — desktop only, large editorial mark */}
+          {/* Right: SK logo - desktop only, large editorial mark */}
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}

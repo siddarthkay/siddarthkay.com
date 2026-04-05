@@ -3,20 +3,20 @@
 @tailwind utilities;
 
 /* ============================================
-   THE ENGINEER'S MONOGRAPH — Design System
+   THE ENGINEER'S MONOGRAPH - Design System
    All colors MUST be HSL.
    ============================================ */
 
 @layer base {
   :root {
     /* Core Palette */
-    --background: 38 25% 94%;        /* #f5f2ed — Parchment */
-    --foreground: 0 0% 11%;          /* #1c1c1c — Ink */
+    --background: 38 25% 94%;        /* #f5f2ed - Parchment */
+    --foreground: 0 0% 11%;          /* #1c1c1c - Ink */
 
-    --primary: 222 45% 19%;          /* #1a2744 — Deep Navy */
+    --primary: 222 45% 19%;          /* #1a2744 - Deep Navy */
     --primary-foreground: 38 25% 94%;
 
-    --accent: 25 67% 50%;            /* #d4702a — Burnt Orange */
+    --accent: 25 67% 50%;            /* #d4702a - Burnt Orange */
     --accent-foreground: 38 25% 94%;
 
     --muted: 222 10% 45%;            /* Slate Grey */
@@ -105,7 +105,7 @@
 }
 
 /* ============================================
-   Section Divider — "Printed Ink" fade rule
+   Section Divider - "Printed Ink" fade rule
    ============================================ */
 .rule-fade {
   height: 1px;
@@ -116,7 +116,7 @@
 }
 
 /* ============================================
-   Link Underline — expands from center
+   Link Underline - expands from center
    ============================================ */
 .link-underline {
   position: relative;
@@ -140,7 +140,7 @@
 }
 
 /* ============================================
-   Shadows — "Printed Ink" stack
+   Shadows - "Printed Ink" stack
    ============================================ */
 .shadow-printed {
   box-shadow: 0 1px 2px rgba(26, 39, 68, 0.06), 0 0 0 1px rgba(26, 39, 68, 0.03);

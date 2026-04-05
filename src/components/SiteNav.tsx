@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import { Search } from "lucide-react";
 import { ease } from "@/lib/motion";
+import SearchDialog from "./SearchDialog";
 
 interface NavItem {
   label: string;
@@ -20,6 +22,7 @@ const navItems: NavItem[] = [
 export default function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const scrollTimerRef = useRef<ReturnType<typeof setTimeout>>();
@@ -32,10 +35,23 @@ export default function SiteNav() {
 
   useEffect(() => {
     setMenuOpen(false);
+    setSearchOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
     return () => { clearTimeout(scrollTimerRef.current); };
+  }, []);
+
+  // Cmd/Ctrl+K to open search
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
   }, []);
 
   const handleNavClick = (item: NavItem) => {
@@ -60,7 +76,7 @@ export default function SiteNav() {
 
   return (
     <>
-      {/* Accent strip — thin burnt orange bar at very top */}
+      {/* Accent strip - thin burnt orange bar at very top */}
       <div className="fixed top-0 left-0 right-0 z-[60] h-[3px] bg-burnt" />
 
       <header
@@ -71,7 +87,7 @@ export default function SiteNav() {
         }`}
       >
         <div className="max-w-5xl mx-auto px-6 md:px-8 flex items-center justify-between h-12">
-          {/* Name only — minimal, no logo */}
+          {/* Name only - minimal, no logo */}
           <Link
             to="/"
             onClick={() => {
@@ -106,18 +122,38 @@ export default function SiteNav() {
                 </a>
               )
             )}
+            <button
+              type="button"
+              aria-label="Search posts"
+              title="Search (⌘K)"
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center gap-2 font-mono text-[0.7rem] text-slate hover:text-burnt border border-navy/15 hover:border-burnt/40 px-2 py-1 rounded-sm transition-colors"
+            >
+              <Search className="h-3 w-3" />
+              <kbd className="text-[0.6rem] opacity-70">⌘K</kbd>
+            </button>
           </nav>
 
-          {/* Mobile Hamburger */}
-          <button
+          {/* Mobile actions */}
+          <div className="md:hidden flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Search posts"
+              onClick={() => setSearchOpen(true)}
+              className="p-1.5 text-navy hover:text-burnt transition-colors"
+            >
+              <Search className="h-4 w-4" />
+            </button>
+            <button
             aria-label="Toggle menu"
-            className="md:hidden flex flex-col gap-[5px] p-1"
+            className="flex flex-col gap-[5px] p-1"
             onClick={() => setMenuOpen((v) => !v)}
           >
             <span className={`block w-5 h-[1.5px] bg-navy transition-all duration-200 origin-center ${menuOpen ? "rotate-45 translate-y-[6.5px]" : ""}`} />
             <span className={`block w-5 h-[1.5px] bg-navy transition-all duration-200 ${menuOpen ? "opacity-0" : ""}`} />
             <span className={`block w-5 h-[1.5px] bg-navy transition-all duration-200 origin-center ${menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`} />
           </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -154,6 +190,8 @@ export default function SiteNav() {
           )}
         </AnimatePresence>
       </header>
+
+      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

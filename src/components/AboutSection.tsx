@@ -11,7 +11,7 @@ export default function AboutSection() {
     <section id="about" ref={ref} className="py-24 md:py-32 px-6 md:px-8">
       <div className="max-w-5xl mx-auto">
 
-        {/* Section label — flush left, number + word */}
+        {/* Section label - flush left, number + word */}
         <motion.div
           initial={{ opacity: 0, y: 6 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -22,7 +22,7 @@ export default function AboutSection() {
           <a href="#about" className="label-mono text-slate no-underline hover:no-underline hover:text-burnt transition-colors">About</a>
         </motion.div>
 
-        {/* Two-column: heading left, prose right — breaks at md */}
+        {/* Two-column: heading left, prose right - breaks at md */}
         <div className="grid md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
 
           {/* Left: large heading + pull quote */}
@@ -45,7 +45,7 @@ export default function AboutSection() {
               </p>
             </blockquote>
 
-            {/* Skill list — printed label style */}
+            {/* Skill list - printed label style */}
             <div className="pt-2">
               <p className="label-mono text-slate/60 mb-3">Toolchain</p>
               <div className="flex flex-wrap gap-x-4 gap-y-1.5">
