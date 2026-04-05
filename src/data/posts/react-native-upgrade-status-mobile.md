@@ -10,6 +10,8 @@ The conventional wisdom is to upgrade React Native in one shot: run the upgrade 
 
 A single jump from 0.63 to 0.73 would have been a months-long branch that diverged from develop until it was unmergeable. Instead, I treated each minor version as a stepping stone: get it building, get it through QA, merge to develop, let it soak, then start the next jump.
 
+![Status mobile architecture: ClojureScript, React Native, native modules, and status-go wrapped in Nix derivations](/blog/status-mobile-architecture.svg)
+
 ## 0.63.3 to 0.67.5: the first wall
 
 The first upgrade ([#15486](https://github.com/status-im/status-mobile/pull/15486)) was the hardest psychologically because nothing worked and I didn't yet know the patterns. React Native 0.67 changed how the Android build resolved `soloader` and `libhermes`, which broke our Gradle configuration in ways that produced cryptic errors deep in the native build.

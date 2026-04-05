@@ -53,6 +53,31 @@ const markdownComponents: Components = {
     }
     return <pre>{children}</pre>;
   },
+  code: ({ className, children }) => {
+    // Block code is handled by `pre` above; only customize inline code here.
+    if (className) return <code className={className}>{children}</code>;
+    const content = String(children);
+    // Diff-stat pills, e.g. `+761` or `-8871`
+    const diff = /^([+\-])(\d[\d,]*)$/.exec(content);
+    if (diff) {
+      const [, sign, num] = diff;
+      const isAdd = sign === "+";
+      return (
+        <span
+          className={
+            "inline-flex items-baseline font-mono text-[0.85em] px-1.5 py-0.5 rounded-sm " +
+            (isAdd
+              ? "bg-[#dafbe1] text-[#1a7f37]"
+              : "bg-[#ffebe9] text-[#cf222e]")
+          }
+        >
+          {sign}
+          {num}
+        </span>
+      );
+    }
+    return <code>{content}</code>;
+  },
 };
 
 export default function BlogPost() {

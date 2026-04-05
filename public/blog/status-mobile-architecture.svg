@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="50 20 800 990" preserveAspectRatio="xMidYMid meet" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, monospace">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a2744"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="1010" fill="#f5f2ed"/>
+
+  <!-- Title -->
+  <text x="450" y="48" font-family="'Newsreader', Georgia, serif" font-size="28" font-style="italic" fill="#1a2744" text-anchor="middle">Status Mobile Architecture</text>
+  <line x1="340" y1="64" x2="560" y2="64" stroke="#d4702a" stroke-width="1.5"/>
+  <text x="450" y="86" font-size="12" fill="#6b7280" text-anchor="middle" letter-spacing="2.5">CLJS · REACT NATIVE 0.73.5 · STATUS-GO · NIX</text>
+
+  <!-- Nix Flake outer frame (dashed orange) -->
+  <rect x="78" y="110" width="744" height="860" fill="none" stroke="#d4702a" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <!-- mask the border behind the label -->
+  <rect x="100" y="102" width="360" height="16" fill="#f5f2ed"/>
+  <text x="112" y="115" font-size="12" fill="#d4702a" letter-spacing="2">NIX DERIVATIONS — REPRODUCIBLE BUILDS</text>
+  <rect x="570" y="102" width="250" height="16" fill="#f5f2ed"/>
+  <text x="812" y="115" font-size="11" fill="#6b7280" letter-spacing="1" text-anchor="end">pinned toolchains · CI parity</text>
+
+  <!-- ============ LAYER 01 — SOURCE ============ -->
+  <text x="130" y="148" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 01 — SOURCE</text>
+  <rect x="130" y="158" width="640" height="70" fill="none" stroke="#1a2744" stroke-width="1.5"/>
+  <text x="148" y="186" font-size="16" fill="#1a2744" font-weight="600">ClojureScript application</text>
+  <line x1="148" y1="196" x2="300" y2="196" stroke="#1a2744" stroke-width="0.5" opacity="0.3"/>
+  <text x="148" y="218" font-size="13" fill="#1c1c1c">src/  ·  .cljs  ·  shadow-cljs.edn</text>
+
+  <!-- Arrow 1 -->
+  <line x1="450" y1="228" x2="450" y2="266" stroke="#1a2744" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="460" y="252" font-size="11" fill="#6b7280">shadow-cljs compile</text>
+
+  <!-- ============ LAYER 02 — BUNDLE ============ -->
+  <text x="130" y="286" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 02 — BUNDLE</text>
+  <rect x="130" y="296" width="640" height="62" fill="none" stroke="#1a2744" stroke-width="1.5"/>
+  <text x="148" y="324" font-size="16" fill="#1a2744" font-weight="600">JavaScript bundle</text>
+  <line x1="148" y1="334" x2="300" y2="334" stroke="#1a2744" stroke-width="0.5" opacity="0.3"/>
+  <text x="148" y="350" font-size="13" fill="#1c1c1c" opacity="0.7">Metro  ·  index.js  ·  metro.config.js</text>
+
+  <!-- Arrow 2 -->
+  <line x1="450" y1="358" x2="450" y2="396" stroke="#1a2744" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ LAYER 03 — RUNTIME ============ -->
+  <text x="130" y="416" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 03 — RUNTIME</text>
+  <rect x="130" y="426" width="640" height="112" fill="none" stroke="#1a2744" stroke-width="1.5"/>
+  <text x="148" y="454" font-size="16" fill="#1a2744" font-weight="600">React Native 0.73.5</text>
+  <line x1="148" y1="464" x2="300" y2="464" stroke="#1a2744" stroke-width="0.5" opacity="0.3"/>
+  <!-- sub-chips for iOS / Android runtime -->
+  <rect x="148" y="478" width="294" height="46" fill="#1a2744"/>
+  <text x="162" y="498" font-size="13" fill="#f5f2ed" font-weight="600">iOS</text>
+  <text x="162" y="516" font-size="12" fill="#f5f2ed" opacity="0.85">Hermes  +  Fabric (new architecture)</text>
+  <rect x="458" y="478" width="294" height="46" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="472" y="498" font-size="13" fill="#1a2744" font-weight="600">Android</text>
+  <text x="472" y="516" font-size="12" fill="#1a2744" opacity="0.75">Hermes  ·  legacy bridge</text>
+
+  <!-- Arrow 3 -->
+  <line x1="450" y1="538" x2="450" y2="580" stroke="#1a2744" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="460" y="564" font-size="11" fill="#6b7280">JSI  ·  TurboModules</text>
+
+  <!-- ============ LAYER 04 — NATIVE MODULES ============ -->
+  <text x="130" y="600" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 04 — NATIVE MODULES</text>
+  <rect x="130" y="610" width="640" height="192" fill="none" stroke="#1a2744" stroke-width="1.5"/>
+  <text x="148" y="638" font-size="16" fill="#1a2744" font-weight="600">react-native-status</text>
+  <line x1="148" y1="648" x2="300" y2="648" stroke="#1a2744" stroke-width="0.5" opacity="0.3"/>
+  <text x="148" y="666" font-size="12" fill="#1c1c1c" opacity="0.7">iOS: Objective-C++   ·   Android: Kotlin</text>
+
+  <!-- Module chips: 4x2 grid -->
+  <!-- Row 1 -->
+  <rect x="148" y="680" width="146" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="158" y="698" font-size="12" fill="#d4702a" letter-spacing="0.5">ACCOUNT</text>
+  <text x="158" y="714" font-size="12" fill="#1a2744">AccountManager</text>
+
+  <rect x="304" y="680" width="146" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="314" y="698" font-size="12" fill="#d4702a" letter-spacing="0.5">DATABASE</text>
+  <text x="314" y="714" font-size="12" fill="#1a2744">DatabaseManager</text>
+
+  <rect x="460" y="680" width="146" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="470" y="698" font-size="12" fill="#d4702a" letter-spacing="0.5">CRYPTO</text>
+  <text x="470" y="714" font-size="12" fill="#1a2744">EncryptionUtils</text>
+
+  <rect x="616" y="680" width="138" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="626" y="698" font-size="12" fill="#d4702a" letter-spacing="0.5">NETWORK</text>
+  <text x="626" y="714" font-size="12" fill="#1a2744">NetworkManager</text>
+
+  <!-- Row 2 -->
+  <rect x="148" y="732" width="146" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="158" y="750" font-size="12" fill="#d4702a" letter-spacing="0.5">LOGS</text>
+  <text x="158" y="766" font-size="12" fill="#1a2744">LogManager</text>
+
+  <rect x="304" y="732" width="146" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="314" y="750" font-size="12" fill="#d4702a" letter-spacing="0.5">UI</text>
+  <text x="314" y="766" font-size="12" fill="#1a2744">UIHelper</text>
+
+  <rect x="460" y="732" width="146" height="44" fill="none" stroke="#1a2744" stroke-width="1"/>
+  <text x="470" y="750" font-size="12" fill="#d4702a" letter-spacing="0.5">MAIL</text>
+  <text x="470" y="766" font-size="12" fill="#1a2744">MailManager</text>
+
+  <rect x="616" y="732" width="138" height="44" fill="none" stroke="#1a2744" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+  <text x="626" y="750" font-size="12" fill="#d4702a" letter-spacing="0.5" opacity="0.6">+ PATCHES</text>
+  <text x="626" y="766" font-size="12" fill="#1a2744" opacity="0.6">patches/*.patch</text>
+
+  <!-- Arrow 4 -->
+  <line x1="450" y1="802" x2="450" y2="844" stroke="#1a2744" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="460" y="828" font-size="11" fill="#6b7280">JNI  ·  C ABI  ·  gomobile</text>
+
+  <!-- ============ LAYER 05 — BACKEND ============ -->
+  <text x="130" y="864" font-size="12" fill="#d4702a" letter-spacing="2">LAYER 05 — BACKEND</text>
+  <rect x="130" y="874" width="640" height="82" fill="#1a2744"/>
+  <text x="148" y="902" font-size="16" fill="#f5f2ed" font-weight="600">status-go</text>
+  <text x="262" y="902" font-size="12" fill="#f5f2ed" opacity="0.55">Go backend  ·  p2p  ·  protocol  ·  keystore</text>
+  <line x1="148" y1="912" x2="300" y2="912" stroke="#d4702a" stroke-width="1"/>
+  <text x="148" y="936" font-size="13" fill="#f5f2ed">iOS: Statusgo.xcframework</text>
+  <text x="462" y="936" font-size="13" fill="#f5f2ed">Android: status-go.aar</text>
+</svg>

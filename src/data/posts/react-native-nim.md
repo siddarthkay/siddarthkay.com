@@ -1,3 +1,5 @@
+![I will build it myself](/blog/I-will-do-it.jpg)
+
 [react-native-nim](https://github.com/siddarthkay/react-native-nim) is a template and CLI tool that lets you write Nim functions and call them from React Native via JSI, with auto-generated native bindings for both iOS and Android. No legacy bridge, no JSON serialization, no manual JNI or Objective-C++ boilerplate.
 
 ## Why this exists
@@ -56,7 +58,9 @@ JSI (JavaScript Interface) provides synchronous, direct C++ function calls from 
 
 The first version leaked memory on every string return ([PR #5](https://github.com/siddarthkay/react-native-nim/pull/5)). Nim's garbage collector manages Nim strings, but when you return a `cstring` to C, Nim doesn't know the caller is done with it. The string never gets freed.
 
-The fix was an annotation system. Functions that return allocated strings use `allocCString()` and get marked with `## @allocated`. The code generator detects this annotation and emits wrappers that copy the string to the native side and then call `free()` on the original. 761 lines added, 8871 deleted. Most of those deletions were generated files that shouldn't have been in source control.
+![but why?](/blog/ape-think.jpg)
+
+The fix was an annotation system. Functions that return allocated strings use `allocCString()` and get marked with `## @allocated`. The code generator detects this annotation and emits wrappers that copy the string to the native side and then call `free()` on the original. `+761` `-8871`.
 
 ## From the legacy bridge to JSI
 
@@ -64,13 +68,15 @@ The project started on React Native's legacy bridge ([initial commit](https://gi
 
 [PR #8](https://github.com/siddarthkay/react-native-nim/pull/8) enabled the new architecture flag. [PR #10](https://github.com/siddarthkay/react-native-nim/pull/10) was the real shift: rewriting the binding layer to use TurboModules and JSI. The generated code now creates C++ host objects that JavaScript can call directly. No bridge, no queuing, no serialization.
 
+![lets goooo](/blog/hell-yeah.jpg)
+
 This was also when the code generator became essential. Writing TurboModule boilerplate by hand for every Nim function would be unsustainable. The generator handles the repetitive parts: registering the module, mapping types between Nim's C types and JSI's `jsi::Value`, and emitting the correct platform-specific includes and build configuration.
 
 ## The code generator
 
 The generator started as a single Python script and evolved through [PR #6](https://github.com/siddarthkay/react-native-nim/pull/6) (OOP refactor with JSON config) and [PR #7](https://github.com/siddarthkay/react-native-nim/pull/7) (modularized into separate files) into a proper package:
 
-```
+```bash
 tools/bindings/
   parser.py         # Parses Nim source for {.exportc.} functions
   models.py         # NimFunction & TypeMapper data models
@@ -100,6 +106,8 @@ The package is published on npm as [`create-react-native-nim`](https://www.npmjs
 
 ## react-native-go: the companion project
 
+![companion](/blog/companion.jpg)
+
 After building react-native-nim, I built [react-native-go](https://github.com/siddarthkay/react-native-go) using a different architecture. Where Nim compiles to C and links directly, Go runs as an embedded HTTP server inside the app. JavaScript calls Go functions via JSON-RPC over localhost.
 
 The trade-off is clear:
@@ -110,8 +118,12 @@ Both have CLI tools (`npx create-react-native-nim` and `npx create-react-native-
 
 ## What I'd do differently
 
+![hindsight wisodom](/blog/what-different.jpg)
+
 Start with the code generator architecture from day one instead of hand-writing bridge code first. The generator paid for itself after the third function. Before that, I was manually keeping iOS, Android, and TypeScript bindings in sync, which is exactly the kind of tedious work that machines should do.
 
-I'd also invest in testing the generated code earlier. Right now the generator is tested by building the sample app. A proper test suite that compiles generated code against mock Nim libraries would catch regressions faster.
-
 The project fills a real gap. If you're using Nim for backend logic and React Native for the UI, there's no longer a reason to write native bindings by hand.
+
+![adios](/blog/adios.jpg)
+
+Fin.
