@@ -1,5 +1,3 @@
-Nim is a systems language that compiles to C. React Native runs JavaScript on mobile. There's no official way to connect them. So I built one.
-
 [react-native-nim](https://github.com/siddarthkay/react-native-nim) is a template and CLI tool that lets you write Nim functions and call them from React Native via JSI, with auto-generated native bindings for both iOS and Android. No legacy bridge, no JSON serialization, no manual JNI or Objective-C++ boilerplate.
 
 ## Why this exists
@@ -11,6 +9,8 @@ Go has `gomobile`. Rust has `uniffi`. Nim had nothing. Every team using Nim on m
 I wanted something where you write a Nim function with `{.exportc.}`, run a generator, and get a working TypeScript function you can call from React Native. No native code to write by hand.
 
 ## How the binding works
+
+![The react-native-nim pipeline: Nim source to JSI call in four stages](/blog/react-native-nim-pipeline.svg)
 
 The pipeline has four stages:
 

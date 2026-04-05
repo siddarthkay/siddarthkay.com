@@ -37,7 +37,7 @@ export const blogPosts: BlogPost[] = [
     date: "March 2026",
     title: "Bridging Nim and React Native via JSI",
     excerpt:
-      "Building an auto-generated FFI layer that lets you write Nim functions and call them from React Native with no bridge overhead.",
+      "Nim is a systems language that compiles to C. React Native runs JavaScript on mobile. There's no official way to connect them. So I built one.",
     readTime: "12 min read",
     tags: ["Nim", "React Native", "JSI", "Mobile", "Open Source"],
     content: reactNativeNim,
