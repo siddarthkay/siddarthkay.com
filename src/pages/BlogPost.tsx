@@ -40,6 +40,59 @@ function HeadingWithAnchor({
   );
 }
 
+function DataTable({ source }: { source: string }) {
+  const rows = source
+    .split("\n")
+    .map((line) => line.split("|").map((cell) => cell.trim()))
+    .filter((row) => row.length > 1);
+  if (rows.length < 2) return <pre>{source}</pre>;
+  const [header, ...body] = rows;
+  return (
+    <div className="my-6 overflow-x-auto">
+      <table className="w-auto max-w-full border-collapse font-mono text-[0.82rem]">
+        <thead>
+          <tr className="border-b border-navy/25">
+            {header.map((cell, i) => (
+              <th
+                key={i}
+                className={
+                  "label-mono text-burnt font-semibold px-3 py-2 " +
+                  (i === 0 ? "text-left" : "text-right")
+                }
+              >
+                {cell}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {body.map((row, ri) => (
+            <tr
+              key={ri}
+              className={
+                "border-b border-navy/[0.06] " +
+                (ri % 2 === 0 ? "bg-navy/[0.02]" : "")
+              }
+            >
+              {row.map((cell, ci) => (
+                <td
+                  key={ci}
+                  className={
+                    "px-3 py-2 text-navy " +
+                    (ci === 0 ? "text-left text-slate" : "text-right")
+                  }
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 const markdownComponents: Components = {
   h2: ({ children }) => <HeadingWithAnchor level={2}>{children}</HeadingWithAnchor>,
   h3: ({ children }) => <HeadingWithAnchor level={3}>{children}</HeadingWithAnchor>,
@@ -49,6 +102,9 @@ const markdownComponents: Components = {
     const match = /language-(\w+)/.exec(className);
     const code = String(child?.props?.children || "").replace(/\n$/, "");
     if (match) {
+      if (match[1] === "table") {
+        return <DataTable source={code} />;
+      }
       return <CodeBlock language={match[1]}>{code}</CodeBlock>;
     }
     return <pre>{children}</pre>;
