@@ -181,7 +181,7 @@ export default function SearchDialog({ open, onClose }: SearchDialogProps) {
             role="dialog"
             aria-label="Search"
             aria-modal="true"
-            className="fixed left-1/2 top-[10vh] z-[80] w-[92vw] max-w-[580px] -translate-x-1/2 bg-parchment border border-navy/20 shadow-2xl"
+            className="fixed inset-x-0 mx-auto top-[10vh] z-[80] w-[92vw] max-w-[580px] bg-parchment border border-navy/20 shadow-2xl"
           >
             {/* Input row */}
             <div className="flex items-center gap-3 border-b border-navy/10 px-4 py-3">
