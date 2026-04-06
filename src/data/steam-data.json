@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-06T07:34:14.860Z",
+  "updated_at": "2026-04-06T08:33:49.147Z",
   "games": [
     {
       "appid": 2358720,
@@ -11,12 +11,6 @@
       "appid": 730,
       "name": "Counter-Strike 2",
       "hours": "4h total",
-      "playtime_2weeks_hours": 0
-    },
-    {
-      "appid": 2651280,
-      "name": "Marvel's Spider-Man 2",
-      "hours": "3h total",
       "playtime_2weeks_hours": 0
     }
   ]
