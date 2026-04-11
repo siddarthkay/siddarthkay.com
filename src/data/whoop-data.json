@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-11T18:11:00.129Z",
+  "updated_at": "2026-04-11T19:16:21.682Z",
   "latest": {
     "recovery_score": 21,
     "hrv_rmssd_milli": 16.790943,
@@ -61,10 +61,6 @@
       }
     ],
     "strain": [
-      {
-        "date": "2026-04-03",
-        "strain": 4.8
-      },
       {
         "date": "2026-04-04",
         "strain": 6.2
