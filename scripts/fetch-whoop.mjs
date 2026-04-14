@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 
 const CLIENT_ID = process.env.WHOOP_CLIENT_ID;
 const CLIENT_SECRET = process.env.WHOOP_CLIENT_SECRET;
@@ -131,6 +131,9 @@ async function main() {
     start: sevenDaysAgo,
   });
 
+  console.log('Fetching body measurement...');
+  const bodyMeasurement = await whoopGet('/v2/body_measurement');
+
   // Build the output — only include what the frontend needs
   // No PII, no user IDs, just the scores
   const latestRecovery = recovery.records?.[0];
@@ -168,6 +171,9 @@ async function main() {
       day_kilojoules: latestCycle?.score?.kilojoule
         ? Math.round(latestCycle.score.kilojoule)
         : null,
+
+      weight_kg: bodyMeasurement?.weight_kilogram ? +bodyMeasurement.weight_kilogram.toFixed(1) : null,
+      max_heart_rate: bodyMeasurement?.max_heart_rate ?? null,
     },
 
     // 7-day trend data — for a sparkline or mini chart
@@ -254,6 +260,70 @@ async function main() {
   writeFileSync(dataPath, JSON.stringify(output, null, 2));
   console.log('Wrote src/data/whoop-data.json');
   console.log(`Recovery: ${output.latest.recovery_score}% | HRV: ${output.latest.hrv_rmssd_milli}ms | Sleep: ${output.latest.total_sleep_hours}h`);
+
+  // --- Append to historical trend file ---
+  const historyPath = 'src/data/whoop-history.json';
+  let history = {};
+  try {
+    if (existsSync(historyPath)) {
+      history = JSON.parse(readFileSync(historyPath, 'utf-8'));
+    }
+  } catch {
+    history = {};
+  }
+
+  // Merge recovery data (has most metrics per day)
+  for (const r of recovery.records?.filter((r) => r.score_state === 'SCORED') ?? []) {
+    const date = r.created_at?.split('T')[0];
+    if (!date) continue;
+    if (!history[date]) history[date] = {};
+    history[date].recovery_score = r.score?.recovery_score ?? null;
+    history[date].hrv_rmssd_milli = r.score?.hrv_rmssd_milli ? +r.score.hrv_rmssd_milli.toFixed(1) : null;
+    history[date].resting_heart_rate = r.score?.resting_heart_rate ?? null;
+    history[date].spo2_percentage = r.score?.spo2_percentage ? +r.score.spo2_percentage.toFixed(1) : null;
+    history[date].skin_temp_celsius = r.score?.skin_temp_celsius ? +r.score.skin_temp_celsius.toFixed(3) : null;
+  }
+
+  // Merge sleep data
+  for (const s of sleep.records?.filter((s) => s.score_state === 'SCORED' && !s.nap) ?? []) {
+    const date = s.start?.split('T')[0];
+    if (!date) continue;
+    if (!history[date]) history[date] = {};
+    history[date].sleep_performance_percentage = s.score?.sleep_performance_percentage ?? null;
+    history[date].sleep_efficiency_percentage = s.score?.sleep_efficiency_percentage ? +s.score.sleep_efficiency_percentage.toFixed(1) : null;
+    history[date].total_sleep_hours = s.score?.stage_summary
+      ? +((s.score.stage_summary.total_in_bed_time_milli - s.score.stage_summary.total_awake_time_milli) / 3600000).toFixed(1)
+      : null;
+    history[date].respiratory_rate = s.score?.respiratory_rate ? +s.score.respiratory_rate.toFixed(1) : null;
+  }
+
+  // Merge strain/cycle data
+  for (const c of cycles.records?.filter((c) => c.score_state === 'SCORED') ?? []) {
+    const date = c.start?.split('T')[0];
+    if (!date) continue;
+    if (!history[date]) history[date] = {};
+    history[date].day_strain = c.score?.strain ? +c.score.strain.toFixed(1) : null;
+    history[date].day_avg_hr = c.score?.average_heart_rate ?? null;
+    history[date].day_max_hr = c.score?.max_heart_rate ?? null;
+    history[date].day_kilojoules = c.score?.kilojoule ? Math.round(c.score.kilojoule) : null;
+  }
+
+  // Merge body measurement (single snapshot, store under today's date)
+  if (bodyMeasurement) {
+    const today = new Date().toISOString().split('T')[0];
+    if (!history[today]) history[today] = {};
+    if (bodyMeasurement.weight_kilogram) history[today].weight_kg = +bodyMeasurement.weight_kilogram.toFixed(1);
+    if (bodyMeasurement.max_heart_rate) history[today].max_heart_rate = bodyMeasurement.max_heart_rate;
+  }
+
+  // Sort by date and write
+  const sorted = Object.keys(history).sort().reduce((acc, key) => {
+    acc[key] = history[key];
+    return acc;
+  }, {});
+
+  writeFileSync(historyPath, JSON.stringify(sorted, null, 2));
+  console.log(`Wrote ${historyPath} (${Object.keys(sorted).length} days)`);
 }
 
 main().catch((err) => {
