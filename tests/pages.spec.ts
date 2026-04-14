@@ -22,7 +22,7 @@ test.describe("Homepage", () => {
 
   test("renders all sections", async ({ page }) => {
     await page.goto("/");
-    for (const id of ["about", "vitals", "work", "writing", "contact"]) {
+    for (const id of ["about", "vitals", "experience", "projects", "writing", "contact"]) {
       await expect(page.locator(`#${id}`)).toBeAttached();
     }
   });

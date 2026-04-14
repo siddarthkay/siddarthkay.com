@@ -106,10 +106,10 @@ export default function HeroSection() {
               className="flex flex-wrap gap-4 mt-10"
             >
               <a
-                href="#work"
+                href="#experience"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleScroll("#work");
+                  handleScroll("#experience");
                 }}
                 className="font-mono text-xs uppercase tracking-widest px-6 py-3 bg-navy text-parchment border border-navy hover:bg-burnt hover:border-burnt transition-all duration-200 rounded-sm inline-block"
               >

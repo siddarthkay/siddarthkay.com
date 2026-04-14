@@ -21,7 +21,7 @@ export default function ContactSection() {
             transition={{ duration: 0.45, ease }}
             className="flex items-baseline gap-4 mb-14"
           >
-            <a href="#contact" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">05</a>
+            <a href="#contact" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">06</a>
             <a href="#contact" className="label-mono text-parchment/40 no-underline hover:no-underline hover:text-burnt transition-colors">Contact</a>
           </motion.div>
 

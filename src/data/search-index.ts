@@ -1,8 +1,9 @@
 import { blogPosts } from "./blog-posts";
+import { experience } from "./experience";
 import { projects } from "./projects";
 import { makeToolCategories } from "./uses-tools";
 
-export type SearchItemType = "post" | "project" | "tool" | "section";
+export type SearchItemType = "post" | "project" | "experience" | "tool" | "section";
 
 export interface SearchItem {
   type: SearchItemType;
@@ -25,10 +26,17 @@ const sections: SearchItem[] = [
   },
   {
     type: "section",
-    title: "Work",
-    body: "Recent projects: IFT DevOps engineering, Status React Native and build systems, Source Elements product engineering, Centillion founding to CTO.",
-    tags: ["work", "projects"],
-    href: "/#work",
+    title: "Experience",
+    body: "Recent roles: IFT DevOps engineering, Status React Native and build systems, Source Elements product engineering, Centillion founding to CTO.",
+    tags: ["experience", "work", "jobs"],
+    href: "/#experience",
+  },
+  {
+    type: "section",
+    title: "Projects",
+    body: "Side projects and things I've built. AppDrop: CLI-first app distribution for iOS and Android.",
+    tags: ["projects", "side-projects", "builds"],
+    href: "/#projects",
   },
   {
     type: "section",
@@ -63,13 +71,24 @@ const postItems: SearchItem[] = blogPosts.map((p) => ({
   meta: `${p.date} · ${p.readTime}`,
 }));
 
-// Projects
+// Experience (jobs)
+const experienceItems: SearchItem[] = experience.map((e) => ({
+  type: "experience",
+  title: e.name,
+  body: e.description,
+  tags: e.tags,
+  href: e.href || "/#experience",
+  meta: e.year,
+  external: !!e.href && e.href.startsWith("http"),
+}));
+
+// Projects (side projects)
 const projectItems: SearchItem[] = projects.map((p) => ({
   type: "project",
   title: p.name,
   body: p.description,
   tags: p.tags,
-  href: p.href || "/#work",
+  href: p.href || "/#projects",
   meta: p.year,
   external: !!p.href && p.href.startsWith("http"),
 }));
@@ -96,6 +115,7 @@ const toolItems: SearchItem[] = makeToolCategories({
 export const searchIndex: SearchItem[] = [
   ...sections,
   ...postItems,
+  ...experienceItems,
   ...projectItems,
   ...toolItems,
 ];

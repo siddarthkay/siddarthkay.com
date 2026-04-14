@@ -34,7 +34,7 @@ export default function BlogSection() {
           transition={{ duration: 0.45, ease }}
           className="flex items-baseline gap-4 mb-14"
         >
-          <a href="#writing" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">04</a>
+          <a href="#writing" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">05</a>
           <a href="#writing" className="label-mono text-slate no-underline hover:no-underline hover:text-burnt transition-colors">Writing</a>
         </motion.div>
 

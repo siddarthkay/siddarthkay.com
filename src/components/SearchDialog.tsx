@@ -13,6 +13,7 @@ interface SearchDialogProps {
 const TYPE_LABELS: Record<SearchItemType, string> = {
   post: "POST",
   project: "PROJECT",
+  experience: "WORK",
   tool: "USES",
   section: "PAGE",
 };

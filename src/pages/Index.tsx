@@ -3,6 +3,7 @@ import SiteNav from "@/components/SiteNav";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import VitalsSection from "@/components/VitalsSection";
+import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import BlogSection from "@/components/BlogSection";
 import SpotifySection from "@/components/SpotifySection";
@@ -23,6 +24,7 @@ export default function Index() {
         <HeroSection />
         <AboutSection />
         <VitalsSection />
+        <ExperienceSection />
         <ProjectsSection />
         <BlogSection />
         <SpotifySection />
