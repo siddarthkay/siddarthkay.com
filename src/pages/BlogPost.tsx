@@ -8,6 +8,7 @@ import SiteFooter from "@/components/SiteFooter";
 import { getPost, blogPosts } from "@/data/blog-posts";
 import PageViews from "@/components/PageViews";
 import LikeButton from "@/components/LikeButton";
+import SupportButtons from "@/components/SupportButtons";
 import NotFound from "./NotFound";
 import { ease } from "@/lib/motion";
 
@@ -227,8 +228,12 @@ export default function BlogPost() {
             <Markdown components={markdownComponents}>{post.content}</Markdown>
           </motion.div>
 
+          {/* Support */}
+          <div className="rule-fade mt-16 mb-10" />
+          <SupportButtons variant="light" />
+
           {/* Prev / Next */}
-          <div className="rule-fade mt-16 mb-12" />
+          <div className="rule-fade mt-12 mb-12" />
           <div className="flex flex-col sm:flex-row justify-between gap-6">
             {prevPost && (
               <Link

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ease } from "@/lib/motion";
+import SupportButtons from "@/components/SupportButtons";
 
 const GCAL_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2HZIJ1T32Obs4qxIV0_o0oVGxt2Jh_yVJm66Hcj88b0v4VKqx4mdco_iqDJRfPhYGDZXhu1zrG?gv=true";
 
@@ -96,6 +97,11 @@ export default function ContactSection() {
                   </div>
                 ))}
               </div>
+
+              {/* Divider */}
+              <div className="h-px bg-parchment/10" />
+
+              <SupportButtons variant="dark" />
             </motion.div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { blogPosts } from "@/data/blog-posts";
 import PageViews from "@/components/PageViews";
+import SupportButtons from "@/components/SupportButtons";
 import { ease } from "@/lib/motion";
 
 export default function BlogIndex() {
@@ -94,6 +95,15 @@ export default function BlogIndex() {
               </article>
             </motion.div>
           ))}
+
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15, ease }}
+            className="mt-16"
+          >
+            <SupportButtons variant="light" />
+          </motion.div>
         </div>
       </main>
       <SiteFooter />
