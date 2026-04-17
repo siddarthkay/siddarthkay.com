@@ -41,10 +41,16 @@ export default function SupportButtons({
     `group inline-flex items-center gap-2.5 font-mono text-sm uppercase tracking-widest px-6 py-3 bg-transparent border ${p.button} transition-all duration-200 rounded-sm`;
 
   return (
-    <div className={className}>
+    <div id="support" className={`scroll-mt-24 ${className}`}>
       {showLabel && (
         <p className={`label-mono ${p.label} mb-4`}>
-          Support · Optional and appreciated
+          <a
+            href="#support"
+            className="no-underline hover:no-underline hover:text-burnt transition-colors"
+          >
+            Support
+          </a>
+          {" · Optional and appreciated"}
         </p>
       )}
       <div className="flex flex-wrap gap-3">
