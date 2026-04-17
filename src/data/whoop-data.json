@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-17T14:28:49.829Z",
+  "updated_at": "2026-04-17T15:24:56.003Z",
   "latest": {
     "recovery_score": 21,
     "hrv_rmssd_milli": 16.27356,
@@ -13,7 +13,7 @@
     "day_strain": 4.1,
     "day_avg_hr": 91,
     "day_max_hr": 127,
-    "day_kilojoules": 6229
+    "day_kilojoules": 6547
   },
   "trends": {
     "recovery": [
@@ -150,15 +150,6 @@
       "avg_hr": 148,
       "max_hr": 163,
       "duration_min": 34
-    },
-    {
-      "date": "2026-04-10",
-      "sport": "increase_relaxation",
-      "strain": null,
-      "calories_kcal": null,
-      "avg_hr": null,
-      "max_hr": null,
-      "duration_min": 3
     }
   ]
 }
