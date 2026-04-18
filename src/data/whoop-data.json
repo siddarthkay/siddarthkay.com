@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-18T16:12:38.626Z",
+  "updated_at": "2026-04-18T17:13:47.349Z",
   "latest": {
     "recovery_score": 58,
     "hrv_rmssd_milli": 23.953812,
@@ -13,7 +13,7 @@
     "day_strain": 4.3,
     "day_avg_hr": 88,
     "day_max_hr": 136,
-    "day_kilojoules": 6515
+    "day_kilojoules": 6884
   },
   "trends": {
     "recovery": [
