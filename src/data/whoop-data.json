@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-18T07:09:10.082Z",
+  "updated_at": "2026-04-18T07:28:04.548Z",
   "latest": {
     "recovery_score": 58,
     "hrv_rmssd_milli": 23.953812,
@@ -11,9 +11,9 @@
     "total_sleep_hours": 6.2,
     "respiratory_rate": 17,
     "day_strain": 3.4,
-    "day_avg_hr": 82,
+    "day_avg_hr": 83,
     "day_max_hr": 123,
-    "day_kilojoules": 3634
+    "day_kilojoules": 3739
   },
   "trends": {
     "recovery": [
