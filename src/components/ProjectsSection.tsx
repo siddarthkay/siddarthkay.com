@@ -1,11 +1,15 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ease } from "@/lib/motion";
 import { projects, type Project } from "@/data/projects";
 
 function ProjectCard({ project, i }: { project: Project; i: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  const hasInternalPage = !!(project.slug && project.content);
+  const hasLink = hasInternalPage || !!project.href;
 
   const body = (
     <>
@@ -23,7 +27,7 @@ function ProjectCard({ project, i }: { project: Project; i: number }) {
           >
             {project.name}
           </h3>
-          {project.href && (
+          {hasLink && (
             <span className="flex-shrink-0 mt-1 font-mono text-base text-slate/40 group-hover:text-burnt group-hover:translate-x-1 transition-all duration-200">→</span>
           )}
         </div>
@@ -58,7 +62,11 @@ function ProjectCard({ project, i }: { project: Project; i: number }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: i * 0.07, ease }}
     >
-      {project.href ? (
+      {hasInternalPage ? (
+        <Link to={`/projects/${project.slug}`} className={`${rowClass} cursor-pointer`}>
+          {body}
+        </Link>
+      ) : project.href ? (
         <a
           href={project.href}
           target="_blank"

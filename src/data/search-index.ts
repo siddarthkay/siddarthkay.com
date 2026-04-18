@@ -83,15 +83,19 @@ const experienceItems: SearchItem[] = experience.map((e) => ({
 }));
 
 // Projects (side projects)
-const projectItems: SearchItem[] = projects.map((p) => ({
-  type: "project",
-  title: p.name,
-  body: p.description,
-  tags: p.tags,
-  href: p.href || "/#projects",
-  meta: p.year,
-  external: !!p.href && p.href.startsWith("http"),
-}));
+const projectItems: SearchItem[] = projects.map((p) => {
+  const internal = p.slug && p.content;
+  const href = internal ? `/projects/${p.slug}` : p.href || "/#projects";
+  return {
+    type: "project",
+    title: p.name,
+    body: internal ? `${p.description}\n\n${p.content}` : p.description,
+    tags: p.tags,
+    href,
+    meta: p.year,
+    external: !internal && !!p.href && p.href.startsWith("http"),
+  };
+});
 
 // Tools from /uses (sketches aren't needed for search, pass empty strings)
 const toolItems: SearchItem[] = makeToolCategories({

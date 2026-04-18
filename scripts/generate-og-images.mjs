@@ -406,6 +406,29 @@ async function main() {
     await generateImage(markup, `${outDir}/${post.slug}.png`, fonts);
   }
 
+  // Projects with dedicated pages
+  const projectSource = readFileSync("src/data/projects.ts", "utf-8");
+  const projectBlocks = projectSource
+    .split(/\{\s*index:/)
+    .slice(1)
+    .map((b) => "index:" + b);
+  const projectsWithPages = [];
+  for (const block of projectBlocks) {
+    const slugMatch = /slug:\s*"([^"]+)"/.exec(block);
+    if (!slugMatch) continue;
+    const name = (/name:\s*"([^"]+)"/.exec(block) || [])[1] || slugMatch[1];
+    const year = (/year:\s*"([^"]+)"/.exec(block) || [])[1] || "";
+    const tagsRaw = (/tags:\s*\[([^\]]*)\]/.exec(block) || [])[1] || "";
+    const tags = [...tagsRaw.matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+    projectsWithPages.push({ slug: slugMatch[1], name, year, tags });
+  }
+
+  console.log(`Generating ${projectsWithPages.length} project images...`);
+  for (const p of projectsWithPages) {
+    const markup = buildOgMarkup(p.name, p.year, p.tags);
+    await generateImage(markup, `${outDir}/project-${p.slug}.png`, fonts);
+  }
+
   console.log("\nDone!");
 }
 

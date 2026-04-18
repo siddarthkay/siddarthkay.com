@@ -73,6 +73,32 @@ while ((match = postRegex.exec(blogSource)) !== null) {
   });
 }
 
+// Parse project metadata from projects.ts. Only entries that declare a slug
+// get a dedicated page; others are linked externally and need no route.
+const projectSource = readFileSync("src/data/projects.ts", "utf-8");
+const projectBlocks = projectSource
+  .split(/\{\s*index:/)
+  .slice(1)
+  .map((block) => "index:" + block);
+
+for (const block of projectBlocks) {
+  const slugMatch = /slug:\s*"([^"]+)"/.exec(block);
+  if (!slugMatch) continue;
+  const slug = slugMatch[1];
+  const name = (/name:\s*"([^"]+)"/.exec(block) || [])[1] || slug;
+  const year = (/year:\s*"([^"]+)"/.exec(block) || [])[1] || "";
+  const descMatch = /description:\s*\n?\s*"((?:[^"\\]|\\.)*)"/.exec(block);
+  const description = (descMatch ? descMatch[1] : "").replace(/\\"/g, '"');
+
+  pages.push({
+    route: `/projects/${slug}`,
+    title: `${name} | Siddarth Kumar`,
+    description,
+    ogType: "project",
+    date: year ? `January ${year}` : undefined,
+  });
+}
+
 function escapeHtml(str) {
   return str
     .replace(/&/g, "&amp;")
@@ -93,7 +119,9 @@ function generateHtml(page) {
   const title = escapeHtml(page.title);
   const description = escapeHtml(page.description);
   const url = `${BASE_URL}${trailingSlash(page.route)}`;
-  const ogType = page.ogType || "website";
+  // "project" is an internal marker; the actual og:type stays "website".
+  const ogType =
+    !page.ogType || page.ogType === "project" ? "website" : page.ogType;
 
   let html = template;
 
@@ -176,6 +204,24 @@ function generateHtml(page) {
     );
   }
 
+  // For project pages, use per-project OG image
+  if (page.ogType === "project") {
+    const slug = page.route.replace("/projects/", "");
+    const ogImage = `${BASE_URL}/og/project-${slug}.png`;
+    html = html.replace(
+      /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta property="og:image" content="${ogImage}" />`
+    );
+    html = html.replace(
+      /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:image" content="${ogImage}" />`
+    );
+    html = html.replace(
+      /<meta\s+name="twitter:card"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="twitter:card" content="summary_large_image" />`
+    );
+  }
+
   // For blog posts, replace the Person JSON-LD with Article JSON-LD
   if (page.ogType === "article") {
     const isoDate = parseDate(page.date) || new Date().toISOString().split("T")[0];
@@ -230,8 +276,22 @@ console.log(`Pre-rendered meta tags for ${count + 2} pages (${count} routes + in
 // Generate sitemap.xml with accurate lastmod dates
 const today = new Date().toISOString().split("T")[0];
 const sitemapEntries = pages.map((page) => {
-  const freq = page.route === "/" ? "daily" : page.ogType === "article" ? "monthly" : "weekly";
-  const priority = page.route === "/" ? "1.0" : page.ogType === "article" ? "0.7" : "0.8";
+  const freq =
+    page.route === "/"
+      ? "daily"
+      : page.ogType === "article"
+        ? "monthly"
+        : page.ogType === "project"
+          ? "monthly"
+          : "weekly";
+  const priority =
+    page.route === "/"
+      ? "1.0"
+      : page.ogType === "article"
+        ? "0.7"
+        : page.ogType === "project"
+          ? "0.7"
+          : "0.8";
   const lastmod = page.date ? (parseDate(page.date) || today) : today;
   return `  <url>
     <loc>${BASE_URL}${trailingSlash(page.route)}</loc>

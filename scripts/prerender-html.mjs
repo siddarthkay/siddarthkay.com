@@ -16,7 +16,19 @@ import path from "path";
 const blogSource = readFileSync("src/data/blog-posts.ts", "utf-8");
 const slugs = [...blogSource.matchAll(/slug:\s*"([^"]+)"/g)].map((m) => m[1]);
 
-const routes = ["/", "/blog", "/uses", ...slugs.map((s) => `/blog/${s}`)];
+// Extract project slugs from projects.ts (only entries that define a slug)
+const projectSource = readFileSync("src/data/projects.ts", "utf-8");
+const projectSlugs = [
+  ...projectSource.matchAll(/slug:\s*"([^"]+)"/g),
+].map((m) => m[1]);
+
+const routes = [
+  "/",
+  "/blog",
+  "/uses",
+  ...slugs.map((s) => `/blog/${s}`),
+  ...projectSlugs.map((s) => `/projects/${s}`),
+];
 
 // Serve the production build from dist/
 const server = await preview({
