@@ -1,16 +1,10 @@
 {
-  "updated_at": "2026-04-18T09:18:28.034Z",
+  "updated_at": "2026-04-18T09:51:56.454Z",
   "games": [
     {
       "appid": 730,
       "name": "Counter-Strike 2",
       "hours": "4h total",
-      "playtime_2weeks_hours": 0
-    },
-    {
-      "appid": 2358720,
-      "name": "Black Myth: Wukong",
-      "hours": "13h total",
       "playtime_2weeks_hours": 0
     }
   ]
