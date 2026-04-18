@@ -52,6 +52,4 @@ The codebase is at v0. The first real milestone, an iOS simulator, an Android em
 If this is the kind of thing you want on your phone, a GitHub star is the signal I watch to decide what to keep building.
 
 - [Star on GitHub](https://github.com/siddarthkay/syncthing-app)
-- [Sponsor on GitHub](https://github.com/sponsors/siddarthkay)
 
-Licensed MPL-2.0.
