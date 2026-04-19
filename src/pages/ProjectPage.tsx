@@ -7,6 +7,7 @@ import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { getProject, projects } from "@/data/projects";
 import PageViews from "@/components/PageViews";
+import LikeButton from "@/components/LikeButton";
 import SupportButtons from "@/components/SupportButtons";
 import NotFound from "./NotFound";
 import { ease } from "@/lib/motion";
@@ -166,6 +167,16 @@ export default function ProjectPage() {
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
       <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">
+        {/* Sticky like button - desktop sidebar */}
+        <div className="hidden lg:block fixed left-[calc(50%-420px)] top-1/2 -translate-y-1/2 z-40">
+          <LikeButton slug={`project-${project.slug}`} layout="vertical" />
+        </div>
+
+        {/* Sticky like button - mobile bottom bar */}
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-parchment/95 backdrop-blur-sm border-t border-navy/[0.07] px-6 py-3">
+          <LikeButton slug={`project-${project.slug}`} layout="horizontal" />
+        </div>
+
         <article className="max-w-2xl mx-auto">
           {/* Back */}
           <motion.div
