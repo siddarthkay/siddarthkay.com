@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-04-19T03:06:01.912Z",
+  "updated_at": "2026-04-19T05:02:16.581Z",
   "latest": {
-    "recovery_score": 58,
-    "hrv_rmssd_milli": 23.953812,
-    "resting_heart_rate": 78,
-    "spo2_percentage": 99,
-    "skin_temp_celsius": 34.12583,
-    "sleep_performance_percentage": 79,
-    "sleep_efficiency_percentage": 96.25231,
-    "total_sleep_hours": 6.2,
-    "respiratory_rate": 17,
-    "day_strain": 4.3,
-    "day_avg_hr": 85,
-    "day_max_hr": 136,
-    "day_kilojoules": 9989
+    "recovery_score": 63,
+    "hrv_rmssd_milli": 23.67705,
+    "resting_heart_rate": 77,
+    "spo2_percentage": 96.44444,
+    "skin_temp_celsius": 33.808968,
+    "sleep_performance_percentage": 85,
+    "sleep_efficiency_percentage": 94.93144,
+    "total_sleep_hours": 7.5,
+    "respiratory_rate": 16.5,
+    "day_strain": 0.1,
+    "day_avg_hr": 79,
+    "day_max_hr": 118,
+    "day_kilojoules": 3134
   },
   "trends": {
     "recovery": [
@@ -52,6 +52,12 @@
         "score": 58,
         "hrv": 24,
         "rhr": 78
+      },
+      {
+        "date": "2026-04-19",
+        "score": 63,
+        "hrv": 23.7,
+        "rhr": 77
       }
     ],
     "strain": [
@@ -82,6 +88,10 @@
       {
         "date": "2026-04-17",
         "strain": 4.3
+      },
+      {
+        "date": "2026-04-18",
+        "strain": 0.1
       }
     ],
     "sleep": [
@@ -114,18 +124,13 @@
         "date": "2026-04-17",
         "performance": 79,
         "hours": 6.2
+      },
+      {
+        "date": "2026-04-18",
+        "performance": 85,
+        "hours": 7.5
       }
     ]
   },
-  "recent_workouts": [
-    {
-      "date": "2026-04-12",
-      "sport": "walking",
-      "strain": 11.2,
-      "calories_kcal": 417,
-      "avg_hr": 137,
-      "max_hr": 166,
-      "duration_min": 49
-    }
-  ]
+  "recent_workouts": []
 }
