@@ -50,6 +50,13 @@ const pages = [
     description:
       "Tools, hardware, and software Siddarth Kumar uses for infrastructure engineering and daily work.",
   },
+  {
+    route: "/syncup/privacy-policy",
+    title: "SyncUp Privacy Policy | Siddarth Kumar",
+    description:
+      "Privacy policy for the SyncUp iOS app, an open-source client for the Syncthing peer-to-peer file synchronization protocol.",
+    noindex: true,
+  },
 ];
 
 // Parse blog post metadata from the source TS file.
@@ -222,6 +229,14 @@ function generateHtml(page) {
     );
   }
 
+  // Pages flagged noindex (e.g. legal pages we host but don't want surfaced)
+  if (page.noindex) {
+    html = html.replace(
+      /<meta\s+name="robots"\s+content="[^"]*"\s*\/?>/,
+      `<meta name="robots" content="noindex, nofollow" />`
+    );
+  }
+
   // For blog posts, replace the Person JSON-LD with Article JSON-LD
   if (page.ogType === "article") {
     const isoDate = parseDate(page.date) || new Date().toISOString().split("T")[0];
@@ -275,7 +290,7 @@ console.log(`Pre-rendered meta tags for ${count + 2} pages (${count} routes + in
 
 // Generate sitemap.xml with accurate lastmod dates
 const today = new Date().toISOString().split("T")[0];
-const sitemapEntries = pages.map((page) => {
+const sitemapEntries = pages.filter((p) => !p.noindex).map((page) => {
   const freq =
     page.route === "/"
       ? "daily"
@@ -308,7 +323,7 @@ ${sitemapEntries.join("\n")}
 `;
 
 writeFileSync(path.join(DIST, "sitemap.xml"), sitemap);
-console.log(`Generated sitemap.xml with ${pages.length} URLs`);
+console.log(`Generated sitemap.xml with ${sitemapEntries.length} URLs`);
 
 // Generate RSS feed
 const feedItems = pages

@@ -4,6 +4,7 @@ import BlogIndex from "./pages/BlogIndex.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import ProjectPage from "./pages/ProjectPage.tsx";
 import Uses from "./pages/Uses.tsx";
+import SyncupPrivacyPolicy from "./pages/SyncupPrivacyPolicy.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
 
@@ -16,6 +17,7 @@ const App = () => (
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/projects/:slug" element={<ProjectPage />} />
         <Route path="/uses" element={<Uses />} />
+        <Route path="/syncup/privacy-policy" element={<SyncupPrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </ErrorBoundary>
