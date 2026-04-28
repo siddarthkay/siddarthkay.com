@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-28T13:37:24.930Z",
+  "updated_at": "2026-04-28T14:51:58.286Z",
   "latest": {
     "recovery_score": 45,
     "hrv_rmssd_milli": 23.355791,
@@ -13,7 +13,7 @@
     "day_strain": 5.5,
     "day_avg_hr": 89,
     "day_max_hr": 169,
-    "day_kilojoules": 6124
+    "day_kilojoules": 6531
   },
   "trends": {
     "recovery": [
@@ -168,15 +168,6 @@
       "avg_hr": 132,
       "max_hr": 148,
       "duration_min": 34
-    },
-    {
-      "date": "2026-04-21",
-      "sport": "walking",
-      "strain": 4.5,
-      "calories_kcal": 49,
-      "avg_hr": 120,
-      "max_hr": 137,
-      "duration_min": 13
     }
   ]
 }
