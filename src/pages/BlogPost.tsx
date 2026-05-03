@@ -9,6 +9,7 @@ import { getPost, blogPosts } from "@/data/blog-posts";
 import PageViews from "@/components/PageViews";
 import LikeButton from "@/components/LikeButton";
 import SupportButtons from "@/components/SupportButtons";
+import Comments from "@/components/Comments";
 import NotFound from "./NotFound";
 import { ease } from "@/lib/motion";
 
@@ -231,6 +232,9 @@ export default function BlogPost() {
           {/* Support */}
           <div className="rule-fade mt-16 mb-10" />
           <SupportButtons variant="light" />
+
+          {/* Comments */}
+          <Comments slug={post.slug} />
 
           {/* Prev / Next */}
           <div className="rule-fade mt-12 mb-12" />
