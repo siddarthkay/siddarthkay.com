@@ -1,17 +1,11 @@
 {
-  "updated_at": "2026-06-26T13:43:18.070Z",
+  "updated_at": "2026-06-26T14:56:43.199Z",
   "games": [
     {
       "appid": 2322010,
       "name": "God of War Ragnarök",
       "hours": "332h total",
-      "playtime_2weeks_hours": 6
-    },
-    {
-      "appid": 1551360,
-      "name": "Forza Horizon 5",
-      "hours": "3h total",
-      "playtime_2weeks_hours": 0
+      "playtime_2weeks_hours": 5
     }
   ]
 }
