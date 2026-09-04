@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-04T17:08:30.803Z",
+  "updated_at": "2026-09-04T18:11:31.616Z",
   "games": [
     {
       "appid": 2322010,
       "name": "God of War Ragnarök",
-      "hours": "512h total",
-      "playtime_2weeks_hours": 20
+      "hours": "513h total",
+      "playtime_2weeks_hours": 21
     }
   ]
 }
