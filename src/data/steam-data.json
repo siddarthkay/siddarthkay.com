@@ -1,11 +1,17 @@
 {
-  "updated_at": "2026-09-22T11:09:18.338Z",
+  "updated_at": "2026-09-22T12:21:11.118Z",
   "games": [
     {
       "appid": 2322010,
       "name": "God of War Ragnarök",
       "hours": "527h total",
       "playtime_2weeks_hours": 5
+    },
+    {
+      "appid": 2358720,
+      "name": "Black Myth: Wukong",
+      "hours": "217h total",
+      "playtime_2weeks_hours": 0
     }
   ]
 }
