@@ -27,6 +27,8 @@ const routes = [
   "/blog",
   "/uses",
   "/syncup/privacy-policy",
+  "/null-pointer/privacy-policy",
+  "/null-pointer/support",
   ...slugs.map((s) => `/blog/${s}`),
   ...projectSlugs.map((s) => `/projects/${s}`),
 ];

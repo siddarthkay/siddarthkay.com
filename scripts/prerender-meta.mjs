@@ -57,6 +57,20 @@ const pages = [
       "Privacy policy for the SyncUp iOS app, an open-source client for the Syncthing peer-to-peer file synchronization protocol.",
     noindex: true,
   },
+  {
+    route: "/null-pointer/privacy-policy",
+    title: "null-pointer Privacy Policy | Siddarth Kumar",
+    description:
+      "Privacy policy for the null-pointer mobile app, a client for the devnull social network for developers.",
+    noindex: true,
+  },
+  {
+    route: "/null-pointer/support",
+    title: "null-pointer Support | Siddarth Kumar",
+    description:
+      "Support for the null-pointer mobile app, a client for the devnull social network for developers.",
+    noindex: true,
+  },
 ];
 
 // Parse blog post metadata from the source TS file.
