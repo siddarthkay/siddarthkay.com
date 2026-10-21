@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { MotionConfig } from "framer-motion";
 import Index from "./pages/Index.tsx";
 import BlogIndex from "./pages/BlogIndex.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
@@ -8,19 +9,24 @@ import SyncupPrivacyPolicy from "./pages/SyncupPrivacyPolicy.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
 
+// Routes are imported statically on purpose: a single bundle avoids stale-chunk
+// errors after deploys (see tests/pages.spec.ts "No lazy chunk loading").
 const App = () => (
   <BrowserRouter>
-    <ErrorBoundary>
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/blog" element={<BlogIndex />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-        <Route path="/projects/:slug" element={<ProjectPage />} />
-        <Route path="/uses" element={<Uses />} />
-        <Route path="/syncup/privacy-policy" element={<SyncupPrivacyPolicy />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </ErrorBoundary>
+    {/* reducedMotion="user" disables transform/layout animations when the OS asks for reduced motion */}
+    <MotionConfig reducedMotion="user">
+      <ErrorBoundary>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/blog" element={<BlogIndex />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/projects/:slug" element={<ProjectPage />} />
+          <Route path="/uses" element={<Uses />} />
+          <Route path="/syncup/privacy-policy" element={<SyncupPrivacyPolicy />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ErrorBoundary>
+    </MotionConfig>
   </BrowserRouter>
 );
 

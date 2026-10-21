@@ -1,0 +1,134 @@
+{
+  "/blog/adios.jpg": {
+    "height": 1024,
+    "width": 768
+  },
+  "/blog/ape-think.jpg": {
+    "height": 431,
+    "width": 480
+  },
+  "/blog/budget.jpeg": {
+    "height": 765,
+    "width": 736
+  },
+  "/blog/burnt-out.jpeg": {
+    "height": 413,
+    "width": 736
+  },
+  "/blog/companion.jpg": {
+    "height": 609,
+    "width": 736
+  },
+  "/blog/context.jpeg": {
+    "height": 640,
+    "width": 523
+  },
+  "/blog/couple-quick-nits.jpeg": {
+    "height": 728,
+    "width": 735
+  },
+  "/blog/docker-image-drift-vs-pinned.svg": {
+    "width": 800,
+    "height": 720
+  },
+  "/blog/docker-trust-chain.svg": {
+    "width": 800,
+    "height": 740
+  },
+  "/blog/fin.jpeg": {
+    "height": 480,
+    "width": 640
+  },
+  "/blog/go-darwin-symbol-diff.svg": {
+    "width": 800,
+    "height": 720
+  },
+  "/blog/green-flag-merge.png": {
+    "width": 1437,
+    "height": 1127
+  },
+  "/blog/hell-yeah.jpg": {
+    "height": 747,
+    "width": 996
+  },
+  "/blog/I-will-do-it.jpg": {
+    "height": 863,
+    "width": 867
+  },
+  "/blog/it-was-by-design.png": {
+    "width": 746,
+    "height": 1208
+  },
+  "/blog/kotlin-sees-java.jpeg": {
+    "height": 696,
+    "width": 718
+  },
+  "/blog/locked-out.jpeg": {
+    "height": 713,
+    "width": 736
+  },
+  "/blog/og-memory-leak-chart.svg": {
+    "width": 800,
+    "height": 580
+  },
+  "/blog/primeagen-dissaproval.png": {
+    "width": 500,
+    "height": 637
+  },
+  "/blog/react-native-nim-pipeline.svg": {
+    "width": 800,
+    "height": 960
+  },
+  "/blog/rn-upgrade-cliff.jpeg": {
+    "height": 736,
+    "width": 736
+  },
+  "/blog/seccomp-epoll-crash-chain.svg": {
+    "width": 800,
+    "height": 820
+  },
+  "/blog/SEO.jpeg": {
+    "height": 736,
+    "width": 736
+  },
+  "/blog/status-app-ci-pipeline.svg": {
+    "width": 800,
+    "height": 700
+  },
+  "/blog/status-mobile-architecture.svg": {
+    "width": 800,
+    "height": 990
+  },
+  "/blog/what-different.jpg": {
+    "height": 845,
+    "width": 736
+  },
+  "/blog/xcode-vs-xcodebuild-codegen.svg": {
+    "width": 800,
+    "height": 780
+  },
+  "/projects/syncup/cross-platform-sync.png": {
+    "width": 1600,
+    "height": 891
+  },
+  "/projects/syncup/devices.png": {
+    "width": 1179,
+    "height": 2556
+  },
+  "/projects/syncup/folders.png": {
+    "width": 1179,
+    "height": 2556
+  },
+  "/projects/syncup/icon.png": {
+    "width": 1024,
+    "height": 1024
+  },
+  "/projects/syncup/settings.png": {
+    "width": 1179,
+    "height": 2556
+  },
+  "/projects/syncup/status.png": {
+    "width": 1179,
+    "height": 2556
+  }
+}

@@ -11,7 +11,7 @@ export default function SyncupPrivacyPolicy() {
     <>
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
-      <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">
+      <main id="content" tabIndex={-1} className="min-h-screen pt-24 pb-32 px-6 md:px-8">
         <article className="max-w-2xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 8 }}

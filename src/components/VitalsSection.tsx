@@ -169,7 +169,7 @@ export default function VitalsSection() {
           className="flex items-baseline gap-4 mb-14"
         >
           <a href="#vitals" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">02</a>
-          <a href="#vitals" className="label-mono text-slate no-underline hover:no-underline hover:text-burnt transition-colors">Vitals</a>
+          <h2 className="label-mono text-slate font-mono"><a href="#vitals" className="no-underline hover:no-underline hover:text-burnt transition-colors">Vitals</a></h2>
         </motion.div>
 
         {/* Stat row */}

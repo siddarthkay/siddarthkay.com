@@ -48,7 +48,7 @@ export default function HeroSection() {
             {/* Name - oversized, editorial weight */}
             <h1 className="font-serif text-navy font-medium leading-[0.95] tracking-[-0.03em]"
                 style={{ fontSize: "clamp(4rem, 10vw, 8.5rem)" }}>
-              <div className="overflow-hidden pt-3 mb-6">
+              <span className="block overflow-hidden pt-3 mb-6">
                 <motion.span
                   initial={{ y: "105%" }}
                   animate={{ y: 0 }}
@@ -57,8 +57,8 @@ export default function HeroSection() {
                 >
                   Siddarth
                 </motion.span>
-              </div>
-              <div className="overflow-hidden pt-3 mb-10">
+              </span>
+              <span className="block overflow-hidden pt-3 mb-10">
                 <motion.span
                   initial={{ y: "105%" }}
                   animate={{ y: 0 }}
@@ -67,7 +67,7 @@ export default function HeroSection() {
                 >
                   Kumar<span className="text-burnt">.</span>
                 </motion.span>
-              </div>
+              </span>
             </h1>
 
             {/* Ruled separator + intro */}
@@ -138,6 +138,8 @@ export default function HeroSection() {
             <img
               src={sidkayLogo}
               alt="Siddarth Kumar mark"
+              width={512}
+              height={512}
               className="w-[140px] h-[140px] object-contain opacity-90"
             />
             <div

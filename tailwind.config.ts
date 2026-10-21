@@ -19,11 +19,11 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        navy: "hsl(222 45% 19%)",       // Deep Navy #1a2744
-        parchment: "hsl(38 25% 94%)",   // #f5f2ed
-        ink: "hsl(0 0% 11%)",           // #1c1c1c
-        burnt: "hsl(25 67% 50%)",       // Burnt Orange #d4702a
-        slate: "hsl(222 10% 45%)",      // Slate Grey
+        navy: "hsl(var(--navy))",
+        parchment: "hsl(var(--parchment))",
+        ink: "hsl(var(--ink))",
+        burnt: "hsl(var(--burnt))",
+        slate: "hsl(var(--slate))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

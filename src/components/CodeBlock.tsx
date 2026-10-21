@@ -30,10 +30,16 @@ export default function CodeBlock({ language, children }: { language: string; ch
       wrapLongLines
       customStyle={{
         borderRadius: "6px",
-        margin: 0,
+        margin: "0 0 1.5rem",
         fontSize: "0.8125rem",
         lineHeight: "1.7",
-        fontFamily: "'JetBrains Mono', monospace",
+        fontFamily: "var(--font-mono)",
+        overflowX: "hidden",
+        whiteSpace: "pre-wrap",
+        wordBreak: "break-word",
+      }}
+      codeTagProps={{
+        style: { whiteSpace: "pre-wrap", wordBreak: "break-word", fontFamily: "inherit" },
       }}
     >
       {children}

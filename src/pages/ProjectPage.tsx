@@ -166,7 +166,7 @@ export default function ProjectPage() {
     <>
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
-      <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">
+      <main id="content" tabIndex={-1} className="min-h-screen pt-24 pb-32 px-6 md:px-8">
         {/* Sticky like button - desktop sidebar */}
         <div className="hidden lg:block fixed left-[calc(50%-420px)] top-1/2 -translate-y-1/2 z-40">
           <LikeButton slug={`project-${project.slug}`} layout="vertical" />

@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import Markdown, { type Components } from "react-markdown";
 import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import CodeBlock from "@/components/CodeBlock";
+import imageDims from "@/data/image-dims.json";
+
+const IMAGE_DIMS: Record<string, { width: number; height: number }> = imageDims;
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import { getPost, blogPosts } from "@/data/blog-posts";
@@ -111,12 +114,25 @@ const markdownComponents: Components = {
     }
     return <pre>{children}</pre>;
   },
+  img: ({ src, alt }) => {
+    const dims = src ? IMAGE_DIMS[src] : undefined;
+    return (
+      <img
+        src={src}
+        alt={alt ?? ""}
+        width={dims?.width}
+        height={dims?.height}
+        loading="lazy"
+        decoding="async"
+      />
+    );
+  },
   code: ({ className, children }) => {
     // Block code is handled by `pre` above; only customize inline code here.
     if (className) return <code className={className}>{children}</code>;
     const content = String(children);
     // Diff-stat pills, e.g. `+761` or `-8871`
-    const diff = /^([+\-])(\d[\d,]*)$/.exec(content);
+    const diff = /^([+-])(\d[\d,]*)$/.exec(content);
     if (diff) {
       const [, sign, num] = diff;
       const isAdd = sign === "+";
@@ -154,7 +170,7 @@ export default function BlogPost() {
     <>
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
-      <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">
+      <main id="content" tabIndex={-1} className="min-h-screen pt-24 pb-32 px-6 md:px-8">
         {/* Sticky like button - desktop sidebar */}
         <div className="hidden lg:block fixed left-[calc(50%-420px)] top-1/2 -translate-y-1/2 z-40">
           <LikeButton slug={post.slug} layout="vertical" />

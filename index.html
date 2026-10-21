@@ -29,11 +29,9 @@
     <!-- Analytics preconnect -->
     <link rel="preconnect" href="https://siddarthkay.goatcounter.com" crossorigin />
 
-    <!-- Fonts: preload to avoid render blocking -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=JetBrains+Mono:wght@400;500&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" />
+    <!-- Fonts: self-hosted, preload the two above-the-fold faces -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/newsreader-normal-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/source-sans-3-normal-latin.woff2" crossorigin />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -52,9 +50,6 @@
     }
     </script>
 
-    <!-- Analytics -->
-    <script data-goatcounter="https://siddarthkay.goatcounter.com/count"
-            async src="https://gc.zgo.at/count.js"></script>
   </head>
 
   <body>
@@ -68,5 +63,8 @@
       </nav>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Analytics: non-critical, loads after app bootstrap -->
+    <script data-goatcounter="https://siddarthkay.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"></script>
   </body>
 </html>

@@ -45,7 +45,7 @@ export default function Comments({ slug }: CommentsProps) {
 
     const script = document.createElement("script");
     script.async = true;
-    script.src = `https://graphcomment.com/js/integration.js?${Date.now()}`;
+    script.src = "https://graphcomment.com/js/integration.js";
     document.head.appendChild(script);
 
     return () => {

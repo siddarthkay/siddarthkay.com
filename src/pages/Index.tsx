@@ -20,7 +20,7 @@ export default function Index() {
 
       <SiteNav />
 
-      <main>
+      <main id="content" tabIndex={-1}>
         <HeroSection />
         <AboutSection />
         <VitalsSection />

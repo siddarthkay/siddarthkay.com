@@ -15,7 +15,7 @@ export default function BlogIndex() {
     <>
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
-      <main className="min-h-screen pt-24 pb-32 px-6 md:px-8">
+      <main id="content" tabIndex={-1} className="min-h-screen pt-24 pb-32 px-6 md:px-8">
         <div className="max-w-5xl mx-auto">
           {/* Back */}
           <motion.div

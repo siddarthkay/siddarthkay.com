@@ -99,7 +99,7 @@ export default function ProjectsSection() {
           className="flex items-baseline gap-4 mb-14"
         >
           <a href="#projects" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">04</a>
-          <a href="#projects" className="label-mono text-slate no-underline hover:no-underline hover:text-burnt transition-colors">Projects</a>
+          <h2 className="label-mono text-slate font-mono"><a href="#projects" className="no-underline hover:no-underline hover:text-burnt transition-colors">Projects</a></h2>
         </motion.div>
 
         {/* Column labels */}

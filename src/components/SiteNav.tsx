@@ -77,6 +77,8 @@ export default function SiteNav() {
 
   return (
     <>
+      <a href="#content" className="skip-link">Skip to content</a>
+
       {/* Accent strip - thin burnt orange bar at very top */}
       <div className="fixed top-0 left-0 right-0 z-[60] h-[3px] bg-burnt" />
 
@@ -102,7 +104,7 @@ export default function SiteNav() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
             {navItems.map((item) =>
               item.type === "route" ? (
                 <Link
@@ -146,7 +148,10 @@ export default function SiteNav() {
               <Search className="h-4 w-4" />
             </button>
             <button
-            aria-label="Toggle menu"
+            type="button"
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
             className="flex flex-col gap-[5px] p-1"
             onClick={() => setMenuOpen((v) => !v)}
           >
@@ -161,6 +166,8 @@ export default function SiteNav() {
         <AnimatePresence>
           {menuOpen && (
             <motion.nav
+              id="mobile-nav"
+              aria-label="Mobile"
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}

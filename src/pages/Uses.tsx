@@ -5,12 +5,12 @@ import { useDocumentTitle } from "@/lib/useDocumentTitle";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import sidkayLogo from "@/assets/sidkay-logo.png";
-import sketchInfrastructure from "@/assets/sketch-infrastructure.png";
-import sketchEthereum from "@/assets/sketch-ethereum.png";
-import sketchDevtools from "@/assets/sketch-devtools.png";
-import sketchHardware from "@/assets/sketch-hardware.png";
-import sketchServices from "@/assets/sketch-services.png";
-import sketchGames from "@/assets/sketch-games.png";
+import sketchInfrastructure from "@/assets/sketch-infrastructure.webp";
+import sketchEthereum from "@/assets/sketch-ethereum.webp";
+import sketchDevtools from "@/assets/sketch-devtools.webp";
+import sketchHardware from "@/assets/sketch-hardware.webp";
+import sketchServices from "@/assets/sketch-services.webp";
+import sketchGames from "@/assets/sketch-games.webp";
 import steamData from "@/data/steam-data.json";
 import { makeToolCategories, type ToolCategory } from "@/data/uses-tools";
 import PageViews from "@/components/PageViews";
@@ -110,8 +110,10 @@ function CategoryBlock({ cat, i }: { cat: ToolCategory; i: number }) {
           <img
             src={cat.sketch}
             alt=""
-            aria-hidden="true"
+            width={560}
+            height={560}
             loading="lazy"
+            decoding="async"
             className="w-full h-full object-contain"
             style={{ filter: "contrast(1.2)" }}
           />
@@ -230,8 +232,10 @@ function GamesSection() {
             <img
               src={sketchGames}
               alt=""
-              aria-hidden="true"
+              width={560}
+              height={560}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-contain"
               style={{ filter: "contrast(1.2)" }}
             />
@@ -253,7 +257,7 @@ export default function Uses() {
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
 
-      <main>
+      <main id="content" tabIndex={-1}>
         {/* Page header */}
         <section className="pt-24 md:pt-32 pb-8 md:pb-16 px-6 md:px-8">
           <div className="max-w-5xl mx-auto" ref={heroRef}>
@@ -338,6 +342,8 @@ export default function Uses() {
                 <img
                   src={sidkayLogo}
                   alt="Siddarth Kumar mark"
+                  width={512}
+                  height={512}
                   className="w-[120px] h-[120px] object-contain opacity-80"
                 />
                 <div className="flex flex-col items-center gap-3" style={{ writingMode: "vertical-rl" }}>

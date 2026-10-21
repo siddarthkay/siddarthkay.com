@@ -10,7 +10,7 @@ export default function NotFound() {
       <div className="paper-grain" aria-hidden="true" />
       <SiteNav />
 
-      <main className="flex-1 flex flex-col justify-center px-6 md:px-8">
+      <main id="content" tabIndex={-1} className="flex-1 flex flex-col justify-center px-6 md:px-8">
         <div className="max-w-5xl mx-auto w-full">
 
           {/* Masthead bar */}

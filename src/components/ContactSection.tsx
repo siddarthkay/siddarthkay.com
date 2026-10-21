@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { ease } from "@/lib/motion";
 import SupportButtons from "@/components/SupportButtons";
 
@@ -9,6 +9,15 @@ export default function ContactSection() {
   const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [showCal, setShowCal] = useState(false);
+  const calRef = useRef<HTMLDialogElement>(null);
+
+  // Native <dialog>: showModal() traps focus, makes the page inert and restores focus on close.
+  useEffect(() => {
+    const dialog = calRef.current;
+    if (!dialog) return;
+    if (showCal && !dialog.open) dialog.showModal();
+    else if (!showCal && dialog.open) dialog.close();
+  }, [showCal]);
 
   return (
     <>
@@ -108,39 +117,37 @@ export default function ContactSection() {
       </section>
 
       {/* Calendar modal */}
-      <AnimatePresence>
-        {showCal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-navy/80 backdrop-blur-sm"
+      <dialog
+        ref={calRef}
+        aria-label="Book a call"
+        onCancel={(e) => {
+          e.preventDefault();
+          setShowCal(false);
+        }}
+        onClose={() => setShowCal(false)}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setShowCal(false);
+        }}
+        className="editorial dense m-auto w-[96vw] sm:w-[90vw] max-w-[900px] h-[92vh] sm:h-[85vh]"
+      >
+        <div className="relative w-full h-full bg-white rounded-sm overflow-hidden">
+          <button
+            type="button"
             onClick={() => setShowCal(false)}
+            aria-label="Close"
+            className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center text-slate hover:text-navy transition-colors text-lg font-mono"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.2, ease }}
-              className="relative w-[96vw] sm:w-[90vw] max-w-[900px] h-[92vh] sm:h-[85vh] bg-white rounded-sm overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setShowCal(false)}
-                className="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center text-slate hover:text-navy transition-colors text-lg font-mono"
-              >
-                &times;
-              </button>
-              <iframe
-                src={GCAL_URL}
-                className="w-full h-full border-0"
-                title="Book a call"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            &times;
+          </button>
+          {showCal && (
+            <iframe
+              src={GCAL_URL}
+              className="w-full h-full border-0"
+              title="Book a call"
+            />
+          )}
+        </div>
+      </dialog>
     </>
   );
 }

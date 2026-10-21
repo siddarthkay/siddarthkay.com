@@ -91,7 +91,7 @@ export default function ExperienceSection() {
           className="flex items-baseline gap-4 mb-14"
         >
           <a href="#experience" className="font-mono text-burnt text-[2.5rem] font-medium leading-none tabular-nums no-underline hover:no-underline">03</a>
-          <a href="#experience" className="label-mono text-slate no-underline hover:no-underline hover:text-burnt transition-colors">Experience</a>
+          <h2 className="label-mono text-slate font-mono"><a href="#experience" className="no-underline hover:no-underline hover:text-burnt transition-colors">Experience</a></h2>
         </motion.div>
 
         {/* Column labels */}
