@@ -65,7 +65,7 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: update live data" && git push
 
       - name: Install Playwright browser
-        run: npx playwright install chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Build
         run: make build
